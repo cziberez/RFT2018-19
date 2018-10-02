@@ -1,0 +1,38 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>hu.food</groupId>
+  <artifactId>kaJava</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <modules>
+  	<module>kaJava-core</module>
+  	<module>kaJava-service</module>
+  	<module>kaJava-service-api</module>
+  	<module>kaJava-web</module>
+  	<module>kaJava-ear</module>
+  </modules>
+  
+  <dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>8.0</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>ma.glasnost.orika</groupId>
+				<artifactId>orika-core</artifactId>
+				<version>1.5.2</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.primefaces</groupId>
+				<artifactId>primefaces</artifactId>
+				<version>6.2</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+</project>
