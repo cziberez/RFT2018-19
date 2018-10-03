@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Built-By: Bence
-Class-Path: APP-INF/lib/kaJava-service-api-0.0.1-SNAPSHOT.jar APP-INF/
- lib/primefaces-6.2.jar
-Build-Jdk: 1.8.0_181
-Created-By: Maven Integration for Eclipse
-
