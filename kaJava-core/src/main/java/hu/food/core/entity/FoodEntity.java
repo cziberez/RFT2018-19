@@ -1,68 +1,35 @@
 package hu.food.core.entity;
 
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import java.util.List;
 
 @Entity
-public class FoodEntity extends BaseEntity{
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class FoodEntity extends BaseEntity {
 
-	private static final long serialVersionUID = 1L;
-	
-	private String name;
-	
-	private Long price;
-	
-	@Lob
-	private String description;
-	
-	@OneToOne
-	private FoodImageEntity foodImage;
-	
-	@ManyToMany
-	private List<IngridenceEntity> ingridence;
+    private static final long serialVersionUID = 1L;
 
-	public String getName() {
-		return name;
-	}
+    private String name;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    private Long price;
 
-	public Long getPrice() {
-		return price;
-	}
+    @Lob
+    private String description;
 
-	public void setPrice(Long price) {
-		this.price = price;
-	}
+    @OneToOne
+    private FoodImageEntity foodImage;
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public FoodImageEntity getFoodImage() {
-		return foodImage;
-	}
-
-	public void setFoodImage(FoodImageEntity foodImage) {
-		this.foodImage = foodImage;
-	}
-
-	public List<IngridenceEntity> getIngridence() {
-		return ingridence;
-	}
-
-	public void setIngridence(List<IngridenceEntity> ingridence) {
-		this.ingridence = ingridence;
-	}
-	
+    @ManyToMany
+    private List<IngridenceEntity> ingridence;
 }

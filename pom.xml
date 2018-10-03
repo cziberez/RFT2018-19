@@ -42,12 +42,14 @@
                 <artifactId>primefaces</artifactId>
                 <version>${org.primefaces.primefaces.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${org.projectlombok.lombok.version}</version>
-                <scope>provided</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.16</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>

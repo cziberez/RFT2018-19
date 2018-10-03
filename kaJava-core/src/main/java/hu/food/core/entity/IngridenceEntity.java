@@ -1,27 +1,18 @@
 package hu.food.core.entity;
 
-public class IngridenceEntity extends BaseEntity{
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-	private static final long serialVersionUID = 1L;
-	
-	private String name;
-	
-	private Long price;
+import javax.persistence.Entity;
 
-	public String getName() {
-		return name;
-	}
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+public class IngridenceEntity extends BaseEntity {
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    private static final long serialVersionUID = 1L;
 
-	public Long getPrice() {
-		return price;
-	}
+    private String name;
 
-	public void setPrice(Long price) {
-		this.price = price;
-	}
-	
+    private Long price;
 }

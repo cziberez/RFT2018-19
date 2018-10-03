@@ -1,22 +1,22 @@
 package hu.food.core.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 
 @Entity
-public class FoodImageEntity extends BaseEntity{
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class FoodImageEntity extends BaseEntity {
 
-	private static final long serialVersionUID = 1L;
-	
-	@Lob
-	private byte[] image;
+    private static final long serialVersionUID = 1L;
 
-	public byte[] getImage() {
-		return image;
-	}
-
-	public void setImage(byte[] image) {
-		this.image = image;
-	}
-	
+    @Lob
+    private byte[] image;
 }

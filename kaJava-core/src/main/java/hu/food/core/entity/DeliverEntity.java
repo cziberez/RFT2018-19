@@ -1,20 +1,19 @@
 package hu.food.core.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class DeliverEntity extends BaseEntity {
 
-	private static final long serialVersionUID = 1L;
-
-	private String name;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
+    private static final long serialVersionUID = 1L;
+    private String name;
 }

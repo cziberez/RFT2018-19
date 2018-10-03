@@ -1,18 +1,17 @@
 package hu.food.core.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 @MappedSuperclass
+@Getter
+@Setter
+@ToString
 public class BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -38,42 +37,4 @@ public class BaseEntity implements Serializable {
 	public void preUpdate() {
 		modDate = new Date();
 	}
-
-	@Override
-	public String toString() {
-		return "BaseEntity [id=" + id + "]";
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getRecDate() {
-		return recDate;
-	}
-
-	public void setRecDate(Date recDate) {
-		this.recDate = recDate;
-	}
-
-	public Date getModDate() {
-		return modDate;
-	}
-
-	public void setModDate(Date modDate) {
-		this.modDate = modDate;
-	}
-
-	public boolean isDeleted() {
-		return deleted;
-	}
-
-	public void setDeleted(boolean deleted) {
-		this.deleted = deleted;
-	}
-	
 }
