@@ -12,15 +12,8 @@ import javax.persistence.Entity;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddressEntity extends BaseEntity {
+public class Deliver extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
-    
-    private Long postCode;
-    private String city;
-    private String street;
-    private String houseNumber;
-    private String floor;
-    private String door;
-
+    private String name;
 }

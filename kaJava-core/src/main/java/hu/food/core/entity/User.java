@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserEntity extends BaseEntity {
+public class User extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,8 +31,8 @@ public class UserEntity extends BaseEntity {
     private String phoneNumber;
 
     @OneToOne
-    private AddressEntity userAddress;
+    private Address userAddress;
 
     @ManyToOne
-    private RoleEntity userRole;
+    private Role userRole;
 }

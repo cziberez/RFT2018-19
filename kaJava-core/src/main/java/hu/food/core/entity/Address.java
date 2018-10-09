@@ -6,17 +6,21 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.Lob;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class FoodImageEntity extends BaseEntity {
+public class Address extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
+    
+    private Long postCode;
+    private String city;
+    private String street;
+    private String houseNumber;
+    private String floor;
+    private String door;
 
-    @Lob
-    private byte[] image;
 }

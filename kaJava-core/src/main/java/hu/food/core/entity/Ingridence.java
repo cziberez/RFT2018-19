@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class IngridenceEntity extends BaseEntity {
+public class Ingridence extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 

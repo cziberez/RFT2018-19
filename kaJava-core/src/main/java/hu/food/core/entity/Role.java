@@ -12,8 +12,9 @@ import javax.persistence.Entity;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DeliverEntity extends BaseEntity {
+public class Role extends BaseEntity{
 
-    private static final long serialVersionUID = 1L;
-    private String name;
+	private static final long serialVersionUID = 1L;
+	
+	private String roleName;
 }

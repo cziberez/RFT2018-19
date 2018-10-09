@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderEntity extends BaseEntity {
+public class Order extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,11 +26,11 @@ public class OrderEntity extends BaseEntity {
     private String description;
 
     @ManyToMany
-    private List<FoodEntity> orderedFood;
+    private List<Food> orderedFood;
 
     @ManyToOne
-    private UserEntity customer;
+    private User customer;
 
     @ManyToOne
-    private DeliverEntity deliver;
+    private Deliver deliver;
 }

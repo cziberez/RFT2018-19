@@ -16,7 +16,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class FoodEntity extends BaseEntity {
+public class Food extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -28,8 +28,8 @@ public class FoodEntity extends BaseEntity {
     private String description;
 
     @OneToOne
-    private FoodImageEntity foodImage;
+    private FoodImage foodImage;
 
     @ManyToMany
-    private List<IngridenceEntity> ingridence;
+    private List<Ingridence> ingridence;
 }
