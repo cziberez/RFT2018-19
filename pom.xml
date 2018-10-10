@@ -11,6 +11,7 @@
         <module>kaJava-service-api</module>
         <module>kaJava-web</module>
         <module>kaJava-ear</module>
+        <module>kaJava-persistence</module>
     </modules>
 
     <properties>
