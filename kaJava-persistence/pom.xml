@@ -28,7 +28,7 @@
                 <version>3.5.3</version>
                 <configuration>
                     <driver>org.postgresql.Driver</driver>
-                    <url>jdbc:postgresql://localhost:5432/postgres?currentSchema=kaJava</url>
+                    <url>jdbc:postgresql://localhost:5432/postgres?currentSchema=public</url>
                     <username>postgres</username>
                     <password>postgres</password>
                     <changeLogFile>${project.basedir}/src/main/resources/META-INF/liquibase/master.xml</changeLogFile>
