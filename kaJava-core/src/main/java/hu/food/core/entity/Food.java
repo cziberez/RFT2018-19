@@ -1,30 +1,28 @@
 package hu.food.core.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import hu.food.core.entity.base.BaseEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "FOOD")
+@SequenceGenerator(name = "FOOD_IDGEN", sequenceName = "S_FOOD")
 public class Food extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(generator = "FOOD_IDGEN", strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    @Column(name = "NAME")
     private String name;
 
+    @Column(name = "PRICE")
     private Long price;
 
-    @Lob
+    @Column(name = "DESCRIPTION")
     private String description;
 
     @OneToOne
@@ -32,4 +30,64 @@ public class Food extends BaseEntity {
 
     @ManyToMany
     private List<Ingridence> ingridence;
+
+    public Food() {
+    }
+
+    public Food(Long id, String name, Long price, String description, FoodImage foodImage, List<Ingridence> ingridence) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.foodImage = foodImage;
+        this.ingridence = ingridence;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public FoodImage getFoodImage() {
+        return foodImage;
+    }
+
+    public void setFoodImage(FoodImage foodImage) {
+        this.foodImage = foodImage;
+    }
+
+    public List<Ingridence> getIngridence() {
+        return ingridence;
+    }
+
+    public void setIngridence(List<Ingridence> ingridence) {
+        this.ingridence = ingridence;
+    }
 }

@@ -2,7 +2,7 @@ package hu.food.core.dao;
 
 import java.util.List;
 
-import hu.food.core.entity.BaseEntity;
+import hu.food.core.entity.base.BaseEntity;
 
 public interface BaseDao<E extends BaseEntity>{
 	

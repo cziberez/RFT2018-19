@@ -1,22 +1,21 @@
 package hu.food.core.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import hu.food.core.entity.base.BaseEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.Lob;
+import javax.persistence.*;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "FOODIMAGE")
+@SequenceGenerator(name = "FOODIMAGE_IDGEN", sequenceName = "S_FOODIMAGE")
 public class FoodImage extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(generator = "FOODIMAGE_IDGEN", strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    @Column(name = "IMAGE")
     @Lob
     private byte[] image;
 }

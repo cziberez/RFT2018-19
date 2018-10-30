@@ -1,20 +1,45 @@
 package hu.food.core.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import hu.food.core.entity.base.BaseEntity;
+import hu.food.core.entity.enums.RoleEnum;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class Role extends BaseEntity{
+@Table(name = "ROLE")
+@SequenceGenerator(name = "ROLE_IDGEN", sequenceName = "S_ROLE")
+public class Role extends BaseEntity {
 
-	private static final long serialVersionUID = 1L;
-	
-	private String roleName;
+    private static final long serialVersionUID = 1L;
+
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(generator = "ROLE_IDGEN", strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    @Column(name = "ROLENAME")
+    @Enumerated(EnumType.STRING)
+    private RoleEnum roleName;
+
+    public Role() {
+    }
+
+    public Role(RoleEnum roleName) {
+        this.roleName = roleName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public RoleEnum getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(RoleEnum roleName) {
+        this.roleName = roleName;
+    }
 }
