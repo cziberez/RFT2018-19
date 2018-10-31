@@ -32,3 +32,4 @@ hs_err_pid*
 /.project
 /.idea/
 /kaJava.iml
+/kaJava-persistence/kaJava-persistence.iml
