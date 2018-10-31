@@ -2,7 +2,9 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:o="http://omnifaces.org/ui">
 
 <h:head>
     <title>kaJava - <ui:insert name="windowTitle"/></title>
@@ -12,6 +14,12 @@
 </h:head>
 
 <ui:insert name="viewparam"></ui:insert>
+
+<ui:define name="meta">
+    <f:metadata>
+        <o:enableRestorableView/>
+    </f:metadata>
+</ui:define>
 
 <h:body>
     <p:notificationBar id="errorNotification" position="top" effect="slide"
