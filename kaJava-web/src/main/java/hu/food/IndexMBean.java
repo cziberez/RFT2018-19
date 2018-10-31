@@ -12,6 +12,8 @@ import java.io.Serializable;
 @Named("indexMBean")
 public class IndexMBean implements Serializable {
 
+    private static final long serialVersionUID = 6268993761139416765L;
+
     public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, message);

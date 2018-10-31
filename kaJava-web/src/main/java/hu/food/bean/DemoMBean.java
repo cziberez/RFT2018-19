@@ -8,6 +8,5 @@ import java.io.Serializable;
 @Named("demoMBean")
 public class DemoMBean implements Serializable {
 
-
-
+    private static final long serialVersionUID = -8041099559929109897L;
 }
