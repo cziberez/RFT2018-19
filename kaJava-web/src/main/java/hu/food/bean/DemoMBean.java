@@ -9,4 +9,28 @@ import java.io.Serializable;
 public class DemoMBean implements Serializable {
 
     private static final long serialVersionUID = -8041099559929109897L;
+
+    private String text;
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void handleKeyEvent() {
+        text = text.toUpperCase();
+    }
+
+    private int number;
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void increment() {
+        number++;
+    }
 }

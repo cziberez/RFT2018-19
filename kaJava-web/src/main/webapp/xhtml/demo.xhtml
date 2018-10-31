@@ -5,5 +5,36 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
+    <ui:define name="windowTitle">
+        <h:outputText value="Demo"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form id="demoForm">
+
+            <p:panel id="ajax" header="Ajax Core" toggleable="true" toggleSpeed="500">
+                <p:panelGrid id="ajaxGrid" columns="1" style="width: 100%;">
+                    <p:panel header="Listener">
+                        <h:panelGrid columns="3">
+                            <h:outputText value="Keyup: "/>
+                            <p:inputText id="counter" value="#{demoMBean.text}">
+                                <p:ajax event="keyup" update="out" listener="#{demoMBean.handleKeyEvent}"/>
+                            </p:inputText>
+                            <h:outputText id="out" value="#{demoMBean.text}"/>
+                        </h:panelGrid>
+                    </p:panel>
+                    <p:panel header="Counter">
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputText value="Counter: "/>
+                            <h:outputText id="output" value="#{demoMBean.number}"/>
+                        </h:panelGrid>
+
+                        <p:commandButton value="Count" actionListener="#{demoMBean.increment}" update="output"/>
+                    </p:panel>
+                </p:panelGrid>
+            </p:panel>
+
+        </h:form>
+    </ui:define>
 
 </ui:composition>

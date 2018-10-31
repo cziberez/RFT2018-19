@@ -1,4 +1,4 @@
-package hu.food;
+package hu.food.bean;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

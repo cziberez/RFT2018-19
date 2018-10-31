@@ -1,0 +1,7 @@
+body {
+    background: #ece8da url("/kaJava-web/javax.faces.resource/images/ui-bg_gloss-wave_100_ece8da_500x100.png.xhtml?ln=primefaces-south-street") 50% 50% repeat-x;
+}
+
+.ui-panel-titlebar {
+    text-align: center;
+}
