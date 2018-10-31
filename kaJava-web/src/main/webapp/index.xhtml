@@ -18,8 +18,11 @@
                     z-index:-1;">
             <h:form id="contentForm">
                 <p:panel id="demoPanel" header="Demo" toggleable="true" toggleSpeed="500">
-                    <p:commandButton value="Demo" id="demoButton" actionListener="#{indexMBean.redirectToDemo}"
-                                     icon="ui-icon-disk" onclick="PF('statusDlg').show()" update="growl"/>
+                    <p:commandButton value="Demo"
+                                     id="demoButton"
+                                     icon="ui-icon-disk"
+                                     onclick="PF('statusDlg').show()"
+                                     actionListener="#{indexMBean.redirectToDemo}"/>
                 </p:panel>
             </h:form>
         </div>
