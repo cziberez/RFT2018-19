@@ -1,0 +1,28 @@
+<ui:composition template="/WEB-INF/templates/base_template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="windowTitle">
+        <h:outputText value="Welcome"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <div style="display:block;
+                    height:100%;
+                    width:100%;
+                    top:0px;
+                    left:0px;
+                    z-index:-1;">
+            <h:form id="contentForm">
+                <p:panel id="demoPanel" header="Demo" toggleable="true" toggleSpeed="500">
+                    <p:commandButton value="Demo" id="demoButton" actionListener="#{indexMBean.redirectToDemo}"
+                                     icon="ui-icon-disk" onclick="PF('statusDlg').show()" update="growl"/>
+                </p:panel>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>

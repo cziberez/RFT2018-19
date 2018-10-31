@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>kaJava - <ui:insert name="windowTitle"/></title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+</h:head>
+
+<ui:insert name="viewparam"></ui:insert>
+
+<h:body>
+    <p:notificationBar id="errorNotification" position="top" effect="slide"
+                       widgetVar="errorNotificationBar">
+        <p:graphicImage onclick="PF('errorNotificationBar').hide(); window.location.reload()"
+                        styleClass="ui-icon ui-icon-close" title="Bezár"
+                        style="float: right; width: 30px;"/>
+        <h2>Hiba történt!</h2>
+        <h:outputText
+                value="A kiszolgáló a kérés feldolgozása közben nem várt problémába ütközött! A felmerült hibákról bővebb információt az alábbi blokkban olvashat."/>
+        <h:messages severity="fatal" id="hibaFatalErrorId"/>
+    </p:notificationBar>
+
+    <div id="page-wrapper" style="height: 100%;">
+        <p:panel id="page-header" style="max-width: 100%;" stateStoreEnabled="false">
+            <ui:include src="menu.xhtml"/>
+        </p:panel>
+
+        <ui:insert name="breadcrumb"/>
+
+        <div id="page-content" style="height: 100%;">
+            <ui:insert name="content"/>
+        </div>
+    </div>
+
+    <p:dialog id="aboutDialog" header="Névjegy" widgetVar="aboutDlg" resizable="false"
+              appendTo="@(body)" modal="true">
+        <p:panelGrid columns="2">
+
+        </p:panelGrid>
+    </p:dialog>
+    <p:sticky target="page-header"/>
+    <div id="ajaxStatusIndicator" class="idle"></div>
+    <p:growl id="growl" autoUpdate="true" sticky="true"
+             severity="info, warn, error" globalOnly="#{growlGlobalOnly}"/>
+    <p:ajaxStatus onstart="showStatusDialog();"
+                  onsuccess="hideStatusDialog();" onerror="hideStatusDialog();"/>
+
+    <p:dialog widgetVar="statusDlg" showHeader="false" resizable="false"
+              styleClass="disable-scroll" modal="true" id="statusDlg">
+        <p:panelGrid style="text-align: center;">
+            <p:outputLabel value="Türelmet kérünk!"/>
+            <p:graphicImage value="src/main/webapp/WEB-INF/templates/ajaxloading.gif"/>
+        </p:panelGrid>
+    </p:dialog>
+
+    <p:dialog widgetVar="requestRefusedDialog" showHeader="false" resizable="false"
+              styleClass="disable-scroll" modal="true" id="requestRefusedDlg">
+        <h:form id="concurentModificationForm">
+            <p:panelGrid style="text-align: center;">
+                <p:outputLabel
+                        value="A kért művelet egy másik esemény feldolgozása miatt nem hajtható végre. Kérjük próbálja újra."/>
+                <p:commandButton value="OK" onclick="PF('requestRefusedDialog').hide()"/>
+            </p:panelGrid>
+        </h:form>
+    </p:dialog>
+
+    <h:form>
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+            <p:commandButton value="Igen" type="button"
+                             styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+            <p:commandButton value="Nem" type="button"
+                             styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+        </p:confirmDialog>
+    </h:form>
+</h:body>
+</html>
