@@ -55,7 +55,7 @@
         <javax.javaee-api.version>8.0</javax.javaee-api.version>
         <ma.glasnost.orika.orika-core.version>1.5.2</ma.glasnost.orika.orika-core.version>
         <org.primefaces.primefaces.version>6.2</org.primefaces.primefaces.version>
-        <org.primefaces.themes.redmond.version>1.0.6</org.primefaces.themes.redmond.version>
+        <org.primefaces.themes.all-themes.version>1.0.10</org.primefaces.themes.all-themes.version>
         <org.projectlombok.lombok.version>1.16.16</org.projectlombok.lombok.version>
         <com.sun.faces.jsf-api.version>2.1.11</com.sun.faces.jsf-api.version>
         <com.sun.faces.jsf-impl.version>2.1.11</com.sun.faces.jsf-impl.version>
@@ -85,8 +85,8 @@
             </dependency>
             <dependency>
                 <groupId>org.primefaces.themes</groupId>
-                <artifactId>redmond</artifactId>
-                <version>${org.primefaces.themes.redmond.version}</version>
+                <artifactId>all-themes</artifactId>
+                <version>${org.primefaces.themes.all-themes.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.sun.faces</groupId>
