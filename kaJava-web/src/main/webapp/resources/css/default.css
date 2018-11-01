@@ -1,3 +1,7 @@
 .ui-panel-titlebar {
     text-align: center;
 }
+
+.noborder {
+    border: none !important;
+}

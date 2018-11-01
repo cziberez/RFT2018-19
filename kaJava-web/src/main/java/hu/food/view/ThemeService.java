@@ -1,20 +1,21 @@
 package hu.food.view;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@ManagedBean(name = "themeService", eager = true)
+@Named("themeService")
 @ApplicationScoped
-public class ThemeService {
+public class ThemeService implements Serializable {
 
     private List<Theme> themes;
 
     @PostConstruct
     public void init() {
-        themes = new ArrayList<Theme>();
+        themes = new ArrayList<>();
         themes.add(new Theme(0, "Afterdark", "afterdark"));
         themes.add(new Theme(1, "Afternoon", "afternoon"));
         themes.add(new Theme(2, "Afterwork", "afterwork"));
@@ -55,7 +56,7 @@ public class ThemeService {
         themes.add(new Theme(37, "Vader", "vader"));
     }
 
-    public List<Theme> getThemes() {
+    List<Theme> getThemes() {
         return themes;
     }
 }

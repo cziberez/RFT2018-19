@@ -1,4 +1,4 @@
-package hu.food.bean;
+package hu.food.bean.demo;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;

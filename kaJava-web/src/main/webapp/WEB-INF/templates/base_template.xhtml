@@ -13,7 +13,7 @@
     <h:outputStylesheet library="css" name="default.css"/>
 </h:head>
 
-<ui:insert name="viewparam"></ui:insert>
+<ui:insert name="viewparam"/>
 
 <ui:define name="meta">
     <f:metadata>
@@ -52,13 +52,13 @@
         </p:panelGrid>
     </p:dialog>
     <p:sticky target="page-header"/>
-    <div id="ajaxStatusIndicator" class="idle"></div>
+    <div id="ajaxStatusIndicator" class="idle"/>
     <p:growl id="growl" sticky="true"
-             severity="info, warn, error" globalOnly="#{growlGlobalOnly}">
+             severity="info, warn, error">
         <p:autoUpdate disabled="false"/>
     </p:growl>
-    <p:ajaxStatus onstart="showStatusDialog();"
-                  onsuccess="hideStatusDialog();" onerror="hideStatusDialog();"/>
+    <p:ajaxStatus onstart="PF('statusDlg').show();"
+                  onsuccess="PF('statusDlg').hide();" onerror="PF('statusDlg').hide();"/>
 
     <p:dialog widgetVar="statusDlg" showHeader="false" resizable="false"
               styleClass="disable-scroll" modal="true" id="statusDlg">
