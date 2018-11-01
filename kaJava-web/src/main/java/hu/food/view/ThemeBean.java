@@ -1,16 +1,19 @@
 package hu.food.view;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 
-@ManagedBean
-public class ThemeSwitcherView {
+@ApplicationScoped
+@Named("themeBean")
+public class ThemeBean implements Serializable {
 
     private List<Theme> themes;
 
-    @ManagedProperty("#{themeService}")
+    @Inject
     private ThemeService service;
 
     @PostConstruct

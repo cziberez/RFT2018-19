@@ -13,6 +13,7 @@
         <module>kaJava-web</module>
         <module>kaJava-ear</module>
         <module>kaJava-persistence</module>
+        <module>kaJava-messages</module>
     </modules>
 
     <scm>
