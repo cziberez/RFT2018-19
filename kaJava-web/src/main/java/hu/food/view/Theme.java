@@ -1,5 +1,6 @@
 package hu.food.view;
 
+//TODO kirillab: át kell helyezni a kaJava-core-ba
 public class Theme {
 
     private int id;

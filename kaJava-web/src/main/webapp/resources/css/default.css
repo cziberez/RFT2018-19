@@ -2,6 +2,7 @@
     text-align: center;
 }
 
-.noborder {
-    border: none !important;
+.noborder.ui-panelgrid>*>tr,
+.noborder.ui-panelgrid .ui-panelgrid-cell {
+    border: none;
 }

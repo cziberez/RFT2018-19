@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO kirillab átmozgatni a service-be
 @Named("themeService")
 @ApplicationScoped
 public class ThemeService implements Serializable {
@@ -56,7 +57,7 @@ public class ThemeService implements Serializable {
         themes.add(new Theme(37, "Vader", "vader"));
     }
 
-    List<Theme> getThemes() {
+    public List<Theme> getThemes() {
         return themes;
     }
 }

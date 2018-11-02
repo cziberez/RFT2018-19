@@ -17,6 +17,12 @@
         </dependency>
 
         <dependency>
+            <groupId>hu.food</groupId>
+            <artifactId>kaJava-messages</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
         </dependency>
