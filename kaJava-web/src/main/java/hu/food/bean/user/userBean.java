@@ -2,12 +2,15 @@ package hu.food.bean.user;
 
 
 import hu.food.bean.abstractbean.AbstractSessionBean;
+import hu.food.bean.theme.ThemeBean;
+import hu.food.view.Theme;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.AjaxBehaviorEvent;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Cookie;
+import java.util.List;
 import java.util.Locale;
 
 @Named("userBean")
@@ -15,6 +18,9 @@ import java.util.Locale;
 public class userBean extends AbstractSessionBean {
 
     private Locale locale;
+
+    @Inject
+    private ThemeBean themeBean;
 
     @Override
     public String getTheme() {

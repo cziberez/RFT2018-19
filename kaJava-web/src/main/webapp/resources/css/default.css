@@ -2,7 +2,19 @@
     text-align: center;
 }
 
-.noborder.ui-panelgrid>*>tr,
+.noborder.ui-panelgrid > * > tr,
 .noborder.ui-panelgrid .ui-panelgrid-cell {
     border: none;
+}
+
+.fullSize {
+    width: 100%;
+}
+
+.halfSize {
+    width: 50%;
+}
+
+.center-position {
+    text-align: center;
 }

@@ -56,15 +56,16 @@
     </div>
 
     <p:dialog id="aboutDialog" header="#{msg['menu.about']}" widgetVar="aboutDlg" resizable="false"
-              appendTo="@(body)" modal="true">
+              appendTo="@(body)" modal="true" closable="false">
         <p:panelGrid columns="2">
 
         </p:panelGrid>
     </p:dialog>
+
     <p:sticky target="page-header"/>
     <div id="ajaxStatusIndicator" class="idle"/>
     <p:growl id="growl" sticky="true"
-             severity="info, warn, error">
+             severity="info, warn, error" showDetail="true">
         <p:autoUpdate disabled="false"/>
     </p:growl>
     <p:ajaxStatus onstart="PF('statusDlg').show();"
@@ -73,7 +74,7 @@
     <p:dialog widgetVar="statusDlg" showHeader="false" resizable="false"
               styleClass="disable-scroll" modal="true" id="statusDlg">
         <p:panelGrid style="text-align: center; border: none;" styleClass="noborder" columns="1">
-            <p:outputLabel value="Türelmet kérünk!"/>
+            <p:outputLabel value="#{msg['status.pleaseWait']}"/>
             <p:graphicImage value="/images/ajaxloading.gif"/>
         </p:panelGrid>
     </p:dialog>
@@ -90,12 +91,27 @@
     </p:dialog>
 
     <h:form>
-        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-            <p:commandButton value="Igen" type="button"
+        <p:confirmDialog global="true" showEffect="show" hideEffect="fade">
+            <p:commandButton value="#{msg['true']}" type="button"
                              styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
-            <p:commandButton value="Nem" type="button"
+            <p:commandButton value="#{msg['false']}" type="button"
                              styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
         </p:confirmDialog>
+
+        <p:dialog id="loginDialog" widgetVar="loginDlg" resizable="false" modal="true"
+                  header="#{msg['menu.login']}">
+            <p:panelGrid id="loginPanel" styleClass="noborder fullSize" columns="2">
+                <h:outputLabel value="#{msg['menu.username']}"/>
+                <p:inputText/>
+                <h:outputLabel value="#{msg['menu.password']}"/>
+                <p:password/>
+            </p:panelGrid>
+            <f:facet name="footer"/>
+            <p:panelGrid styleClass="noborder fullSize" columnClasses="halfSize center-position" columns="2">
+                <p:commandButton value="#{msg['menu.login']}"/>
+                <p:commandButton value="#{msg['cancel']}" onclick="PF('loginDlg').hide()"/>
+            </p:panelGrid>
+        </p:dialog>
 
         <f:facet id="footer" name="footer">
             <p:panel id="footerPanel" header="© - kaJava" style="width: 100%;">

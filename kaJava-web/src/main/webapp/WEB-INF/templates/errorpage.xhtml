@@ -32,7 +32,7 @@
         <h:outputScript
                 rendered="#{facesContext.partialViewContext.ajaxRequest}">scrollTo(0, 0);</h:outputScript>
         <h:form id="backForm">
-            <p:panel header="#{msg['errorpage.navigation']}">
+            <p:panel header="#{msg['errorpage.navigation']}" styleClass="fullSize">
                     <p:commandButton value="#{msg['back']}" onclick="window.history.back();"/>
             </p:panel>
         </h:form>

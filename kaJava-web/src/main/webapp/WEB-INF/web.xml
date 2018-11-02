@@ -63,7 +63,7 @@
 
     <error-page>
         <exception-type>javax.faces.application.ViewExpiredException</exception-type>
-        <location>/index.xhtml</location>
+        <location>/xhtml/index.xhtml</location>
     </error-page>
     <error-page>
         <exception-type>java.lang.RuntimeException</exception-type>
@@ -79,7 +79,7 @@
     </error-page>
 
     <welcome-file-list>
-        <welcome-file>index.xhtml</welcome-file>
+        <welcome-file>/xhtml/index.xhtml</welcome-file>
     </welcome-file-list>
 
 
