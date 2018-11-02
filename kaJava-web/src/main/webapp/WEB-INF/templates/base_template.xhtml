@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
@@ -22,6 +22,16 @@
 </ui:define>
 
 <h:body>
+
+    <p:dialog modal="true" resizable="false" responsive="true" minWidth="250" minHeight="250" dynamic="false"
+              widgetVar="langDlg" visible="not #{userBean.isLocaleSet()}" showEffect="show" hideEffect="hide">
+        <f:facet name="footer">
+            <p:panelGrid>
+
+            </p:panelGrid>
+        </f:facet>
+    </p:dialog>
+
     <p:notificationBar id="errorNotification" position="top" effect="slide"
                        widgetVar="errorNotificationBar">
         <p:graphicImage onclick="PF('errorNotificationBar').hide(); window.location.reload()"
@@ -40,12 +50,12 @@
 
         <ui:insert name="breadcrumb"/>
 
-        <div id="page-content" style="height: 100%;">
+        <div id="page-content">
             <ui:insert name="content"/>
         </div>
     </div>
 
-    <p:dialog id="aboutDialog" header="Névjegy" widgetVar="aboutDlg" resizable="false"
+    <p:dialog id="aboutDialog" header="#{msg['menu.about']}" widgetVar="aboutDlg" resizable="false"
               appendTo="@(body)" modal="true">
         <p:panelGrid columns="2">
 
@@ -62,7 +72,7 @@
 
     <p:dialog widgetVar="statusDlg" showHeader="false" resizable="false"
               styleClass="disable-scroll" modal="true" id="statusDlg">
-        <p:panelGrid style="text-align: center; border: none;" columnClasses="ui-noborder" columns="1">
+        <p:panelGrid style="text-align: center; border: none;" styleClass="noborder" columns="1">
             <p:outputLabel value="Türelmet kérünk!"/>
             <p:graphicImage value="/images/ajaxloading.gif"/>
         </p:panelGrid>

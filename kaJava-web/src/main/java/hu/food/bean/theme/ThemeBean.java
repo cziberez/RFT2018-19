@@ -1,4 +1,7 @@
-package hu.food.view;
+package hu.food.bean.theme;
+
+import hu.food.view.Theme;
+import hu.food.view.ThemeService;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -14,11 +17,11 @@ public class ThemeBean implements Serializable {
     private List<Theme> themes;
 
     @Inject
-    private ThemeService service;
+    private ThemeService themeService;
 
     @PostConstruct
     public void init() {
-        themes = service.getThemes();
+        themes = themeService.getThemes();
     }
 
     public List<Theme> getThemes() {
@@ -26,6 +29,6 @@ public class ThemeBean implements Serializable {
     }
 
     public void setService(ThemeService service) {
-        this.service = service;
+        this.themeService = service;
     }
 }

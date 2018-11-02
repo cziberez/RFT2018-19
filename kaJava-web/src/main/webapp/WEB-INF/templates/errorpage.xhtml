@@ -32,11 +32,8 @@
         <h:outputScript
                 rendered="#{facesContext.partialViewContext.ajaxRequest}">scrollTo(0, 0);</h:outputScript>
         <h:form id="backForm">
-            <p:panel header="Navigation">
-                <p:panelGrid columns="2" styleClass="ui-panel-titlebar" columnClasses="ui-panel-titlebar noborder">
-                    <p:commandButton value="Back" onclick="window.history.back();"/>
-                    <p:commandButton value="Home page" action="index.xhtml?faces-redirect=true"/>
-                </p:panelGrid>
+            <p:panel header="#{msg['errorpage.navigation']}">
+                    <p:commandButton value="#{msg['back']}" onclick="window.history.back();"/>
             </p:panel>
         </h:form>
     </ui:define>
