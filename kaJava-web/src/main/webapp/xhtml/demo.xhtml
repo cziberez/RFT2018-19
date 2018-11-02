@@ -12,8 +12,6 @@
     <ui:define name="content">
         <h:form id="form">
 
-            <p:growl id="msgs" showDetail="true"/>
-
             <p:panel id="inputs" header="Inputs" toggleable="true" toggleSpeed="500">
                 <p:panelGrid columns="2" style="width: 100%;">
                     <h:outputLabel value="InputText:"/>
@@ -79,8 +77,8 @@
                     <f:facet name="header">
                         Select Events
                     </f:facet>
-                    <p:ajax event="rowSelect" listener="#{dtSelectionView.onRowSelect}" update=":form:msgs"/>
-                    <p:ajax event="rowUnselect" listener="#{dtSelectionView.onRowUnselect}" update=":form:msgs"/>
+                    <p:ajax event="rowSelect" listener="#{dtSelectionView.onRowSelect}" update="growl"/>
+                    <p:ajax event="rowUnselect" listener="#{dtSelectionView.onRowUnselect}" update="growl"/>
                     <p:column headerText="Id">
                         <h:outputText value="#{car.id}"/>
                     </p:column>

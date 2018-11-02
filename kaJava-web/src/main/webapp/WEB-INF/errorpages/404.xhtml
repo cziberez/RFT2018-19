@@ -2,8 +2,8 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
     <ui:define name="errorContent">
-        <p:panel header="Error 404">
-        <p>A beírt URL nem található. Használja a menüt a funkció eléréséhez!</p>
+        <p:panel header="#{msg['error.404']}">
+            <p>#{msg['error.404.details']}</p>
         </p:panel>
     </ui:define>
 </ui:composition>
