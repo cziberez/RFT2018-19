@@ -12,14 +12,16 @@
     <dependencies>
         <dependency>
             <groupId>hu.food</groupId>
+            <artifactId>kaJava-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>hu.food</groupId>
             <artifactId>kaJava-service-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>hu.food</groupId>
             <artifactId>kaJava-messages</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -40,10 +42,6 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>hu.food</groupId>
-            <artifactId>kaJava-core</artifactId>
         </dependency>
 
     </dependencies>

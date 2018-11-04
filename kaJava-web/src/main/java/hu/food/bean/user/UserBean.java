@@ -15,7 +15,7 @@ import java.util.Locale;
 
 @Named("userBean")
 @SessionScoped
-public class userBean extends AbstractSessionBean {
+public class UserBean extends AbstractSessionBean {
 
     private Locale locale;
 

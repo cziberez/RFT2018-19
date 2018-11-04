@@ -5,20 +5,17 @@ import hu.food.view.LocaleEnum;
 import hu.food.view.Theme;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-@SessionScoped
-public class AbstractSessionBean implements Serializable {
+public abstract class AbstractSessionBean implements Serializable {
 
     private String theme;
     private Locale locale;
