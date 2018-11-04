@@ -8,7 +8,9 @@ public interface BaseDao<E extends BaseEntity>{
 	
 	public void save(E entity);
 	
-	public void delete(E entity);
+	public void setActive(E entity);
+	
+	public void setDeleted(E entity);
 	
 	public E findById(Long id);
 	

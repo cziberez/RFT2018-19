@@ -1,0 +1,7 @@
+package hu.food.core.dao;
+
+import hu.food.core.entity.User;
+
+public interface UserDao extends BaseDao<User>{
+
+}
