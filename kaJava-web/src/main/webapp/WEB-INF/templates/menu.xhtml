@@ -31,14 +31,15 @@
             </p:submenu>
 
             <f:facet name="options">
-                <p:panelGrid styleClass="noborder" columns="2" columnClasses="noborder">
-                    <p:themeSwitcher id="themeSwitcher" style="width:165px">
+                <p:panelGrid styleClass="noborder" columns="3">
+                    <p:themeSwitcher id="themeSwitcher" style="width:165px" value="#{userBean.getThemeAsObject()}">
                         <f:selectItem itemLabel="#{msg['menu.theme.choose']}" itemValue=""/>
                         <f:selectItems value="#{themeBean.themes}" var="theme" itemLabel="#{theme.displayName}"
                                        itemValue="#{theme.name}"/>
                         <p:ajax event="change" process="@this" listener="#{userBean.saveTheme}"/>
                     </p:themeSwitcher>
                     <p:commandButton value="#{msg['menu.login']}" onclick="PF('loginDlg').show()"/>
+                    <p:commandButton icon="fa fa-globe" title="#{msg['langauge']}" onclick="PF('langDlg').show()"/>
                 </p:panelGrid>
             </f:facet>
 

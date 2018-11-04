@@ -6,13 +6,13 @@ public enum LocaleEnum {
     HUN("hu"),
     ENG("en");
 
-    public String name;
+    public String countryCode;
 
-    LocaleEnum(String name) {
-        this.name = name;
+    LocaleEnum(String countryCode) {
+        this.countryCode = countryCode;
     }
 
-    public String getName() {
-        return name;
+    public String getCountryCode() {
+        return countryCode;
     }
 }

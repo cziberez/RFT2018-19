@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="#{userBean.localeAsString}"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
@@ -22,15 +23,6 @@
 </ui:define>
 
 <h:body>
-
-    <p:dialog modal="true" resizable="false" responsive="true" minWidth="250" minHeight="250" dynamic="false"
-              widgetVar="langDlg" visible="not #{userBean.isLocaleSet()}" showEffect="show" hideEffect="hide">
-        <f:facet name="footer">
-            <p:panelGrid>
-
-            </p:panelGrid>
-        </f:facet>
-    </p:dialog>
 
     <p:notificationBar id="errorNotification" position="top" effect="slide"
                        widgetVar="errorNotificationBar">
@@ -90,7 +82,28 @@
         </h:form>
     </p:dialog>
 
-    <h:form>
+
+    <h:form id="baseForm">
+
+        <p:dialog modal="true" resizable="false" responsive="true" minWidth="500" minHeight="400" dynamic="false"
+                  widgetVar="langDlg" showEffect="show" hideEffect="hide" closable="false" header="#{msg['langauge']}"
+                  visible="#{userBean.checkLangaugeDialogVisibility()}">
+            <p:panelGrid id="langSelectImages" styleClass="noborder" columns="2">
+                <h:graphicImage value="/images/hunlogo.png" title="#{msg['hungarian']}"/>
+                <h:graphicImage value="/images/englogo.png" title="#{msg['english']}"/>
+            </p:panelGrid>
+            <p:selectOneRadio id="langSelectRadio" value="#{userBean.selectedLang}" layout="responsive" columns="2">
+                <f:selectItem itemLabel="#{msg['hungarian']}" itemValue="hu"/>
+                <f:selectItem itemLabel="#{msg['english']}" itemValue="en"/>
+            </p:selectOneRadio>
+            <f:facet name="footer">
+                <p:panelGrid>
+                    <p:commandButton id="saveLangaugeButton" value="#{msg['select']}" action="#{userBean.saveLocale}"
+                                     onsuccess="window.location.reload()"/>
+                </p:panelGrid>
+            </f:facet>
+        </p:dialog>
+
         <p:confirmDialog global="true" showEffect="show" hideEffect="fade">
             <p:commandButton value="#{msg['true']}" type="button"
                              styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
@@ -113,15 +126,12 @@
             </p:panelGrid>
         </p:dialog>
 
-        <f:facet id="footer" name="footer">
-            <p:panel id="footerPanel" header="© - kaJava" style="width: 100%;">
-                <p:panelGrid columns="2">
-                    <h:outputLabel id="renderLabel" value="Render:" for="renderText"/>
-                    <h:outputText id="renderText" value="1 ms"/>
-                </p:panelGrid>
-            </p:panel>
-        </f:facet>
-
+        <p:dialog id="registerDialog" widgetVar="registerDlg" resizable="false" modal="true" header="Register">
+            <p:panelGrid id="registerPanel" styleClass="noborder fullSize" columns="2">
+                <h:outputLabel value="Username"/>
+                <h:outputText value=""
+            </p:panelGrid>
+        </p:dialog>
     </h:form>
 </h:body>
 </html>

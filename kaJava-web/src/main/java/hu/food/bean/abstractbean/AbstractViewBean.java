@@ -1,6 +1,8 @@
 package hu.food.bean.abstractbean;
 
 import hu.food.core.entity.enums.RoleEnum;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
@@ -8,7 +10,9 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
-public abstract class AbstractRoleBean implements Serializable {
+@Getter
+@Setter
+public abstract class AbstractViewBean implements Serializable {
 
     private static final long serialVersionUID = -744738568889251726L;
 
