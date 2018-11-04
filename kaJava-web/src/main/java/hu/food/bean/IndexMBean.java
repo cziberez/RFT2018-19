@@ -26,6 +26,7 @@ public class IndexMBean implements Serializable {
     public void redirectToDemo() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("/kaJava-web/xhtml/demo.xhtml");
+            System.out.println("asd");
         } catch (IOException e) {
             e.printStackTrace();
         }
