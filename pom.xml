@@ -30,6 +30,12 @@
             <organization>Ulyssys Kft.</organization>
             <timezone>+1</timezone>
         </developer>
+        <developer>
+            <id>magyart</id>
+            <name>Magyar Tamás</name>
+            <email>m.tamas96@gmail.com</email>
+            <timezone>+1</timezone>
+        </developer>
     </developers>
 
     <profiles>
@@ -118,6 +124,11 @@
                 <groupId>org.glassfish.web</groupId>
                 <artifactId>el-impl</artifactId>
                 <version>${org.glassfish.web.el-impl.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>hu.food</groupId>
+                <artifactId>kaJava-core</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
