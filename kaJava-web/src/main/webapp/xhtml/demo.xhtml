@@ -165,7 +165,7 @@
                 </p:dataTable>
 
                 <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade"
-                          resizable="false">
+                          resizable="false" closable="true">
                     <p:outputPanel id="carDetail" style="text-align:center;">
                         <p:panelGrid columns="2" rendered="#{not empty dtSelectionView.selectedCar}"
                                      columnClasses="label,value">
@@ -190,7 +190,7 @@
                 </p:dialog>
 
                 <p:dialog header="Selected Cars" widgetVar="multiCarDialog" modal="true" showEffect="fade"
-                          hideEffect="fade" resizable="false" width="220">
+                          hideEffect="fade" resizable="false" width="220" closable="true">
                     <p:outputPanel id="multiCarDetail" style="text-align:center;">
                         <ui:repeat value="#{dtSelectionView.selectedCars}" var="car">
                             <h:outputText value="#{car.id} - #{car.brand}" style="display:block"/>

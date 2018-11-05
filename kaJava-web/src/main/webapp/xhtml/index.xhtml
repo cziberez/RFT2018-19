@@ -20,7 +20,8 @@
                                      id="demoButton"
                                      icon="ui-icon-extlink"
                                      onclick="PF('statusDlg').show()"
-                                     actionListener="#{indexMBean.redirectToDemo}"/>
+                                     action="/xhtml/demo?faces-redirect=true"
+                                     process="@this"/>
                 </p:panel>
             </h:form>
         </div>

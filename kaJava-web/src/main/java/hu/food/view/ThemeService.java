@@ -17,8 +17,8 @@ public class ThemeService implements Serializable {
     @PostConstruct
     public void init() {
         themes = new ArrayList<>();
-        themes.add(new Theme(0, "South-Street", "south-street"));
-        themes.add(new Theme(1, "Start", "start"));
+        themes.add(new Theme(0, "Start", "start"));
+        themes.add(new Theme(1, "South-Street", "south-street"));
         themes.add(new Theme(2, "Redmond", "redmond"));
         themes.add(new Theme(3, "Sam", "sam"));
         themes.add(new Theme(4, "Black-Tie", "black-tie"));

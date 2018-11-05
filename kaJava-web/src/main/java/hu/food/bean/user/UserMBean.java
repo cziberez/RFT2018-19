@@ -3,18 +3,14 @@ package hu.food.bean.user;
 
 import hu.food.bean.abstractbean.AbstractUserBean;
 import hu.food.bean.theme.ThemeBean;
-import hu.food.util.BeanUtil;
 import hu.food.view.Theme;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Cookie;
-import java.util.Locale;
 
 @Named("userBean")
 @SessionScoped

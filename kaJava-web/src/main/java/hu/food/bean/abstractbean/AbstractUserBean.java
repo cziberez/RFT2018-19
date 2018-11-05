@@ -15,7 +15,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 @Getter
@@ -31,14 +30,12 @@ public abstract class AbstractUserBean implements Serializable {
     private ThemeBean themeBean;
 
     @PostConstruct
-    public void init() {
+    private void init() {
         theme = getTheme();
         localeAsString = getLocaleAsString();
-        localeCookie = getCookieByName("locale");
-        setupLocaleByCookie();
     }
 
-    public Cookie getCookieByName(String cookieName) {
+    protected Cookie getCookieByName(String cookieName) {
         Cookie retCookie = null;
         Cookie[] cookies = getServletRequest().getCookies();
         if (cookies != null) {
@@ -65,8 +62,8 @@ public abstract class AbstractUserBean implements Serializable {
         return false;
     }
 
-    private boolean isLocaleAvailable(String localeName) {
-        boolean ret = true;
+    protected boolean isLocaleAvailable(String localeName) {
+        boolean ret = false;
         for (LocaleEnum localeEnum : LocaleEnum.values()) {
             if (localeEnum.getCountryCode().equals(localeName)) {
                 ret = true;
@@ -76,7 +73,7 @@ public abstract class AbstractUserBean implements Serializable {
         return ret;
     }
 
-    protected HttpServletRequest getServletRequest() {
+    private HttpServletRequest getServletRequest() {
         FacesContext context = FacesContext.getCurrentInstance();
         return (HttpServletRequest) context.getExternalContext().getRequest();
     }
@@ -92,17 +89,13 @@ public abstract class AbstractUserBean implements Serializable {
         }
     }
 
-    public Locale loadLocale() {
-        return getServletRequest().getLocale();
-    }
-
-    private void setupLocaleByCookie() {
-        if (localeCookie != null) {
-            String localeValue = localeCookie.getValue();
-            if (localeValue != null && isLocaleAvailable(localeValue)) {
-                Locale setupLocale = new Locale(localeValue);
-                FacesContext.getCurrentInstance().getViewRoot().setLocale(setupLocale);
-            }
+    public void saveLocale() {
+        String locale = selectedLang;
+        if (selectedLang != null) {
+            Map<String, Object> cookieProps = new HashMap<>();
+            cookieProps.put("maxAge", 365 * 24 * 60 * 60);
+            cookieProps.put("path", "/");
+            FacesContext.getCurrentInstance().getExternalContext().addResponseCookie("locale", locale, cookieProps);
         }
     }
 
@@ -119,6 +112,7 @@ public abstract class AbstractUserBean implements Serializable {
     }
 
     public boolean checkLangaugeDialogVisibility() {
+        localeCookie = getCookieByName("locale");
         boolean ret = false;
         if (localeCookie == null) {
             ret = true;
