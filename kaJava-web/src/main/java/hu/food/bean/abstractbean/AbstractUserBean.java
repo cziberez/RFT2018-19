@@ -90,8 +90,8 @@ public abstract class AbstractUserBean implements Serializable {
     }
 
     public void saveLocale() {
-        String locale = selectedLang;
-        if (selectedLang != null) {
+        String locale = getSelectedLang();
+        if (locale != null) {
             Map<String, Object> cookieProps = new HashMap<>();
             cookieProps.put("maxAge", 365 * 24 * 60 * 60);
             cookieProps.put("path", "/");
@@ -122,5 +122,13 @@ public abstract class AbstractUserBean implements Serializable {
 
     public Theme getThemeAsObject() {
         return themeBean.getThemes().get(0);
+    }
+
+    public String getSelectedLang() {
+        return selectedLang;
+    }
+
+    public void setSelectedLang(String selectedLang) {
+        this.selectedLang = selectedLang;
     }
 }

@@ -17,6 +17,8 @@ import javax.servlet.http.Cookie;
 @Getter
 @Setter
 public class UserMBean extends AbstractUserBean {
+
+    private String selectedLang;
     
     @Inject
     private ThemeBean themeBean;
@@ -43,5 +45,15 @@ public class UserMBean extends AbstractUserBean {
             }
         }
         return themeAsObject;
+    }
+
+    @Override
+    public String getSelectedLang() {
+        return super.getSelectedLang();
+    }
+
+    @Override
+    public void setSelectedLang(String selectedLang) {
+        super.setSelectedLang(selectedLang);
     }
 }
