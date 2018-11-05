@@ -33,3 +33,4 @@ hs_err_pid*
 /.idea/
 /kaJava.iml
 /kaJava-persistence/kaJava-persistence.iml
+/kaJava-messages/kaJava-messages.iml
