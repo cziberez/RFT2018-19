@@ -1,21 +1,27 @@
 package hu.food.bean.abstractbean;
 
 import hu.food.core.entity.enums.RoleEnum;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.Cookie;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Locale;
 
-public abstract class AbstractRoleBean implements Serializable {
+@Getter
+@Setter
+public abstract class AbstractViewBean implements Serializable {
 
-    private static final long serialVersionUID = -744738568889251726L;
+    private Cookie localeCookie;
 
     @PostConstruct
     private void init() {
-        List<RoleEnum> kapottJog = getRoles();
-        checkRole(kapottJog);
+        List<RoleEnum> requiredRole = getRoles();
+        checkRole(requiredRole);
     }
 
     public abstract List<RoleEnum> getRoles();
@@ -24,13 +30,13 @@ public abstract class AbstractRoleBean implements Serializable {
         return false;
     }
 
-    protected void checkRole(List<RoleEnum> roles) {
-        if(hasRole(roles)) {
+    private void checkRole(List<RoleEnum> roles) {
+        if (hasRole(roles)) {
             redirectToDeniedPage();
         }
     }
 
-    protected void redirectToDeniedPage() {
+    private void redirectToDeniedPage() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("/xhtml/denied.xhtml");
         } catch (IOException e) {

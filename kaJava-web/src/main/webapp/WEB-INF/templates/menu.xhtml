@@ -14,24 +14,10 @@
 
         <p:menubar id="menuBar">
             <p:menuitem value="#{msg['menu.home']}" icon="ui-icon-home" url="/xhtml/index.xhtml"/>
-
-            <p:submenu label="Edit" icon="ui-icon-pencil">
-                <p:menuitem value="Undo" url="#" icon="ui-icon-arrowreturnthick-1-w"/>
-                <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e"/>
-            </p:submenu>
-
-            <p:submenu label="Help" icon="ui-icon-help">
-                <p:menuitem value="Contents" url="#"/>
-                <p:submenu label="Search" icon="ui-icon-search">
-                    <p:submenu label="Text">
-                        <p:menuitem value="Workspace" url="#"/>
-                    </p:submenu>
-                    <p:menuitem value="File" url="#"/>
-                </p:submenu>
-            </p:submenu>
+            <p:menuitem value="#{msg['index.demo']}" url="/xhtml/demo.xhtml"/>
 
             <f:facet name="options">
-                <p:panelGrid styleClass="noborder" columns="2" columnClasses="noborder">
+                <p:panelGrid styleClass="noborder" columns="4">
                     <p:themeSwitcher id="themeSwitcher" style="width:165px">
                         <f:selectItem itemLabel="#{msg['menu.theme.choose']}" itemValue=""/>
                         <f:selectItems value="#{themeBean.themes}" var="theme" itemLabel="#{theme.displayName}"
@@ -39,6 +25,8 @@
                         <p:ajax event="change" process="@this" listener="#{userBean.saveTheme}"/>
                     </p:themeSwitcher>
                     <p:commandButton value="#{msg['menu.login']}" onclick="PF('loginDlg').show()"/>
+                    <p:commandButton value="#{msg['menu.register']}" onclick="PF('registerDlg').show()"/>
+                    <p:commandButton icon="fa fa-globe" title="#{msg['langauge']}" onclick="PF('langDlg').show()"/>
                 </p:panelGrid>
             </f:facet>
 

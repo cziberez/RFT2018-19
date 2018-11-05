@@ -1,35 +1,47 @@
 package hu.food.bean;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
+import hu.food.bean.abstractbean.AbstractViewBean;
+import hu.food.core.entity.enums.RoleEnum;
+import hu.food.service.services.UserService;
+import hu.food.service.vo.UserVo;
+import hu.food.util.BeanUtil;
+
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.IOException;
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.List;
 
 @ViewScoped
 @Named("indexMBean")
-public class IndexMBean implements Serializable {
+public class IndexMBean extends AbstractViewBean {
 
-    private static final long serialVersionUID = 6268993761139416765L;
+    @Inject
+    private UserService userService;
 
-    public void addMessage(String summary) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
-        FacesContext.getCurrentInstance().addMessage(null, message);
+    private UserVo userVo;
+
+    @PostConstruct
+    private void init() {
+        userVo = new UserVo();
     }
 
-    public void buttonAction(ActionEvent actionEvent) {
-        addMessage("Hello World!");
+    public void saveNewUser() {
+        userService.save(userVo);
     }
 
-    public void redirectToDemo() {
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/kaJava-web/xhtml/demo.xhtml");
-            System.out.println("asd");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public UserVo getUserVo() {
+        return userVo;
     }
 
+    public void setUserVo(UserVo userVo) {
+        this.userVo = userVo;
+    }
+
+    @Override
+    public List<RoleEnum> getRoles() {
+        return Collections.singletonList(RoleEnum.ADMINISTRATOR);
+    }
 }
