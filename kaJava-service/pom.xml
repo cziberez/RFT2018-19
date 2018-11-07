@@ -19,7 +19,6 @@
 		<dependency>
 			<groupId>hu.food</groupId>
 			<artifactId>kaJava-core</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 
