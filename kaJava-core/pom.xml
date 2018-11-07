@@ -17,6 +17,6 @@
 	</dependencies>
 	
 	<build>
-		<finalName>pizza-core</finalName>
+		<finalName>kaJava-core</finalName>
 	</build>
 </project>
