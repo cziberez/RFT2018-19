@@ -58,8 +58,8 @@
 
             <p:sticky target="page-header"/>
             <div id="ajaxStatusIndicator" class="idle"/>
-            <p:growl id="growl" sticky="true" life="2000" keepAlive="false"
-                     severity="info, warn, error" showDetail="true" update="growl" globalOnly="true">
+            <p:growl id="growl" sticky="false" life="2000" keepAlive="false"
+                     severity="info, warn, error" showDetail="true" globalOnly="true">
                 <p:autoUpdate disabled="true"/>
             </p:growl>
             <p:ajaxStatus onstart="PF('statusDlg').show();"
