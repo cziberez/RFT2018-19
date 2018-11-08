@@ -1,16 +1,16 @@
 package hu.food.bean.abstractbean;
 
-import hu.food.core.entity.enums.RoleEnum;
-import lombok.Getter;
-import lombok.Setter;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.Cookie;
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.List;
-import java.util.Locale;
+
+import hu.food.service.enums.Roles;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -20,17 +20,17 @@ public abstract class AbstractViewBean implements Serializable {
 
     @PostConstruct
     private void init() {
-        List<RoleEnum> requiredRole = getRoles();
+        List<Roles> requiredRole = getRoles();
         checkRole(requiredRole);
     }
 
-    public abstract List<RoleEnum> getRoles();
+    public abstract List<Roles> getRoles();
 
-    private boolean hasRole(List<RoleEnum> roles) {
+    private boolean hasRole(List<Roles> roles) {
         return false;
     }
 
-    private void checkRole(List<RoleEnum> roles) {
+    private void checkRole(List<Roles> roles) {
         if (hasRole(roles)) {
             redirectToDeniedPage();
         }

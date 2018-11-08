@@ -36,6 +36,13 @@
             <email>m.tamas96@gmail.com</email>
             <timezone>+1</timezone>
         </developer>
+        <developer>
+            <id>kirillab</id>
+            <name>Kirilla Bence</name>
+            <email>jamesford@outlook.com</email>
+            <organization>Neuron Kft.</organization>
+            <timezone>+1</timezone>
+        </developer>
     </developers>
 
     <profiles>
