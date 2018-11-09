@@ -1,24 +1,27 @@
 package hu.food.bean;
 
-import java.util.Collections;
-import java.util.List;
-
-import javax.faces.annotation.ManagedProperty;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
-
 import hu.food.bean.abstractbean.AbstractViewBean;
 import hu.food.service.enums.Roles;
 import hu.food.service.services.UserService;
 import hu.food.service.vo.UserVo;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.util.Collections;
+import java.util.List;
 
 @ViewScoped
 @Named("indexMBean")
+@Getter
+@Setter
 public class IndexMBean extends AbstractViewBean {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@ManagedProperty("#{userService}")
+	@Inject
     private UserService userService;
 
     private UserVo userVo;
@@ -34,14 +37,6 @@ public class IndexMBean extends AbstractViewBean {
 
     public void setUserVo(UserVo userVo) {
         this.userVo = userVo;
-    }
-
-    public UserService getUserService() {
-        return userService;
-    }
-
-    public void setUserService(UserService userService) {
-        this.userService = userService;
     }
 
     @Override

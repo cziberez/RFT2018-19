@@ -8,23 +8,22 @@ import hu.food.service.services.UserService;
 import hu.food.service.vo.UserVo;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.transaction.Transactional;
 import java.util.List;
 
-@Service
-@Transactional(propagation = Propagation.REQUIRED)
 @Getter
 @Setter
+@Transactional(Transactional.TxType.REQUIRED)
+@Named("userService")
 public class UserServiceImpl implements UserService {
 
-    @Autowired
+    @Inject
     private UserDaoImpl userDao;
 
-    @Autowired
+    @Inject
     private UserMapper mapper;
 
     @Override
