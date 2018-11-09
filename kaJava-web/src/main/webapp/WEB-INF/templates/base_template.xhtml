@@ -131,6 +131,24 @@
                                          onclick="PF('loginDlg').hide()" process="@this"/>
                     </p:panelGrid>
                 </p:dialog>
+                <p:dialog id="registerDialog" widgetVar="registerDlg" resizable="false" modal="true"
+                          header="#{msg['menu.register']}">
+                    <p:panelGrid id="registerPanelGrid" styleClass="noborder fullSize" columns="2">
+                        <h:outputLabel id="registerUsernameLabel" value="#{msg['menu.username']}"/>
+                        <h:inputText id="registerUsernameInput" value="#{indexMBean.userVo.username}"/>
+                        <h:outputLabel id="registerPasswordLabel" value="#{msg['menu.password']}"/>
+                        <p:password id="registerPasswordInput" value="#{indexMBean.userVo.password}"/>
+                    </p:panelGrid>
+                    <f:facet id="registerDlgFooter" name="footer">
+                        <p:panelGrid id="registerDialogFooterPanelGrid" columns="2" styleClass="noborder fullSize"
+                                     columnClasses="halfSize center-position">
+                            <p:commandButton id="registerUserButton" value="#{msg['menu.register']}"
+                                             actionListener="#{indexMBean.saveNewUser()}" process="@this"/>
+                            <p:commandButton id="cancelRegisterButton" value="#{msg['cancel']}"
+                                             onclick="PF('registerDlg').hide()" process="@this"/>
+                        </p:panelGrid>
+                    </f:facet>
+                </p:dialog>
             </h:form>
         </p:layout>
     </h:body>
