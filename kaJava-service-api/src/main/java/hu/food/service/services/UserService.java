@@ -2,6 +2,8 @@ package hu.food.service.services;
 
 import hu.food.service.vo.UserVo;
 
-public interface UserService extends BaseService<UserVo>{
+import java.io.Serializable;
+
+public interface UserService extends BaseService<UserVo>, Serializable {
 
 }

@@ -10,6 +10,7 @@ import lombok.Setter;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class IndexMBean extends AbstractViewBean {
 
     private static final long serialVersionUID = 1L;
 
-	@Inject
+    @Inject
     private UserService userService;
 
     private UserVo userVo;

@@ -1,5 +1,6 @@
 package hu.food.service.impl;
 
+import hu.food.core.dao.UserDao;
 import hu.food.core.dao.impl.UserDaoImpl;
 import hu.food.core.entity.User;
 import hu.food.core.entity.enums.StatusEnum;
@@ -9,19 +10,21 @@ import hu.food.service.vo.UserVo;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.enterprise.context.Dependent;
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Getter
 @Setter
 @Transactional(Transactional.TxType.REQUIRED)
-@Named("userService")
+@Default
+@Dependent
 public class UserServiceImpl implements UserService {
 
     @Inject
-    private UserDaoImpl userDao;
+    private UserDao userDao;
 
     @Inject
     private UserMapper mapper;

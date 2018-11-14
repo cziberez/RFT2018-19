@@ -6,5 +6,19 @@
         <artifactId>kaJava</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+    <packaging>ejb</packaging>
     <artifactId>kaJava-service-api</artifactId>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ejb-plugin</artifactId>
+                <configuration>
+                    <ejbVersion>3.0</ejbVersion>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
