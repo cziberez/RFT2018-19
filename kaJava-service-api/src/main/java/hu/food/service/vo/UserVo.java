@@ -1,5 +1,7 @@
 package hu.food.service.vo;
 
+import hu.food.service.enums.Roles;
+
 public class UserVo extends BaseVo {
 
 	private String username;
@@ -16,13 +18,13 @@ public class UserVo extends BaseVo {
 
 	private AddressVo userAddress;
 
-	private RoleVo userRole;
+	private Roles userRole;
 
 	public UserVo() {
 	}
 
 	public UserVo(String username, String firstname, String lastname, String password, String email, String phoneNumber,
-			AddressVo userAddress, RoleVo userRole) {
+			AddressVo userAddress, Roles userRole) {
 		super();
 		this.username = username;
 		this.firstname = firstname;
@@ -90,11 +92,11 @@ public class UserVo extends BaseVo {
 		this.userAddress = userAddress;
 	}
 
-	public RoleVo getUserRole() {
+	public Roles getUserRole() {
 		return userRole;
 	}
 
-	public void setUserRole(RoleVo userRole) {
+	public void setUserRole(Roles userRole) {
 		this.userRole = userRole;
 	}
 

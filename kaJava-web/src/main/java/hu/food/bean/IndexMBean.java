@@ -3,6 +3,7 @@ package hu.food.bean;
 import hu.food.bean.abstractbean.AbstractViewBean;
 import hu.food.service.enums.Roles;
 import hu.food.service.services.UserService;
+import hu.food.service.vo.AddressVo;
 import hu.food.service.vo.UserVo;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,9 +28,15 @@ public class IndexMBean extends AbstractViewBean {
 
     private UserVo userVo;
 
-    public void saveNewUser() {
+    private AddressVo addressVo;
+
+    public void createContact() {
         userVo = new UserVo();
-        userService.save(userVo);
+        addressVo = new AddressVo();
+    }
+
+    public void saveNewUser() {
+        userService.saveNewUser(userVo, addressVo);
     }
 
     public UserVo getUserVo() {
@@ -43,5 +50,13 @@ public class IndexMBean extends AbstractViewBean {
     @Override
     public List<Roles> getRoles() {
         return Collections.singletonList(Roles.ADMINISTRATOR);
+    }
+
+    public AddressVo getAddressVo() {
+        return addressVo;
+    }
+
+    public void setAddressVo(AddressVo addressVo) {
+        this.addressVo = addressVo;
     }
 }

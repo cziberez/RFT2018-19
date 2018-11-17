@@ -2,7 +2,9 @@ package hu.food.service.impl;
 
 import java.util.List;
 
+import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
+import javax.transaction.Transactional;
 
 import hu.food.core.dao.impl.DeliverDaoImpl;
 import hu.food.core.entity.Deliver;
@@ -10,7 +12,14 @@ import hu.food.core.entity.enums.StatusEnum;
 import hu.food.service.mapper.DeliverMapper;
 import hu.food.service.services.DeliverService;
 import hu.food.service.vo.DeliverVo;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+@Transactional(Transactional.TxType.REQUIRED)
+@Default
+@Dependent
 public class DeliverServiceImpl implements DeliverService {
 
 	@Default

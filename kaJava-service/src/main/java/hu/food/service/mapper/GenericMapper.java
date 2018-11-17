@@ -10,6 +10,11 @@ import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 
+import javax.enterprise.context.Dependent;
+import javax.enterprise.inject.Default;
+
+@Dependent
+@Default
 public class GenericMapper<E extends BaseEntity, V extends BaseVo> implements Serializable {
 
 	private static final long serialVersionUID = 4396300978442803191L;

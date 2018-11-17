@@ -3,7 +3,9 @@ package hu.food.service.impl;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
+import javax.transaction.Transactional;
 
 import hu.food.core.dao.impl.FoodDaoImpl;
 import hu.food.core.entity.Food;
@@ -11,8 +13,14 @@ import hu.food.core.entity.enums.StatusEnum;
 import hu.food.service.mapper.FoodMapper;
 import hu.food.service.services.FoodService;
 import hu.food.service.vo.FoodVo;
+import lombok.Getter;
+import lombok.Setter;
 
-@Stateless
+@Getter
+@Setter
+@Transactional(Transactional.TxType.REQUIRED)
+@Default
+@Dependent
 public class FoodServiceImpl implements FoodService{
 	
 	@Default

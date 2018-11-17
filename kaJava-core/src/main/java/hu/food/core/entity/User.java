@@ -1,6 +1,7 @@
 package hu.food.core.entity;
 
 import hu.food.core.entity.base.BaseEntity;
+import hu.food.core.entity.enums.RoleEnum;
 
 import javax.persistence.*;
 
@@ -34,80 +35,96 @@ public class User extends BaseEntity {
     @Column(name = "PHONENUMBER")
     private String phoneNumber;
 
+    @Column(name = "USERROLE")
+    private RoleEnum userRole;
+
     @OneToOne
     private Address userAddress;
 
     public User() {
     }
 
-    public User(String username, String firstname, String lastname, String password, String email, String phoneNumber, Address userAddress) {
+    public User(String username, String firstname, String lastname, String password, String email, String phoneNumber, RoleEnum userRole, Address userAddress) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.userRole = userRole;
         this.userAddress = userAddress;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getUsername() {
         return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getFirstname() {
         return firstname;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
     public String getLastname() {
         return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public RoleEnum getUserRole() {
+        return userRole;
     }
 
     public Address getUserAddress() {
         return userAddress;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setUserRole(RoleEnum userRole) {
+        this.userRole = userRole;
     }
 
     public void setUserAddress(Address userAddress) {

@@ -87,26 +87,26 @@
 
             <h:form id="baseForm">
 
-                <p:dialog modal="true" resizable="false" responsive="true" minWidth="680" minHeight="500"
-                          dynamic="false" closable="false"
-                          widgetVar="langDlg" showEffect="fade" hideEffect="hide" header="#{msg['langauge']}"
-                          visible="#{userBean.checkLangaugeDialogVisibility()}">
-                    <p:panelGrid id="langSelectImages" styleClass="noborder" columns="2">
-                        <h:graphicImage value="/images/hunlogo.png" title="#{msg['hungarian']}"/>
-                        <h:graphicImage value="/images/englogo.png" title="#{msg['english']}"/>
-                    </p:panelGrid>
-                    <p:selectOneRadio id="langSelectRadio" value="#{userBean.selectedLang}" layout="responsive"
-                                      columns="2">
-                        <f:selectItem itemLabel="#{msg['hungarian']}" itemValue="hu"/>
-                        <f:selectItem itemLabel="#{msg['english']}" itemValue="en"/>
-                    </p:selectOneRadio>
-                    <f:facet name="footer">
-                        <p:panelGrid>
-                            <p:commandButton id="saveLangaugeButton" value="#{msg['select']}"
-                                             actionListener="#{userBean.saveLocale}" onsuccess="location.reload();"/>
-                        </p:panelGrid>
-                    </f:facet>
-                </p:dialog>
+                <!--<p:dialog modal="true" resizable="false" responsive="true" minWidth="680" minHeight="500"-->
+                          <!--dynamic="false" closable="false"-->
+                          <!--widgetVar="langDlg" showEffect="fade" hideEffect="hide" header="#{msg['langauge']}"-->
+                          <!--visible="#{userBean.checkLangaugeDialogVisibility()}">-->
+                    <!--<p:panelGrid id="langSelectImages" styleClass="noborder" columns="2">-->
+                        <!--<h:graphicImage value="/images/hunlogo.png" title="#{msg['hungarian']}"/>-->
+                        <!--<h:graphicImage value="/images/englogo.png" title="#{msg['english']}"/>-->
+                    <!--</p:panelGrid>-->
+                    <!--<p:selectOneRadio id="langSelectRadio" value="#{userBean.selectedLang}" layout="responsive"-->
+                                      <!--columns="2">-->
+                        <!--<f:selectItem itemLabel="#{msg['hungarian']}" itemValue="hu"/>-->
+                        <!--<f:selectItem itemLabel="#{msg['english']}" itemValue="en"/>-->
+                    <!--</p:selectOneRadio>-->
+                    <!--<f:facet name="footer">-->
+                        <!--<p:panelGrid>-->
+                            <!--<p:commandButton id="saveLangaugeButton" value="#{msg['select']}"-->
+                                             <!--actionListener="#{userBean.saveLocale}" onsuccess="location.reload();"/>-->
+                        <!--</p:panelGrid>-->
+                    <!--</f:facet>-->
+                <!--</p:dialog>-->
 
                 <p:confirmDialog id="confirmDialog" global="true" showEffect="show" hideEffect="fade">
                     <p:commandButton id="confirmDialogTrue" value="#{msg['true']}" type="button"
@@ -143,7 +143,7 @@
                         <p:panelGrid id="registerDialogFooterPanelGrid" columns="2" styleClass="noborder fullSize"
                                      columnClasses="halfSize center-position">
                             <p:commandButton id="registerUserButton" value="#{msg['menu.register']}"
-                                             actionListener="#{indexMBean.saveNewUser()}" process="@this"/>
+                                             actionListener="#{indexMBean.saveNewUser}"/>
                             <p:commandButton id="cancelRegisterButton" value="#{msg['cancel']}"
                                              onclick="PF('registerDlg').hide()" process="@this"/>
                         </p:panelGrid>

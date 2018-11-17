@@ -2,6 +2,8 @@ package hu.food.core.dao.impl;
 
 import java.util.List;
 
+import javax.enterprise.context.Dependent;
+import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -9,6 +11,8 @@ import javax.persistence.TypedQuery;
 import hu.food.core.dao.DeliverDao;
 import hu.food.core.entity.Deliver;
 
+@Default
+@Dependent
 public class DeliverDaoImpl implements DeliverDao {
 	
 	@PersistenceContext

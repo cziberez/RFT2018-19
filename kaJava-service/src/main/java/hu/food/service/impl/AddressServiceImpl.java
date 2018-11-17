@@ -3,7 +3,9 @@ package hu.food.service.impl;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
+import javax.transaction.Transactional;
 
 import hu.food.core.dao.impl.AddressDaoImpl;
 import hu.food.core.entity.Address;
@@ -11,8 +13,14 @@ import hu.food.core.entity.enums.StatusEnum;
 import hu.food.service.mapper.AddressMapper;
 import hu.food.service.services.AddressService;
 import hu.food.service.vo.AddressVo;
+import lombok.Getter;
+import lombok.Setter;
 
-@Stateless
+@Getter
+@Setter
+@Transactional(Transactional.TxType.REQUIRED)
+@Default
+@Dependent
 public class AddressServiceImpl implements AddressService{
 	
 	@Default
