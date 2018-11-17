@@ -11,6 +11,7 @@ public class User extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(generator = "USER_IDGEN", strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -36,13 +37,10 @@ public class User extends BaseEntity {
     @OneToOne
     private Address userAddress;
 
-    @ManyToOne
-    private Role userRole;
-
     public User() {
     }
 
-    public User(String username, String firstname, String lastname, String password, String email, String phoneNumber, Address userAddress, Role userRole) {
+    public User(String username, String firstname, String lastname, String password, String email, String phoneNumber, Address userAddress) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -50,7 +48,6 @@ public class User extends BaseEntity {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.userAddress = userAddress;
-        this.userRole = userRole;
     }
 
     public Long getId() {
@@ -115,13 +112,5 @@ public class User extends BaseEntity {
 
     public void setUserAddress(Address userAddress) {
         this.userAddress = userAddress;
-    }
-
-    public Role getUserRole() {
-        return userRole;
-    }
-
-    public void setUserRole(Role userRole) {
-        this.userRole = userRole;
     }
 }

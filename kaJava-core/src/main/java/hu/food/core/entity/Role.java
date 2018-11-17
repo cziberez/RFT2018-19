@@ -5,7 +5,7 @@ import hu.food.core.entity.enums.RoleEnum;
 
 import javax.persistence.*;
 
-@Entity
+
 @Table(name = "ROLE")
 @SequenceGenerator(name = "ROLE_IDGEN", sequenceName = "S_ROLE")
 public class Role extends BaseEntity {

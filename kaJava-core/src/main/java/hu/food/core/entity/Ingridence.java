@@ -11,6 +11,7 @@ public class Ingridence extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(generator = "INGRIDENCE_IDGEN", strategy = GenerationType.SEQUENCE)
     private Long id;
