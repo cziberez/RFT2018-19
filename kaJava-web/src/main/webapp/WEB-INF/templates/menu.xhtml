@@ -27,10 +27,11 @@
                         <p:ajax event="change" process="@this" listener="#{userBean.saveTheme}"/>
                     </p:themeSwitcher>
                     <p:commandButton value="#{msg['menu.login']}" onclick="PF('loginDlg').show()"
-                                     actionListener="#{indexMBean.createContact}"/>
+                                     actionListener="#{indexMBean.createContact}" partialSubmit="true" process="@this"/>
                     <p:commandButton value="#{msg['menu.register']}" onclick="PF('registerDlg').show()"
-                                     actionListener="#{indexMBean.createContact}"/>
-                    <p:commandButton icon="fa fa-globe" title="#{msg['langauge']}" onclick="PF('langDlg').show()"/>
+                                     actionListener="#{indexMBean.createContact}" partialSubmit="true" process="@this"/>
+                    <p:commandButton icon="fa fa-globe" title="#{msg['langauge']}" onclick="PF('langDlg').show()"
+                                     partialSubmit="true" process="@this"/>
                 </p:panelGrid>
             </f:facet>
 
