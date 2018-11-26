@@ -25,4 +25,8 @@
         <comment>Order FK</comment>
     </changeSet>
 
+    <changeSet id="create-hibernate-sequence" author="cziberez">
+        <sqlFile path="sql/create_hibernate_sequence.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
 </databaseChangeLog>
