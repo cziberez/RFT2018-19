@@ -145,7 +145,8 @@
                         <p:panelGrid id="registerDialogFooterPanelGrid" columns="2" styleClass="noborder fullSize"
                                      columnClasses="halfSize center-position">
                             <p:commandButton id="registerUserButton" value="#{msg['menu.register']}"
-                                             actionListener="#{indexMBean.saveNewUser}"/>
+                                             actionListener="#{indexMBean.saveNewUser}" process="registerDialog"
+                                             onsuccess="PF('registerDlg').hide()"/>
                             <p:commandButton id="cancelRegisterButton" value="#{msg['cancel']}"
                                              onclick="PF('registerDlg').hide()" process="@this"/>
                         </p:panelGrid>

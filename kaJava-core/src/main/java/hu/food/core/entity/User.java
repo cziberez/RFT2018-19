@@ -35,9 +35,6 @@ public class User extends BaseEntity {
     @Column(name = "PHONENUMBER")
     private String phoneNumber;
 
-    @Column(name = "USERROLE")
-    private RoleEnum userRole;
-
     @OneToOne
     private Address userAddress;
 
@@ -51,7 +48,6 @@ public class User extends BaseEntity {
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.userRole = userRole;
         this.userAddress = userAddress;
     }
 
@@ -87,10 +83,6 @@ public class User extends BaseEntity {
         return phoneNumber;
     }
 
-    public RoleEnum getUserRole() {
-        return userRole;
-    }
-
     public Address getUserAddress() {
         return userAddress;
     }
@@ -121,10 +113,6 @@ public class User extends BaseEntity {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public void setUserRole(RoleEnum userRole) {
-        this.userRole = userRole;
     }
 
     public void setUserAddress(Address userAddress) {
