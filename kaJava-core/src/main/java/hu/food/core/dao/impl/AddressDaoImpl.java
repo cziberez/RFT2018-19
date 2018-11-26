@@ -7,6 +7,7 @@ import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import hu.food.core.dao.AddressDao;
 import hu.food.core.entity.Address;
@@ -14,6 +15,7 @@ import hu.food.core.entity.Address;
 
 @Default
 @Dependent
+@Transactional(Transactional.TxType.REQUIRED)
 public class AddressDaoImpl implements AddressDao {
 	
 	@PersistenceContext

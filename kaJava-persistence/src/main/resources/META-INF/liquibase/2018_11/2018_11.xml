@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   logicalFilePath="liquibase/2018_11/2018_11.xml"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+
+    <changeSet id="add-user-address-fk" author="cziberez">
+        <sqlFile path="sql/add_user_address_fk.sql" relativeToChangelogFile="true"/>
+        <comment>User FK</comment>
+    </changeSet>
+
+    <changeSet id="add-food-fodimage-fk" author="cziberez">
+        <sqlFile path="sql/add_food_fodimage_fk.sql" relativeToChangelogFile="true"/>
+        <comment>Food - FoodImage FK</comment>
+    </changeSet>
+
+    <changeSet id="add-food-ingridience-fk" author="cziberez">
+        <sqlFile path="sql/add_food_ingridience_fk.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="add-order-fk" author="cziberez">
+        <sqlFile path="sql/add_order_fk.sql" relativeToChangelogFile="true"/>
+        <comment>Order FK</comment>
+    </changeSet>
+
+</databaseChangeLog>

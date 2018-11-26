@@ -7,12 +7,14 @@ import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import hu.food.core.dao.FoodDao;
 import hu.food.core.entity.Food;
 
 @Default
 @Dependent
+@Transactional(Transactional.TxType.REQUIRED)
 public class FoodDaoImpl implements FoodDao {
 
 	@PersistenceContext

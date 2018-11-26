@@ -51,10 +51,6 @@ public class User extends BaseEntity {
         this.userAddress = userAddress;
     }
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
     public Long getId() {
         return id;
     }

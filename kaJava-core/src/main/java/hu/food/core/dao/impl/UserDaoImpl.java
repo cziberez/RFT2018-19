@@ -8,10 +8,12 @@ import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Default
 @Dependent
+@Transactional(Transactional.TxType.REQUIRED)
 public class UserDaoImpl implements UserDao {
 
     @PersistenceContext

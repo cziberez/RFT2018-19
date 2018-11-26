@@ -7,12 +7,14 @@ import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import hu.food.core.dao.DeliverDao;
 import hu.food.core.entity.Deliver;
 
 @Default
 @Dependent
+@Transactional(Transactional.TxType.REQUIRED)
 public class DeliverDaoImpl implements DeliverDao {
 	
 	@PersistenceContext

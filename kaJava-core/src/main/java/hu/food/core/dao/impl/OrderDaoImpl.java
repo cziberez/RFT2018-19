@@ -7,12 +7,14 @@ import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import hu.food.core.dao.OrderDao;
 import hu.food.core.entity.Order;
 
 @Default
 @Dependent
+@Transactional(Transactional.TxType.REQUIRED)
 public class OrderDaoImpl implements OrderDao {
 
 	@PersistenceContext
