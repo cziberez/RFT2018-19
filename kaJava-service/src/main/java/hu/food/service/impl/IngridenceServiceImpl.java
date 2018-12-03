@@ -2,7 +2,6 @@ package hu.food.service.impl;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
 import javax.transaction.Transactional;

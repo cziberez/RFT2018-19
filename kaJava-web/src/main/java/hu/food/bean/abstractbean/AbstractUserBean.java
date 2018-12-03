@@ -21,7 +21,8 @@ import java.util.Map;
 @Setter
 public abstract class AbstractUserBean implements Serializable {
 
-    private String theme;
+	private static final long serialVersionUID = 1L;
+	private String theme;
     private String localeAsString;
     private String selectedLang;
     private Cookie localeCookie;

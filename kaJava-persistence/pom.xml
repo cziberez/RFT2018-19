@@ -34,8 +34,7 @@
                     <changeLogFile>${project.basedir}/src/main/resources/META-INF/liquibase/master.xml</changeLogFile>
                 </configuration>
                 <executions>
-                    <execution>
-                        <phase>process-resources</phase>
+                    <execution>        
                         <goals>
                             <goal>update</goal>
                         </goals>

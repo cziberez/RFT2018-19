@@ -18,7 +18,9 @@ import javax.servlet.http.Cookie;
 @Setter
 public class UserMBean extends AbstractUserBean {
 
-    private String selectedLang;
+	private static final long serialVersionUID = 1L;
+
+	private String selectedLang;
     
     @Inject
     private ThemeBean themeBean;

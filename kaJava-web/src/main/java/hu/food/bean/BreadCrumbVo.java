@@ -1,13 +1,13 @@
 package hu.food.bean;
 
+import java.io.Serializable;
+
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
+
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.MenuModel;
-
-import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
-import java.io.Serializable;
 
 
 //TODO kirillab: ezt is mozgatni a Vo-ba és megírni dinamikusan
@@ -15,7 +15,8 @@ import java.io.Serializable;
 @ViewScoped
 public class BreadCrumbVo implements Serializable {
 
-    private MenuModel menuModel;
+	private static final long serialVersionUID = 1L;
+	private MenuModel menuModel;
 
     public BreadCrumbVo() {
         menuModel = new DefaultMenuModel();

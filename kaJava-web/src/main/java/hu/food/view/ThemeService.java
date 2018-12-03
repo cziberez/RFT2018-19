@@ -12,7 +12,8 @@ import java.util.List;
 @ApplicationScoped
 public class ThemeService implements Serializable {
 
-    private List<Theme> themes;
+	private static final long serialVersionUID = 1L;
+	private List<Theme> themes;
 
     @PostConstruct
     public void init() {

@@ -14,7 +14,9 @@ import java.util.List;
 @Named("themeBean")
 public class ThemeBean implements Serializable {
 
-    private List<Theme> themes;
+	private static final long serialVersionUID = 1L;
+
+	private List<Theme> themes;
 
     @Inject
     private ThemeService themeService;

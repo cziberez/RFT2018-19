@@ -6,6 +6,7 @@
 
     <persistence-unit name="hu.food.kaJava"
                       transaction-type="JTA">
+        <jta-data-source>java:jboss/datasources/postgres</jta-data-source>
         <class>hu.food.core.entity.Address</class>
         <class>hu.food.core.entity.base.BaseEntity</class>
         <class>hu.food.core.entity.Food</class>
@@ -15,14 +16,12 @@
         <class>hu.food.core.entity.Ingridence</class>
         <class>hu.food.core.entity.User</class>
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="javax.persistence.jdbc.url"
-                      value="jdbc:postgresql://localhost:5432/postgres"/>
-            <property name="javax.persistence.jdbc.user" value="postgres"/>
-            <property name="javax.persistence.jdbc.password" value="postgres"/>
             <property name="hibernate.show_sql" value="true" />
-            <property name="hibernate.id.new_generator_mappings" value="false"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.default_schema" value="public" />
+            <property name="hibernate.dialect"
+                      value="org.hibernate.dialect.PostgreSQL82Dialect" />
+            <property name="hibernate.hbm2ddl.auto" value="create" />
         </properties>
     </persistence-unit>
 

@@ -1,5 +1,12 @@
 package hu.food.bean;
 
+import java.util.Collections;
+import java.util.List;
+
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import hu.food.bean.abstractbean.AbstractViewBean;
 import hu.food.service.enums.Roles;
 import hu.food.service.services.UserService;
@@ -7,13 +14,6 @@ import hu.food.service.vo.AddressVo;
 import hu.food.service.vo.UserVo;
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-import java.io.Serializable;
-import java.util.Collections;
-import java.util.List;
 
 @ViewScoped
 @Named("indexMBean")

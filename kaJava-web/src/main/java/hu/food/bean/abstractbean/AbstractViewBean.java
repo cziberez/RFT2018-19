@@ -16,7 +16,8 @@ import lombok.Setter;
 @Setter
 public abstract class AbstractViewBean implements Serializable {
 
-    private Cookie localeCookie;
+	private static final long serialVersionUID = 1L;
+	private Cookie localeCookie;
 
     @PostConstruct
     private void init() {

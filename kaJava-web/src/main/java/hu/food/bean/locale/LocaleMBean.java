@@ -16,7 +16,9 @@ import java.util.Locale;
 @Setter
 public class LocaleMBean extends AbstractUserBean {
 
-    public Locale getLocaleByCookie() {
+	private static final long serialVersionUID = 1L;
+
+	public Locale getLocaleByCookie() {
         Cookie localeCookie = getCookieByName("locale");
         Locale defaultLocale = null; //igen, null, mert ha ezzel tér vissza, akkor system default-ot fog használni
         if (localeCookie != null) {

@@ -26,7 +26,9 @@ import java.util.List;
 @Dependent
 public class UserServiceImpl implements UserService {
 
-    @Inject
+	private static final long serialVersionUID = 1L;
+
+	@Inject
     private UserDao userDao;
 
     @Inject
