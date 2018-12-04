@@ -1,1 +1,0 @@
-ALTER TABLE food ADD COLUMN foodimage NUMERIC (19,0) REFERENCES foodimage(id);

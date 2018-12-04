@@ -4,8 +4,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:o="http://omnifaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <f:view contentType="text/html" locale="#{localeMBean.getLocaleByCookie()}">
     <h:head>
@@ -16,12 +15,6 @@
     </h:head>
 
     <ui:insert name="viewparam"/>
-
-    <ui:define name="meta">
-        <f:metadata>
-            <o:enableRestorableView/>
-        </f:metadata>
-    </ui:define>
 
     <h:body>
         <p:layout fullPage="true">
