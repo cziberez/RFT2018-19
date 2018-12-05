@@ -1,0 +1,7 @@
+/.idea
+/kaJava-web/*.iml
+/kaJava-web/target
+/kaJava-service-api/target
+/kaJava-core/target
+/kaJava-ear/target
+/kaJava-service/target
