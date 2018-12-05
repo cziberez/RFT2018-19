@@ -1,163 +1,62 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>hu.food</groupId>
-    <artifactId>kaJava</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>hu.food.kaJava</groupId>
+	<artifactId>kaJava</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
-    <modules>
-        <module>kaJava-core</module>
-        <module>kaJava-service</module>
-        <module>kaJava-service-api</module>
-        <module>kaJava-web</module>
-        <module>kaJava-ear</module>
-        <module>kaJava-persistence</module>
-        <module>kaJava-messages</module>
-    </modules>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
 
-    <scm>
-        <connection>scm:git:git@github.com:/cziberez//RFT2018-19.git</connection>
-        <developerConnection>scm:git:git@github.com:/cziberez//RFT2018-19.git</developerConnection>
-        <url>https://github.com/cziberez/RFT2018-19</url>
-    </scm>
 
-    <developers>
-        <developer>
-            <id>cziberez</id>
-            <name>Czibere Zoltán Ádám</name>
-            <email>czibere.zoltan.adam@gmail.com</email>
-            <organization>Ulyssys Kft.</organization>
-            <timezone>+1</timezone>
-        </developer>
-        <developer>
-            <id>magyart</id>
-            <name>Magyar Tamás</name>
-            <email>m.tamas96@gmail.com</email>
-            <timezone>+1</timezone>
-        </developer>
-        <developer>
-            <id>kirillab</id>
-            <name>Kirilla Bence</name>
-            <email>jamesford@outlook.com</email>
-            <organization>Neuron Kft.</organization>
-            <timezone>+1</timezone>
-        </developer>
-    </developers>
+	<modules>
+		<module>kaJava-core</module>
+		<module>kaJava-service</module>
+		<module>kaJava-service-api</module>
+		<module>kaJava-web</module>
+		<module>kaJava-ear</module>
+	</modules>
 
-    <profiles>
-        <profile>
-            <id>local</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <wildfly-hostname>localhost</wildfly-hostname>
-                <enviroment.name>local</enviroment.name>
-                <liquibase.dbUrl>jdbc:postgresql://localhost:5432/postgres?currentSchema=public</liquibase.dbUrl>
-                <liquibase.user>postgres</liquibase.user>
-                <liquibase.password>postgres</liquibase.password>
-            </properties>
-        </profile>
-    </profiles>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>8.0</version>
+				<scope>provided</scope>
+			</dependency>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <!--Saját property-k -->
-        <javax.javaee-api.version>8.0</javax.javaee-api.version>
-        <ma.glasnost.orika.orika-core.version>1.5.2</ma.glasnost.orika.orika-core.version>
-        <org.primefaces.primefaces.version>6.2</org.primefaces.primefaces.version>
-        <org.primefaces.themes.all-themes.version>1.0.10</org.primefaces.themes.all-themes.version>
-        <org.projectlombok.lombok.version>1.16.16</org.projectlombok.lombok.version>
-        <com.sun.faces.jsf-api.version>2.1.11</com.sun.faces.jsf-api.version>
-        <com.sun.faces.jsf-impl.version>2.1.11</com.sun.faces.jsf-impl.version>
-        <javax.servlet.jstl.version>1.2</javax.servlet.jstl.version>
-        <javax.servlet.servlet-api.version>2.5</javax.servlet.servlet-api.version>
-        <javax.servlet.jsp.jsp-api.version>2.1</javax.servlet.jsp.jsp-api.version>
-        <org.glassfish.web.el-impl.version>2.2</org.glassfish.web.el-impl.version>
-    </properties>
+			<dependency>
+				<groupId>ma.glasnost.orika</groupId>
+				<artifactId>orika-core</artifactId>
+				<version>1.5.2</version>
+			</dependency>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>javax</groupId>
-                <artifactId>javaee-api</artifactId>
-                <version>${javax.javaee-api.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>ma.glasnost.orika</groupId>
-                <artifactId>orika-core</artifactId>
-                <version>${ma.glasnost.orika.orika-core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.primefaces</groupId>
-                <artifactId>primefaces</artifactId>
-                <version>${org.primefaces.primefaces.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.primefaces.themes</groupId>
-                <artifactId>all-themes</artifactId>
-                <version>${org.primefaces.themes.all-themes.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sun.faces</groupId>
-                <artifactId>jsf-api</artifactId>
-                <version>${com.sun.faces.jsf-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sun.faces</groupId>
-                <artifactId>jsf-impl</artifactId>
-                <version>${com.sun.faces.jsf-impl.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>jstl</artifactId>
-                <version>${javax.servlet.jstl.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>servlet-api</artifactId>
-                <version>${javax.servlet.servlet-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.servlet.jsp</groupId>
-                <artifactId>jsp-api</artifactId>
-                <version>${javax.servlet.jsp.jsp-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.glassfish.web</groupId>
-                <artifactId>el-impl</artifactId>
-                <version>${org.glassfish.web.el-impl.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>hu.food</groupId>
-                <artifactId>kaJava-core</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${org.projectlombok.lombok.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.omnifaces</groupId>
-            <artifactId>omnifaces</artifactId>
-            <version>3.2</version>
-        </dependency>
-    </dependencies>
+			<dependency>
+				<groupId>org.primefaces</groupId>
+				<artifactId>primefaces</artifactId>
+				<version>6.2</version>
+			</dependency>
 
-    <repositories>
-        <repository>
-            <id>prime-repo</id>
-            <name>Prime Repo</name>
-            <url>http://repository.primefaces.org</url>
-        </repository>
-    </repositories>
+			<dependency>
+				<groupId>org.primefaces.themes</groupId>
+				<artifactId>all-themes</artifactId>
+				<version>1.0.10</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<repositories>
+		<repository>
+			<id>prime-repo</id>
+			<name>Prime Repo</name>
+			<url>http://repository.primefaces.org</url>
+		</repository>
+	</repositories>
 </project>

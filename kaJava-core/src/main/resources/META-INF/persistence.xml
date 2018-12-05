@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+
+	<persistence-unit name="hu.food.kaJava"
+		transaction-type="JTA">
+        <jta-data-source>java:/jdbc/kaJavaDS</jta-data-source>
+        <class>hu.food.core.entity.Address</class>
+        <class>hu.food.core.entity.base.BaseEntity</class>
+        <class>hu.food.core.entity.Food</class>
+        <class>hu.food.core.entity.Order</class>
+        <class>hu.food.core.entity.FoodImage</class>
+        <class>hu.food.core.entity.Deliver</class>
+        <class>hu.food.core.entity.Ingridence</class>
+        <class>hu.food.core.entity.User</class>
+		<properties>
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.default_schema" value="public" />
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.PostgreSQL82Dialect" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+
+		</properties>
+	</persistence-unit>
+
+
+
+</persistence>

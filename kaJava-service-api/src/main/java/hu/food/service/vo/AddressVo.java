@@ -1,7 +1,7 @@
 package hu.food.service.vo;
 
-public class AddressVo extends BaseVo {
-
+public class AddressVo extends BaseVo{
+	
 	private Long postCode;
 
 	private String city;
@@ -62,17 +62,4 @@ public class AddressVo extends BaseVo {
 		this.door = door;
 	}
 
-	public AddressVo(Long postCode, String city, String street, String houseNumber, String floor, String door) {
-		super();
-		this.postCode = postCode;
-		this.city = city;
-		this.street = street;
-		this.houseNumber = houseNumber;
-		this.floor = floor;
-		this.door = door;
-	}
-
-	public AddressVo() {
-
-	}
 }

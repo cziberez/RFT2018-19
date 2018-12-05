@@ -1,18 +1,12 @@
 package hu.food.core.entity.base;
 
 import hu.food.core.entity.enums.StatusEnum;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @MappedSuperclass
-@Getter
-@Setter
-@ToString
 public class BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;

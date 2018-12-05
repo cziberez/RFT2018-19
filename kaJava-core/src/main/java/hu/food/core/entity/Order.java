@@ -13,6 +13,7 @@ public class Order extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "ORDER_IDGEN", strategy = GenerationType.SEQUENCE)
     private Long id;

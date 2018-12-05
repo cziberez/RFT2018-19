@@ -3,22 +3,24 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>hu.food</groupId>
+		<groupId>hu.food.kaJava</groupId>
 		<artifactId>kaJava</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>kaJava-service</artifactId>
-	
+
+
 	<dependencies>
 		<dependency>
-			<groupId>hu.food</groupId>
+			<groupId>hu.food.kaJava</groupId>
 			<artifactId>kaJava-service-api</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
-			<groupId>hu.food</groupId>
+			<groupId>hu.food.kaJava</groupId>
 			<artifactId>kaJava-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -27,13 +29,16 @@
 			<artifactId>javaee-api</artifactId>
 		</dependency>
 
+
 		<dependency>
 			<groupId>ma.glasnost.orika</groupId>
 			<artifactId>orika-core</artifactId>
 		</dependency>
+
+
+
 	</dependencies>
 	<build>
 		<finalName>kaJava-service</finalName>
 	</build>
-
 </project>
