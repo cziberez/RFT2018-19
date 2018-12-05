@@ -1,9 +1,0 @@
-/target/
-/.settings/
-
-# Other
-/.project
-/.classpath
-!/.settings/
-!/kaJava-service-api.iml
-/kaJava-service-api.iml

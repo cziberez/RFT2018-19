@@ -4,28 +4,22 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
-import hu.food.core.entity.base.BaseEntity;
 import hu.food.service.vo.BaseVo;
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 
-import javax.enterprise.context.Dependent;
-import javax.enterprise.inject.Default;
-
-@Dependent
-@Default
 public class GenericMapper<E extends BaseEntity, V extends BaseVo> implements Serializable {
 
-	private static final long serialVersionUID = 4396300978442803191L;
-	
+	private static final long serialVersionUID = -8813309091228116063L;
+
 	private final MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
-		
+
 	private final MapperFacade mapper = mapperFactory.getMapperFacade();
-	
+
 	private final Class<V> voClazz;
 	private final Class<E> entityClazz;
-	
+
 	public GenericMapper(Class<V> voClazz, Class<E> entityClazz) {
 		super();
 		this.voClazz = voClazz;
@@ -59,4 +53,5 @@ public class GenericMapper<E extends BaseEntity, V extends BaseVo> implements Se
 		}
 		return mapper.mapAsList(vos, entityClazz);
 	}
+
 }

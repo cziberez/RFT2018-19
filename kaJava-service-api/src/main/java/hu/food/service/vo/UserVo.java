@@ -1,40 +1,16 @@
 package hu.food.service.vo;
 
-import hu.food.service.enums.Roles;
+import java.util.List;
 
 public class UserVo extends BaseVo {
 
 	private String username;
 
-	private String firstname;
-
-	private String lastname;
-
 	private String password;
 
-	private String email;
+	private String name;
 
-	private String phoneNumber;
-
-	private AddressVo userAddress;
-
-	private Roles userRole;
-
-	public UserVo() {
-	}
-
-	public UserVo(String username, String firstname, String lastname, String password, String email, String phoneNumber,
-			AddressVo userAddress, Roles userRole) {
-		super();
-		this.username = username;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.password = password;
-		this.email = email;
-		this.phoneNumber = phoneNumber;
-		this.userAddress = userAddress;
-		this.userRole = userRole;
-	}
+	private List<RoleVo> roles;
 
 	public String getUsername() {
 		return username;
@@ -42,22 +18,6 @@ public class UserVo extends BaseVo {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public String getFirstname() {
-		return firstname;
-	}
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public String getLastname() {
-		return lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
 	}
 
 	public String getPassword() {
@@ -68,36 +28,20 @@ public class UserVo extends BaseVo {
 		this.password = password;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getName() {
+		return name;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public List<RoleVo> getRoles() {
+		return roles;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
-	public AddressVo getUserAddress() {
-		return userAddress;
-	}
-
-	public void setUserAddress(AddressVo userAddress) {
-		this.userAddress = userAddress;
-	}
-
-	public Roles getUserRole() {
-		return userRole;
-	}
-
-	public void setUserRole(Roles userRole) {
-		this.userRole = userRole;
+	public void setRoles(List<RoleVo> roles) {
+		this.roles = roles;
 	}
 
 }

@@ -1,14 +1,18 @@
 package hu.food.service.vo;
 
+import java.util.Date;
+
 public class BaseVo {
-	
+
 	private Long id;
 
-	public Long getId() {
-		return id;
-	}
+	private String recUser;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	private String modUser;
+
+	private Date recDate;
+
+	private Date modDate;
+
+	private Long version;
 }
