@@ -35,7 +35,7 @@ public class User extends BaseEntity {
     @Column(name = "PHONENUMBER")
     private String phoneNumber;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private Address userAddress;
 
     public User() {
