@@ -1,5 +1,6 @@
 package hu.food.service.mapper;
 
+import hu.food.core.entity.User;
 import hu.food.service.vo.UserVo;
 
 public class UserMapper extends GenericMapper<User, UserVo> {

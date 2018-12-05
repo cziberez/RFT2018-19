@@ -2,6 +2,8 @@ package hu.food.service.vo;
 
 import java.util.List;
 
+import hu.food.service.enums.Role;
+
 public class UserVo extends BaseVo {
 
 	private String username;
@@ -10,7 +12,7 @@ public class UserVo extends BaseVo {
 
 	private String name;
 
-	private List<RoleVo> roles;
+	private List<Role> roles;
 
 	public String getUsername() {
 		return username;
@@ -36,11 +38,11 @@ public class UserVo extends BaseVo {
 		this.name = name;
 	}
 
-	public List<RoleVo> getRoles() {
+	public List<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<RoleVo> roles) {
+	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
 

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
+import hu.food.core.entity.base.BaseEntity;
 import hu.food.service.vo.BaseVo;
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;
