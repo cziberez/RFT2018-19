@@ -144,10 +144,10 @@
                         <p:panelGrid id="registerDialogFooterPanelGrid" columns="2" styleClass="noborder fullSize"
                                      columnClasses="halfSize center-position">
                             <p:commandButton id="registerUserButton" value="#{msg['menu.register']}"
-                                             actionListener="#{userBean.addUser}" process="registerDialog"
-                                             onsuccess="PF('registerDlg').hide()"/>
+                                             actionListener="#{userBean.registerUser}" process="registerDialog"
+                                             onsuccess="PF('registerDlg').hide()" update="registerDialog"/>
                             <p:commandButton id="cancelRegisterButton" value="#{msg['cancel']}"
-                                             onclick="PF('registerDlg').hide()" process="@this"/>
+                                             onclick="PF('registerDlg').hide()"/>
                         </p:panelGrid>
                     </f:facet>
                 </p:dialog>

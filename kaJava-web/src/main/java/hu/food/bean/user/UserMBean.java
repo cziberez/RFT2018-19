@@ -68,8 +68,9 @@ public class UserMBean extends AbstractUserBean {
         userVo = null;
     }
 
-    public void addUser() {
+    public void registerUser() {
         userService.addUser(userVo);
+        destroyUser();
     }
 
     public ThemeBean getThemeBean() {

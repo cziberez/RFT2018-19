@@ -11,13 +11,8 @@
 
 	<ui:define name="content">
 		<h:form id="contentForm">
-			<p:panel id="demoPanel" header="Demo" toggleable="true" toggleSpeed="500">
-				<p:commandButton value="#{msg['index.demo']}"
-								 id="demoButton"
-								 icon="ui-icon-extlink"
-								 onclick="PF('statusDlg').show()"
-								 action="/xhtml/demo?faces-redirect=true"
-								 process="@this"/>
+			<p:panel id="demoPanel" header="#{msg['index.demo']}" toggleable="true" toggleSpeed="500">
+
 			</p:panel>
 		</h:form>
 	</ui:define>
