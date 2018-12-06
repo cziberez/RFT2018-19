@@ -3,7 +3,6 @@ package hu.food.bean.user;
 import hu.food.bean.abstractbean.AbstractUserBean;
 import hu.food.bean.theme.ThemeBean;
 import hu.food.service.UserService;
-import hu.food.service.vo.AddressVo;
 import hu.food.service.vo.UserVo;
 import hu.food.view.Theme;
 
@@ -61,7 +60,12 @@ public class UserMBean extends AbstractUserBean {
     }
 
     public void createUser() {
+        destroyUser();
         userVo = new UserVo();
+    }
+
+    private void destroyUser() {
+        userVo = null;
     }
 
     public void addUser() {
@@ -82,5 +86,13 @@ public class UserMBean extends AbstractUserBean {
 
     public void setUserVo(UserVo userVo) {
         this.userVo = userVo;
+    }
+
+    public void login() {
+        doLogin();
+    }
+
+    private void doLogin() {
+        //TODO autentikáló service hívása
     }
 }

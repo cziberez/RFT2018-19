@@ -17,9 +17,9 @@
     <ui:insert name="viewparam"/>
 
     <!--<ui:define name="meta">-->
-        <!--<f:metadata>-->
-            <!--<o:enableRestorableView/>-->
-        <!--</f:metadata>-->
+    <!--<f:metadata>-->
+    <!--<o:enableRestorableView/>-->
+    <!--</f:metadata>-->
     <!--</ui:define>-->
 
     <h:body>
@@ -127,7 +127,7 @@
                     <f:facet id="loginDialogFooter" name="footer"/>
                     <p:panelGrid id="loginDialogFooterPanelGrid" styleClass="noborder fullSize"
                                  columnClasses="halfSize center-position" columns="2">
-                        <p:commandButton id="loginDialogLoginButton" value="#{msg['menu.login']}" process="@this"/>
+                        <p:commandButton id="loginDialogLoginButton" value="#{msg['menu.login']}" actionListener="#{userBean.login}" process="@this"/>
                         <p:commandButton id="loginDialogCancelButton" value="#{msg['cancel']}"
                                          onclick="PF('loginDlg').hide()" process="@this"/>
                     </p:panelGrid>
