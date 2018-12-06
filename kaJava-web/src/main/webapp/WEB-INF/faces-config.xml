@@ -9,7 +9,7 @@
 			<supported-locale>en</supported-locale>
 		</locale-config>
 		<resource-bundle>
-			<base-name>hu.neuron.pizza.web.Messages</base-name>
+			<base-name>messages.Messages</base-name>
 			<var>msg</var>
 		</resource-bundle>
 	</application>

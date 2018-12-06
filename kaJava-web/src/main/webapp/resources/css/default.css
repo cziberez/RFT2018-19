@@ -1,0 +1,44 @@
+.ui-panel-titlebar {
+    text-align: center;
+}
+
+.noborder.ui-panelgrid > * > tr,
+.noborder.ui-panelgrid .ui-panelgrid-cell {
+    border: none;
+}
+
+.fullSize {
+    width: 100%;
+}
+
+.halfSize {
+    width: 50%;
+}
+
+.center-position {
+    text-align: center;
+}
+
+.ui-layout-north {
+    overflow:hidden !important;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+    overflow:hidden !important;
+}
+
+.ui-layout-south {
+    overflow:hidden !important;
+}
+
+.ui-layout-south .ui-layout-unit-content {
+    overflow:hidden !important;
+}
+
+#page-header-resizer {
+    display: none !important;
+}
+
+#page-footer-resizer {
+    display: none !important;
+}
