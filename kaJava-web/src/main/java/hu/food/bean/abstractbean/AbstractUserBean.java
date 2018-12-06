@@ -97,6 +97,7 @@ public abstract class AbstractUserBean implements Serializable {
 
     public String getLocaleAsString() {
         String defaultLocale = System.getProperty("user.language");
+        localeCookie = getCookieByName("locale");
         if (localeCookie != null) {
             String localeCookieValue = localeCookie.getValue();
             if (isLocaleAvailable(localeCookieValue)) {
