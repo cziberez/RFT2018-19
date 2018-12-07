@@ -104,7 +104,7 @@ public class UserMBean extends AbstractUserBean {
     }
 
     private void doLogin() {
-        //TODO autentikáló service hívása
+        //TODO kirillab autentikáló service hívása
         if ("admin".equals(userVo.getUsername()) && "admin".equals(userVo.getPassword())) {
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(SessionEnum.LOGINSTATE.getName(), "true");
         }
