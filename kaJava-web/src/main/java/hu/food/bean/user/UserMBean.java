@@ -3,10 +3,10 @@ package hu.food.bean.user;
 import hu.food.bean.abstractbean.AbstractUserBean;
 import hu.food.bean.theme.ThemeBean;
 import hu.food.common.SessionEnum;
+import hu.food.common.Theme;
 import hu.food.service.UserService;
 import hu.food.service.vo.UserVo;
 import hu.food.util.ContextUtil;
-import hu.food.common.Theme;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -14,8 +14,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Named("userBean")
@@ -108,7 +106,7 @@ public class UserMBean extends AbstractUserBean {
     private void doLogin() {
         //TODO autentikáló service hívása
         if ("admin".equals(userVo.getUsername()) && "admin".equals(userVo.getPassword())) {
-            getSession().setAttribute(SessionEnum.LOGINSTATE.getName(), true);
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(SessionEnum.LOGINSTATE.getName(), "true");
         }
     }
 
@@ -122,15 +120,10 @@ public class UserMBean extends AbstractUserBean {
 
     public boolean isLoggedIn() {
         boolean ret = false;
-        String value = (String) getSession().getAttribute(SessionEnum.LOGINSTATE.getName());
-        if(value != null) {
+        String value = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get(SessionEnum.LOGINSTATE.getName());
+        if ("true".equals(value)) {
             ret = Boolean.valueOf(value);
         }
         return ret;
-    }
-
-    private HttpSession getSession() {
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        return request.getSession();
     }
 }
