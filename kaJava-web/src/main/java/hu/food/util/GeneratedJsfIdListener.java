@@ -12,23 +12,25 @@ public class GeneratedJsfIdListener implements PhaseListener {
 
     @Override
     public void beforePhase(PhaseEvent event) {
-        FacesContext fc = FacesContext.getCurrentInstance();
-        ExternalContext ec = fc.getExternalContext();
-        Map<String, String> parameterMap = ec.getRequestParameterMap();
-        if (parameterMap != null) {
-            String jIdString = "j_id";
-            for (String key : parameterMap.keySet()) {
-                boolean keyContainsNonFixId = key.toLowerCase().contains(jIdString);
-                if (keyContainsNonFixId) {
-                    String keyContainsNonFixIdWarnMsg = "Non fix id found in key: " + key;
-                    fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, keyContainsNonFixIdWarnMsg, null));
-                }
-                String keyValue = parameterMap.get(key);
-                if (keyValue != null) {
-                    boolean keyValueContainsNonFixId = keyValue.toLowerCase().contains(jIdString);
-                    if (keyValueContainsNonFixId) {
-                        String keyValueContainsNonFixIdWarnMsg = "Non fix id found in value: " + keyValue + " with key: " + key;
-                        fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, keyValueContainsNonFixIdWarnMsg, null));
+        if (!ContextUtil.isProductionStage()) {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            ExternalContext ec = fc.getExternalContext();
+            Map<String, String> parameterMap = ec.getRequestParameterMap();
+            if (parameterMap != null) {
+                String jIdString = "j_id";
+                for (String key : parameterMap.keySet()) {
+                    boolean keyContainsNonFixId = key.toLowerCase().contains(jIdString);
+                    if (keyContainsNonFixId) {
+                        String keyContainsNonFixIdWarnMsg = "Non fix id found in key: " + key;
+                        fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, keyContainsNonFixIdWarnMsg, null));
+                    }
+                    String keyValue = parameterMap.get(key);
+                    if (keyValue != null) {
+                        boolean keyValueContainsNonFixId = keyValue.toLowerCase().contains(jIdString);
+                        if (keyValueContainsNonFixId) {
+                            String keyValueContainsNonFixIdWarnMsg = "Non fix id found in value: " + keyValue + " with key: " + key;
+                            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, keyValueContainsNonFixIdWarnMsg, null));
+                        }
                     }
                 }
             }

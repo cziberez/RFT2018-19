@@ -2,14 +2,21 @@ package hu.food.bean.user;
 
 import hu.food.bean.abstractbean.AbstractUserBean;
 import hu.food.bean.theme.ThemeBean;
+import hu.food.common.SessionEnum;
 import hu.food.service.UserService;
 import hu.food.service.vo.UserVo;
-import hu.food.view.Theme;
+import hu.food.util.ContextUtil;
+import hu.food.common.Theme;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 @Named("userBean")
 @SessionScoped
@@ -71,6 +78,7 @@ public class UserMBean extends AbstractUserBean {
     public void registerUser() {
         userService.addUser(userVo);
         destroyUser();
+        ContextUtil.addMessage(null, FacesMessage.SEVERITY_INFO, "Regisztrálva", "Regisztálva");
     }
 
     public ThemeBean getThemeBean() {
@@ -93,7 +101,36 @@ public class UserMBean extends AbstractUserBean {
         doLogin();
     }
 
+    public void logout() {
+        doLogout();
+    }
+
     private void doLogin() {
         //TODO autentikáló service hívása
+        if ("admin".equals(userVo.getUsername()) && "admin".equals(userVo.getPassword())) {
+            getSession().setAttribute(SessionEnum.LOGINSTATE.getName(), true);
+        }
+    }
+
+    private void doLogout() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/xhtml/index.xhtml");
+        } catch (IOException e) {
+
+        }
+    }
+
+    public boolean isLoggedIn() {
+        boolean ret = false;
+        String value = (String) getSession().getAttribute(SessionEnum.LOGINSTATE.getName());
+        if(value != null) {
+            ret = Boolean.valueOf(value);
+        }
+        return ret;
+    }
+
+    private HttpSession getSession() {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        return request.getSession();
     }
 }

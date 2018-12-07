@@ -25,10 +25,11 @@
                                        itemValue="#{theme.name}"/>
                         <p:ajax event="change" process="@this" listener="#{userBean.saveTheme}"/>
                     </p:themeSwitcher>
-                    <p:commandButton value="#{msg['menu.login']}" oncomplete="PF('loginDlg').show()"
+                    <p:commandButton value="#{msg['menu.login']}" oncomplete="PF('loginDlg').show()" rendered="#{!userBean.isLoggedIn()}"
                                      action="#{userBean.createUser}" partialSubmit="true" process="@this"/>
-                    <p:commandButton value="#{msg['menu.register']}" oncomplete="PF('registerDlg').show()"
+                    <p:commandButton value="#{msg['menu.register']}" oncomplete="PF('registerDlg').show()" rendered="#{!userBean.isLoggedIn()}"
                                      action="#{userBean.createUser}" partialSubmit="true" process="@this"/>
+                    <p:commandButton value="#{msg['menu.logout']}" partialSubmit="true" process="@this" action="#{userBean.logout}" rendered="#{userBean.isLoggedIn()}"/>
                     <p:commandButton icon="fa fa-globe" title="#{msg['langauge']}" onclick="PF('langDlg').show()"
                                      partialSubmit="true" process="@this"/>
                 </p:panelGrid>

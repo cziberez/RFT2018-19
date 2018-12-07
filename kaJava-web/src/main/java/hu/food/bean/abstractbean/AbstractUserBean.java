@@ -1,8 +1,8 @@
 package hu.food.bean.abstractbean;
 
 import hu.food.bean.theme.ThemeBean;
-import hu.food.view.LocaleEnum;
-import hu.food.view.Theme;
+import hu.food.common.LocaleEnum;
+import hu.food.common.Theme;
 
 import javax.annotation.PostConstruct;
 import javax.faces.component.UIInput;
