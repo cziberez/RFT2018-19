@@ -123,7 +123,7 @@ public class UserMBean extends AbstractUserBean {
         boolean ret = false;
         String value = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get(SessionEnum.LOGINSTATE.getName());
         if ("true".equals(value)) {
-            ret = Boolean.valueOf(value);
+            ret = true;
         }
         return ret;
     }
