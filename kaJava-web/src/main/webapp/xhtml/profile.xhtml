@@ -1,0 +1,62 @@
+<ui:composition template="/WEB-INF/templates/base_template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="windowTitle">
+        <h:outputText value="#{msg['index.windowTitle']}"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <form id="profileForm">
+            <p:tabView>
+                <p:tab title="#{msg['profile.user.datas']}">
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <h:outputLabel id="profileUsernameLabel" value="#{msg['menu.username']}"/>
+                        <h:inputText id="profileUsernameInput" value="#{userBean.userVo.username}"/>
+                        <h:outputLabel id="profileFirstnameLabel" value="#{msg['menu.firstname']}"/>
+                        <h:inputText id="profileFirstnameInput" value="#{userBean.userVo.firstname}"/>
+                        <h:outputLabel id="profileLastnameLabel" value="#{msg['menu.lastname']}"/>
+                        <h:inputText id="profileLastnameInput" value="#{userBean.userVo.lastname}"/>
+                        <h:outputLabel id="profileEmailLabel" value="#{msg['menu.email']}"/>
+                        <h:inputText id="profileEmailInput" value="#{userBean.userVo.email}"/>
+                        <h:outputLabel id="profilePhoneLabel" value="#{msg['menu.phonenumber']}"/>
+                        <h:inputText id="profilePhoneInput" value="#{userBean.userVo.phonenumber}"/>
+                    </h:panelGrid>
+                </p:tab>
+                <p:tab title="#{msg['profile.shipping.datas']}">
+                    <h:panelGrid columns="2" cellpadding="10" style="justify-content: center;align-content: center;">
+                        <h:outputLabel id="profileCityLabel" value="#{msg['menu.city']}"/>
+                        <h:inputText id="profileCityInput" value="#{userBean.userVo.addressVo.city}"/>
+                        <h:outputLabel id="profilePostCodetLabel" value="#{msg['menu.postcode']}"/>
+                        <h:inputText id="profilePostCodeInput" value="#{userBean.userVo.addressVo.postCode}"/>
+                        <h:outputLabel id="profileStreetLabel" value="#{msg['menu.street']}"/>
+                        <h:inputText id="profileStreetInput" value="#{userBean.userVo.addressVo.street}"/>
+                        <h:outputLabel id="profileHouseNumberabel" value="#{msg['menu.housenumber']}"/>
+                        <h:inputText id="profilehouseNumberInput" value="#{userBean.userVo.addressVo.houseNumber}"/>
+                        <h:outputLabel id="profileFloorLabel" value="#{msg['menu.floor']}"/>
+                        <h:inputText id="profileFloorInput" value="#{userBean.userVo.addressVo.floor}"/>
+                        <h:outputLabel id="profileDoorLabel" value="#{msg['menu.door']}"/>
+                        <h:inputText id="profileDoorInput" value="#{userBean.userVo.addressVo.door}"/>
+                    </h:panelGrid>
+                    <h:panelGrid id="buttonPanel">
+                        <p:commandButton id="modifyButton" value="#{msg['save']}"
+                                         actionListener="#{userBean.modifyAddress}" process="@this"
+                                         update="@this"/>
+
+                    </h:panelGrid>
+                </p:tab>
+
+                <p:tab title="#{msg['profile.order.history']}">
+                    <h:panelGrid columns="2" cellpadding="10">
+
+                    </h:panelGrid>
+                </p:tab>
+
+            </p:tabView>
+        </form>
+    </ui:define>
+
+</ui:composition>

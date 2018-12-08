@@ -35,19 +35,22 @@ public class User extends BaseEntity {
     @Column(name = "PHONENUMBER")
     private String phoneNumber;
 
+    private RoleEnum role;
+
     @OneToOne(cascade=CascadeType.ALL)
     private Address userAddress;
 
     public User() {
     }
 
-    public User(String username, String firstname, String lastname, String password, String email, String phoneNumber, RoleEnum userRole, Address userAddress) {
+    public User(String username, String firstname, String lastname, String password, String email, String phoneNumber, RoleEnum userRole, RoleEnum role, Address userAddress) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.role = role;
         this.userAddress = userAddress;
     }
 
@@ -113,5 +116,13 @@ public class User extends BaseEntity {
 
     public void setUserAddress(Address userAddress) {
         this.userAddress = userAddress;
+    }
+
+    public RoleEnum getRole() {
+        return role;
+    }
+
+    public void setRole(RoleEnum role) {
+        this.role = role;
     }
 }

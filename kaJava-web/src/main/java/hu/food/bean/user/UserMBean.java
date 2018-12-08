@@ -4,7 +4,8 @@ import hu.food.bean.abstractbean.AbstractUserBean;
 import hu.food.bean.theme.ThemeBean;
 import hu.food.common.SessionEnum;
 import hu.food.common.Theme;
-import hu.food.service.UserService;
+import hu.food.service.services.UserService;
+import hu.food.service.enums.Role;
 import hu.food.service.vo.UserVo;
 import hu.food.util.ContextUtil;
 
@@ -69,11 +70,16 @@ public class UserMBean extends AbstractUserBean {
         userVo = new UserVo();
     }
 
+    public void modifyAddress(){
+        userService.modifyAddress(userVo);
+    }
+
     private void destroyUser() {
         userVo = null;
     }
 
     public void registerUser() {
+        userVo.setRole(Role.CUSTOMER);
         userService.addUser(userVo);
         destroyUser();
         ContextUtil.addMessage(null, FacesMessage.SEVERITY_INFO, "Regisztrálva", "Regisztálva");
@@ -104,9 +110,13 @@ public class UserMBean extends AbstractUserBean {
     }
 
     private void doLogin() {
-        //TODO kirillab autentikáló service hívása
-        if ("admin".equals(userVo.getUsername()) && "admin".equals(userVo.getPassword())) {
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(SessionEnum.LOGINSTATE.getName(), "true");
+        userVo = userService.authenticateUser(userVo.getUsername());
+        if (userVo == null) {
+            //TODO Czibere growl Message nincs ilyen user :/
+        } else {
+            if ("admin".equals(userVo.getUsername()) && "admin".equals(userVo.getPassword())) {
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(SessionEnum.LOGINSTATE.getName(), "true");
+            }
         }
     }
 

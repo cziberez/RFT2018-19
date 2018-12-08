@@ -127,7 +127,9 @@
                     <f:facet id="loginDialogFooter" name="footer"/>
                     <p:panelGrid id="loginDialogFooterPanelGrid" styleClass="noborder fullSize"
                                  columnClasses="halfSize center-position" columns="2">
-                        <p:commandButton id="loginDialogLoginButton" value="#{msg['menu.login']}" actionListener="#{userBean.login}" process="loginDialog"/>
+                        <p:commandButton id="loginDialogLoginButton" value="#{msg['menu.login']}"
+                                         onsuccess="PF('loginDialog').hide()" actionListener="#{userBean.login}"
+                                         process="loginDialog"/>
                         <p:commandButton id="loginDialogCancelButton" value="#{msg['cancel']}"
                                          onclick="PF('loginDlg').hide()" process="@this"/>
                     </p:panelGrid>
@@ -137,8 +139,24 @@
                     <p:panelGrid id="registerPanelGrid" styleClass="noborder fullSize" columns="2">
                         <h:outputLabel id="registerUsernameLabel" value="#{msg['menu.username']}"/>
                         <h:inputText id="registerUsernameInput" value="#{userBean.userVo.username}"/>
+
                         <h:outputLabel id="registerPasswordLabel" value="#{msg['menu.password']}"/>
                         <p:password id="registerPasswordInput" value="#{userBean.userVo.password}"/>
+
+                        <h:outputLabel id="registerPasswordLabel2" value="#{msg['menu.password.again']}"/>
+                        <p:password id="registerPasswordInput2" value="#{userBean.userVo.passwordAgain}"/>
+
+                        <h:outputLabel id="registerFirstnameLabel" value="#{msg['menu.firstname']}"/>
+                        <h:inputText id="registerFirstnameInput" value="#{userBean.userVo.firstname}"/>
+
+                        <h:outputLabel id="registerLastnameLabel" value="#{msg['menu.lastname']}"/>
+                        <h:inputText id="registerLastnameInput" value="#{userBean.userVo.lastname}"/>
+
+                        <h:outputLabel id="registerEmailLabel" value="#{msg['menu.email']}"/>
+                        <h:inputText id="registerEmailInput" value="#{userBean.userVo.email}"/>
+
+                        <h:outputLabel id="registerPhoneLabel" value="#{msg['menu.phonenumber']}"/>
+                        <h:inputText id="registerPhoneInput" value="#{userBean.userVo.phonenumber}"/>
                     </p:panelGrid>
                     <f:facet id="registerDlgFooter" name="footer">
                         <p:panelGrid id="registerDialogFooterPanelGrid" columns="2" styleClass="noborder fullSize"

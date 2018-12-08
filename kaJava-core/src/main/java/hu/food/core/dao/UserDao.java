@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -46,6 +47,16 @@ public class UserDao implements BaseDao<User> {
 	public List<User> findAll() {
 		TypedQuery<User> typedQuery = entityManager.createQuery("select a from User a", User.class);
 		return typedQuery.getResultList();
+	}
+
+	public User findUserByName(String name){
+		TypedQuery<User> typedQuery = entityManager.createQuery("select u from User u where  u.username = :name", User.class);
+
+		try {
+			return typedQuery.setParameter("name", name).getSingleResult();
+		} catch (NoResultException e){
+			return null;
+		}
 	}
 
 }
