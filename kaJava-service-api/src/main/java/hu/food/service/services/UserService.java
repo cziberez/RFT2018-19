@@ -1,4 +1,4 @@
-package hu.food.service;
+package hu.food.service.services;
 
 import java.util.List;
 
@@ -12,7 +12,8 @@ public interface UserService {
 	void removeUser(Long id);
 
 	List<UserVo> getAllUsers();
-	
-	void saveNewUser(UserVo user, AddressVo address);
 
+	UserVo authenticateUser(String username);
+
+	void modifyAddress(UserVo userVo);
 }

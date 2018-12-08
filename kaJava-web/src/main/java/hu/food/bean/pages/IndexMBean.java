@@ -1,10 +1,8 @@
 package hu.food.bean.pages;
 
 import hu.food.bean.abstractbean.AbstractViewBean;
-import hu.food.service.UserService;
+import hu.food.service.services.UserService;
 import hu.food.service.enums.Role;
-import hu.food.service.vo.AddressVo;
-import hu.food.service.vo.UserVo;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;

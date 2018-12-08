@@ -1,0 +1,57 @@
+<ui:composition template="/WEB-INF/templates/base_template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="windowTitle">
+        <h:outputText value="#{msg['index.windowTitle']}"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <p:panelGrid columns="1" layout="grid">
+            <h:form id="form">
+                <p:growl id="msgs" showDetail="true"/>
+
+                <p:dataTable id="userTable" var="user" value="#{adminBean.users}">
+                    <f:facet name="userFacet">
+                        Users
+                    </f:facet>
+                    <p:column headerText="Id">
+                        <h:outputText value="#{user.id}"/>
+                    </p:column>
+                    <p:column headerText="#{msg['username']}">
+                        <h:outputText value="#{user.username}"/>
+                    </p:column>
+                    <p:column headerText="#{msg['role']}">
+                        <h:outputText value="#{user.role}"/>
+                    </p:column>
+
+                    <p:column style="width:32px;text-align: center">
+                        <p:commandButton update=":form:userDetail" oncomplete="PF('userDialog').show()" icon="pi pi-edit" title="View">
+                            <f:setPropertyActionListener value="#{user}" target="#{adminBean.selectedUser}" />
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+
+                <p:dialog header="User Info" widgetVar="userDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                    <p:outputPanel id="userDetail" style="text-align:center;">
+                        <p:panelGrid  columns="2" rendered="#{not empty adminBean.selectedUser}" columnClasses="label,value">
+
+                            <h:outputText value="Username:" />
+                            <h:outputText value="#{adminBean.selectedUser.username}" />
+
+                            <h:outputText value="Current tole:" />
+                            <h:outputText value="#{adminBean.selectedUser.role}" />
+
+                        </p:panelGrid>
+                    </p:outputPanel>
+                </p:dialog>
+
+            </h:form>
+
+        </p:panelGrid>
+    </ui:define>
+
+</ui:composition>
