@@ -6,6 +6,8 @@ import hu.food.common.SessionEnum;
 import hu.food.common.Theme;
 import hu.food.service.services.UserService;
 import hu.food.service.enums.Role;
+import hu.food.service.vo.FoodVo;
+import hu.food.service.vo.OrderVo;
 import hu.food.service.vo.UserVo;
 import hu.food.util.ContextUtil;
 
@@ -17,6 +19,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Cookie;
 import java.io.IOException;
+import java.util.List;
 
 @Named("userBean")
 @SessionScoped
@@ -29,6 +32,10 @@ public class UserMBean extends AbstractUserBean {
 
     @EJB
     private UserService userService;
+
+    private List<FoodVo> basket;
+
+    private OrderVo order;
 
     private UserVo userVo;
 
@@ -86,22 +93,6 @@ public class UserMBean extends AbstractUserBean {
         ContextUtil.addMessage(null, FacesMessage.SEVERITY_INFO, "Regisztrálva", "Regisztálva");
     }
 
-    public ThemeBean getThemeBean() {
-        return themeBean;
-    }
-
-    public void setThemeBean(ThemeBean themeBean) {
-        this.themeBean = themeBean;
-    }
-
-    public UserVo getUserVo() {
-        return userVo;
-    }
-
-    public void setUserVo(UserVo userVo) {
-        this.userVo = userVo;
-    }
-
     public void login() {
         doLogin();
     }
@@ -130,5 +121,47 @@ public class UserMBean extends AbstractUserBean {
 
     public boolean isLoggedIn() {
         return userVo != null;
+    }
+
+    public void addFoodToBasket(FoodVo orderedFood){
+        basket.add(orderedFood);
+        //TODO Czibere adhatsz faces messaget hogy sikerült a kosárművelet
+    }
+
+    public void makeOrder(){
+
+    }
+
+    //Getter Setter section
+    public ThemeBean getThemeBean() {
+        return themeBean;
+    }
+
+    public void setThemeBean(ThemeBean themeBean) {
+        this.themeBean = themeBean;
+    }
+
+    public UserVo getUserVo() {
+        return userVo;
+    }
+
+    public void setUserVo(UserVo userVo) {
+        this.userVo = userVo;
+    }
+
+    public List<FoodVo> getBasket() {
+        return basket;
+    }
+
+    public void setBasket(List<FoodVo> basket) {
+        this.basket = basket;
+    }
+
+    public OrderVo getOrder() {
+        return order;
+    }
+
+    public void setOrder(OrderVo order) {
+        this.order = order;
     }
 }
