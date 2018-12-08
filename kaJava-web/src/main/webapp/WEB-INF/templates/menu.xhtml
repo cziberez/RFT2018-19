@@ -30,9 +30,10 @@
                                      action="#{userBean.createUser}" partialSubmit="true" process="@this"/>
                     <p:commandButton value="#{msg['menu.register']}" oncomplete="PF('registerDlg').show()" rendered="#{!userBean.isLoggedIn()}"
                                      action="#{userBean.createUser}" partialSubmit="true" process="@this"/>
-                    <p:commandButton value="#{msg['menu.logout']}" partialSubmit="true" process="@this" action="#{userBean.logout}" rendered="#{userBean.isLoggedIn()}"/>
                     <p:commandButton icon="fa fa-globe" title="#{msg['langauge']}" onclick="PF('langDlg').show()"
                                      partialSubmit="true" process="@this"/>
+                    <p:commandButton icon="fa fa-opencart" action="/xhtml/basket.xhtml" process="@this"/>
+                    <p:commandButton value="#{msg['menu.logout']}" partialSubmit="true" process="@this" action="#{userBean.logout}" rendered="#{userBean.isLoggedIn()}"/>
                 </p:panelGrid>
             </f:facet>
 
