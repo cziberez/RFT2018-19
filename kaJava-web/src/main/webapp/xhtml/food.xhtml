@@ -50,7 +50,9 @@
                 <h:inputText value="#{foodBean.selectedFood.name}"/>
 
                 <h:outputText value="#{msg['food.price']}"/>
-                <p:inputNumber value="#{foodBean.selectedFood.price}" decimalPlaces="0"/>
+                <p:inputNumber value="#{foodBean.selectedFood.price}" decimalPlaces="0">
+                    <f:convertNumber />
+                </p:inputNumber>
 
                 <h:outputText value="#{msg['food.category']}"/>
                 <p:selectOneMenu value="#{foodBean.selectedFood.category}">
