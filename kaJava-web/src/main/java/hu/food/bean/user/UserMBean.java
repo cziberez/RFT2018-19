@@ -24,7 +24,7 @@ public class UserMBean extends AbstractUserBean {
 
     private String selectedLang;
 
-    @EJB
+    @Inject
     private ThemeBean themeBean;
 
     @EJB
