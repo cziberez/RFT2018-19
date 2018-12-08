@@ -13,10 +13,13 @@ public abstract class AbstractViewBean implements Serializable {
 
     private Cookie localeCookie;
 
+    private boolean renderCreateEditPanel;
+
     @PostConstruct
     private void init() {
         List<Role> requiredRole = getRoles();
         checkRole(requiredRole);
+        renderCreateEditPanel = false;
     }
 
     public abstract List<Role> getRoles();
@@ -38,4 +41,30 @@ public abstract class AbstractViewBean implements Serializable {
             e.printStackTrace();
         }
     }
+
+    public Cookie getLocaleCookie() {
+        return localeCookie;
+    }
+
+    public void setLocaleCookie(Cookie localeCookie) {
+        this.localeCookie = localeCookie;
+    }
+
+    public boolean isRenderCreateEditPanel() {
+        return renderCreateEditPanel;
+    }
+
+    public void setRenderCreateEditPanel(boolean renderCreateEditPanel) {
+        this.renderCreateEditPanel = renderCreateEditPanel;
+    }
+
+
+    public void renderCreateEditPanel() {
+        renderCreateEditPanel = true;
+    }
+
+    public void hideCreateEditPanel() {
+        renderCreateEditPanel = false;
+    }
+
 }
