@@ -9,6 +9,7 @@ import hu.food.service.enums.Role;
 import hu.food.service.vo.UserVo;
 import hu.food.util.ContextUtil;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -23,10 +24,10 @@ public class UserMBean extends AbstractUserBean {
 
     private String selectedLang;
 
-    @Inject
+    @EJB
     private ThemeBean themeBean;
 
-    @Inject
+    @EJB
     private UserService userService;
 
     private UserVo userVo;
@@ -70,7 +71,7 @@ public class UserMBean extends AbstractUserBean {
         userVo = new UserVo();
     }
 
-    public void modifyAddress(){
+    public void modifyAddress() {
         userService.modifyAddress(userVo);
     }
 
@@ -114,15 +115,13 @@ public class UserMBean extends AbstractUserBean {
         if (userVo == null) {
             //TODO Czibere growl Message nincs ilyen user :/
         } else {
-            if ("admin".equals(userVo.getUsername()) && "admin".equals(userVo.getPassword())) {
-                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(SessionEnum.LOGINSTATE.getName(), "true");
-            }
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(SessionEnum.LOGINSTATE.getName(), "true");
         }
     }
 
     private void doLogout() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove(SessionEnum.LOGINSTATE.getName());
+            destroyUser();
             FacesContext.getCurrentInstance().getExternalContext().redirect("/xhtml/index.xhtml");
         } catch (IOException e) {
 
@@ -130,11 +129,6 @@ public class UserMBean extends AbstractUserBean {
     }
 
     public boolean isLoggedIn() {
-        boolean ret = false;
-        String value = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get(SessionEnum.LOGINSTATE.getName());
-        if ("true".equals(value)) {
-            ret = true;
-        }
-        return ret;
+        return userVo != null;
     }
 }
