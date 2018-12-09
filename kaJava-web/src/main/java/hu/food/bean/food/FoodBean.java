@@ -60,6 +60,10 @@ public class FoodBean extends AbstractViewBean {
 
     }
 
+    public void saveFood() {
+
+    }
+
     @Override
     public List<Role> getRoles() {
         return Arrays.asList(Role.CUSTOMER, Role.ADMINISTRATOR, Role.DELIVER);
