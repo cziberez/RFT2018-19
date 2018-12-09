@@ -11,6 +11,7 @@ import hu.food.service.vo.OrderVo;
 import hu.food.service.vo.UserVo;
 import hu.food.util.ContextUtil;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -19,6 +20,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Cookie;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named("userBean")
@@ -71,6 +73,11 @@ public class UserMBean extends AbstractUserBean {
     @Override
     public void setSelectedLang(String selectedLang) {
         super.setSelectedLang(selectedLang);
+    }
+
+    @PostConstruct
+    public void init(){
+        basket = new ArrayList<>();
     }
 
     public void createUser() {
@@ -130,6 +137,10 @@ public class UserMBean extends AbstractUserBean {
 
     public void makeOrder(){
 
+    }
+
+    public Long getTotalPrice(){
+        return basket.stream().mapToLong(m -> m.getPrice()).sum();
     }
 
     //Getter Setter section

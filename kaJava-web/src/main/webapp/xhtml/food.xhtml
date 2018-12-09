@@ -103,7 +103,7 @@
                             <h:panelGrid columns="2" style="width:100%">
                                 <h:outputText value="#{msg['food.price']}"/>
                                 <h:outputText value="#{food.price} Huf"/>
-                                <p:commandButton process="@this" update="@form" action="#{foodBean.addToCard(food)}"/>
+                                <p:commandButton process="@this" update="@form" action="#{userBean.addFoodToBasket(food)}"/>
                             </h:panelGrid>
                         </h:panelGrid>
                     </p:panel>
