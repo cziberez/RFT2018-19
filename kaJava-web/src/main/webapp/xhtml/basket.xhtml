@@ -17,7 +17,8 @@
                 <p:repeat value="#{userBean.basket}" var="food">
                     <h:panelGrid columns="2" style="width:400px" columnClasses="logo,detail">
 
-                        <p:graphicImage style="width:150px;" url="https://www.nosalty.hu/files/imagecache/recept/recept_kepek/246177_249445_cover_post_32.jpg"/>
+                        <p:graphicImage style="width:150px;"
+                                        url="https://www.nosalty.hu/files/imagecache/recept/recept_kepek/246177_249445_cover_post_32.jpg"/>
 
                         <p:outputPanel>
                             <h:panelGrid columns="2" cellpadding="5">
@@ -40,8 +41,8 @@
                 </h:panelGrid>
 
                 <h:panelGrid columns="2">
-                    <p:commandButton title="#{msg['buy']}" type="button" partialSubmit="true" process="@this"/>
-                    <p:commandButton title="#{msg['back.to.shop']}" type="button" partialSubmit="true" process="@this"/>
+                    <p:commandButton value="#{msg['buy']}" action="/xhtml/checkout.xhtml" process="@this"/>
+                    <p:commandButton value="#{msg['back.to.shop']}" type="button" partialSubmit="true" process="@this"/>
                 </h:panelGrid>
             </p:panelGrid>
         </form>
