@@ -25,9 +25,9 @@
                         <p:toolbar>
                             <f:facet name="left">
                                 <p:commandButton action="#{foodBean.setRenderCreateEditPanel()}"
-                                                 value="#{msg['create']}" update=":adminFormFood:adminFoodMainPanel:foodPanel"/>
+                                                 value="#{msg['create']}" process="@this" update="@form"/>
                                 <p:commandButton action="#{foodBean.setRenderCreateEditPanel()}"
-                                                 value="#{msg['edit']}" update=":adminFormFood:adminFoodMainPanel:foodPanel"/>
+                                                 value="#{msg['edit']}" process="@this" update="@form"/>
                                 <p:commandButton value="#{msg['delete']}" type="button"
                                                  onclick="PF('comfirmDialog').show();"/>
                             </f:facet>
