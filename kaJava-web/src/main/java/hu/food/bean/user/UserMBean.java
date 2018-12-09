@@ -10,6 +10,7 @@ import hu.food.service.vo.FoodVo;
 import hu.food.service.vo.OrderVo;
 import hu.food.service.vo.UserVo;
 import hu.food.util.ContextUtil;
+import org.primefaces.event.FlowEvent;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -78,7 +79,7 @@ public class UserMBean extends AbstractUserBean {
     }
 
     @PostConstruct
-    public void init(){
+    public void init() {
         basket = new ArrayList<>();
     }
 
@@ -132,17 +133,22 @@ public class UserMBean extends AbstractUserBean {
         return userVo != null;
     }
 
-    public void addFoodToBasket(FoodVo orderedFood){
+    public void addFoodToBasket(FoodVo orderedFood) {
         basket.add(orderedFood);
         //TODO Czibere adhatsz faces messaget hogy sikerült a kosárművelet
     }
 
-    public void makeOrder(){
-
+    public void makeOrder() {
+        FacesMessage msg = new FacesMessage("Successful", "Succes");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
-    public Long getTotalPrice(){
+    public Long getTotalPrice() {
         return basket.stream().mapToLong(m -> m.getPrice()).sum();
+    }
+
+    public String onFlowProcess(FlowEvent event) {
+        return event.getNewStep();
     }
 
     //Getter Setter section
