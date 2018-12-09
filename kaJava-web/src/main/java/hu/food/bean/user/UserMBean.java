@@ -41,6 +41,8 @@ public class UserMBean extends AbstractUserBean {
 
     private UserVo userVo;
 
+    private String selectedPaymnetType;
+
     @Override
     public String getTheme() {
         String theme = super.getTheme();
@@ -174,5 +176,13 @@ public class UserMBean extends AbstractUserBean {
 
     public void setOrder(OrderVo order) {
         this.order = order;
+    }
+
+    public String getSelectedPaymnetType() {
+        return selectedPaymnetType;
+    }
+
+    public void setSelectedPaymnetType(String selectedPaymnetType) {
+        this.selectedPaymnetType = selectedPaymnetType;
     }
 }
