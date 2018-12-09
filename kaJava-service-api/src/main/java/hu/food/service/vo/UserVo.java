@@ -58,14 +58,6 @@ public class UserVo extends BaseVo {
         this.lastname = lastname;
     }
 
-    public String getPhonenumber() {
-        return phoneNumber;
-    }
-
-    public void setPhonenumber(String phonenumber) {
-        this.phoneNumber = phonenumber;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -96,5 +88,13 @@ public class UserVo extends BaseVo {
 
     public void setAddressVo(AddressVo addressVo) {
         this.addressVo = addressVo;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
