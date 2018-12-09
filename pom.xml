@@ -13,6 +13,30 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
+	<developers>
+		<developer>
+			<id>cziberez</id>
+			<name>Czibere Zoltán</name>
+			<email>czibere.zoltan.adam@gmail.com</email>
+			<timezone>+1</timezone>
+			<organization>Ulyssys</organization>
+		</developer>
+		<developer>
+			<id>kirillab</id>
+			<name>Kirilla Bence</name>
+			<email>jamesford@outlook.com</email>
+			<timezone>+1</timezone>
+			<organization>Neuron</organization>
+		</developer>
+		<developer>
+			<id>magyart</id>
+			<name>Magyar Tamás</name>
+			<email>m.tamas96@gmail.com</email>
+			<timezone>+1</timezone>
+			<organization>CodeYard</organization>
+		</developer>
+	</developers>
+
 
 	<modules>
 		<module>kaJava-core</module>

@@ -11,8 +11,8 @@
 
     <ui:define name="content">
         <h:form id="adminFormFood">
-            <p:panelGrid columns="1" layout="grid">
-                <p:dataTable id="adminTableForm" var="food" value="#{foodBean.foods}" selectionMode="single"
+            <p:panel id="adminFoodMainPanel">
+                <p:dataTable id="adminTableDataTable" var="food" value="#{foodBean.foods}" selectionMode="single"
                              selection="#{foodBean.selectedFood}" rowKey="#{food.id}" paginator="true"
                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              emptyMessage="#{msg['emptyDataTable']}"
@@ -24,10 +24,10 @@
                     <f:facet name="header">
                         <p:toolbar>
                             <f:facet name="left">
-                                <p:commandButton actionListener="#{foodBean.renderCreateEditPanel}"
-                                                 value="#{msg['create']}" update="adminFormFood:foodPanel"/>
-                                <p:commandButton actionListener="#{foodBean.renderCreateEditPanel}"
-                                                 value="#{msg['edit']}" update="adminFormFood:foodPanel"/>
+                                <p:commandButton action="#{foodBean.setRenderCreateEditPanel()}"
+                                                 value="#{msg['create']}" process="@this" update="@form"/>
+                                <p:commandButton action="#{foodBean.setRenderCreateEditPanel()}"
+                                                 value="#{msg['edit']}" process="@this" update="@form"/>
                                 <p:commandButton value="#{msg['delete']}" type="button"
                                                  onclick="PF('comfirmDialog').show();"/>
                             </f:facet>
@@ -49,7 +49,7 @@
                 </p:dataTable>
 
                 <p:dialog header="#{msg['are.you.sure.title']}" widgetVar="comfirmDialog" minHeight="40">
-                    <p:panelGrid columns="1" layout="grid" styleClass="noborder fullSize">
+                    <p:panelGrid columns="1" layout="grid" styleClass="noborder fullSize" columnClasses="noborder">
                         <p:outputLabel value="#{msg['are.you.sure.content']}"/>
                         <p:panelGrid styleClass="noborder" columns="2" layout="grid">
                             <p:commandButton value="#{msg['yes']}" type="buttom" onclick="PF('comfirmDialog').hide();"/>
@@ -57,15 +57,16 @@
                         </p:panelGrid>
                     </p:panelGrid>
                 </p:dialog>
-            </p:panelGrid>
 
-            <p:panel id="foodPanel" rendered="#{foodBean.renderCreateEditPanel}">
-                <p:panelGrid id="foodPanelGrid" styleClass="noborder fullSize" columns="2" layout="grid">
+            <p:panel id="foodPanel" rendered="#{foodBean.isRenderCreateEditPanel()}">
+                <p:panelGrid id="foodPanelGrid" styleClass="noborder fullSize" columns="3" layout="grid">
                     <p:outputLabel value="#{msg['food.name']}"/>
                     <p:inputText value="#{foodBean.selectedFood.name}"/>
+                    <p:spacer/>
 
                     <h:outputText value="#{msg['food.price']}"/>
                     <p:inputNumber value="#{foodBean.selectedFood.price.longValue}" decimalPlaces="0"/>
+                    <p:spacer/>
 
                     <h:outputText value="#{msg['food.category']}"/>
                     <p:selectOneMenu value="#{foodBean.selectedFood.category}">
@@ -75,12 +76,25 @@
                         <f:selectItem itemLabel="#{msg['food.category.pizzas']}" itemValue="Pizzák"/>
                         <f:selectItem itemLabel="#{msg['food.category.desserts']}" itemValue="Desszertek"/>
                     </p:selectOneMenu>
+                    <p:spacer/>
 
                     <p:outputLabel value="#{msg['food.description']}"/>
                     <p:inputTextarea rows="6" cols="33" value="#{foodBean.selectedFood.description}" maxlength="255"/>
+                    <p:spacer/>
+
+                    <p:outputLabel value="#{msg['imageUpload']}"/>
+                    <p:fileUpload fileUploadListener="#{foodBean.selectedFood.foodImage}" mode="advanced" dragDropSupport="true"
+                                  update="uploadMessages" sizeLimit="500000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+                    <p:growl id="uploadMessages" showDetail="true" />
 
                 </p:panelGrid>
+                <f:facet name="footer">
+                    <p:commandButton value="#{msg['save']}" process="foodPanel" action="#{foodBean.saveFood}" update="@form"/>
+                    <p:commandButton value="#{msg['cancel']}" process="foodPanel" action="#{foodBean.destroyCreateEditPanel}" update="@form"/>
+                </f:facet>
             </p:panel>
+        </p:panel>
         </h:form>
 
         <h:form id="foodForm">
