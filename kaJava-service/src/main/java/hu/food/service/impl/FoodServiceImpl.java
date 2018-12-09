@@ -32,4 +32,10 @@ public class FoodServiceImpl implements FoodService {
 
         return foodMapper.toVo(foodDao.findAll());
     }
+
+    @Override
+    public void saveFood(FoodVo food) {
+
+        foodDao.save(foodMapper.toEntity(food));
+    }
 }
