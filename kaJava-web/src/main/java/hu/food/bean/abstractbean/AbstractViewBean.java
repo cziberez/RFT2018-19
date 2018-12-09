@@ -59,7 +59,7 @@ public abstract class AbstractViewBean implements Serializable {
     }
 
 
-    public void renderCreateEditPanel() {
+    public void setRenderCreateEditPanel() {
         renderCreateEditPanel = true;
     }
 
