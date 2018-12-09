@@ -63,6 +63,10 @@ public abstract class AbstractViewBean implements Serializable {
         renderCreateEditPanel = true;
     }
 
+    public void destroyCreateEditPanel() {
+        renderCreateEditPanel = false;
+    }
+
     public void hideCreateEditPanel() {
         renderCreateEditPanel = false;
     }

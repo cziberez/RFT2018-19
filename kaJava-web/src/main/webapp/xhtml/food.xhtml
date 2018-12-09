@@ -59,12 +59,14 @@
                 </p:dialog>
 
             <p:panel id="foodPanel" rendered="#{foodBean.isRenderCreateEditPanel()}">
-                <p:panelGrid id="foodPanelGrid" styleClass="noborder fullSize" columns="2" layout="grid">
+                <p:panelGrid id="foodPanelGrid" styleClass="noborder fullSize" columns="3" layout="grid">
                     <p:outputLabel value="#{msg['food.name']}"/>
                     <p:inputText value="#{foodBean.selectedFood.name}"/>
+                    <p:spacer/>
 
                     <h:outputText value="#{msg['food.price']}"/>
                     <p:inputNumber value="#{foodBean.selectedFood.price.longValue}" decimalPlaces="0"/>
+                    <p:spacer/>
 
                     <h:outputText value="#{msg['food.category']}"/>
                     <p:selectOneMenu value="#{foodBean.selectedFood.category}">
@@ -74,11 +76,23 @@
                         <f:selectItem itemLabel="#{msg['food.category.pizzas']}" itemValue="Pizzák"/>
                         <f:selectItem itemLabel="#{msg['food.category.desserts']}" itemValue="Desszertek"/>
                     </p:selectOneMenu>
+                    <p:spacer/>
 
                     <p:outputLabel value="#{msg['food.description']}"/>
                     <p:inputTextarea rows="6" cols="33" value="#{foodBean.selectedFood.description}" maxlength="255"/>
+                    <p:spacer/>
+
+                    <p:outputLabel value="#{msg['imageUpload']}"/>
+                    <p:fileUpload fileUploadListener="#{foodBean.selectedFood.foodImage}" mode="advanced" dragDropSupport="true"
+                                  update="uploadMessages" sizeLimit="500000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+                    <p:growl id="uploadMessages" showDetail="true" />
 
                 </p:panelGrid>
+                <f:facet name="footer">
+                    <p:commandButton value="#{msg['save']}" process="foodPanel" action="#{foodBean.saveFood}" update="@form"/>
+                    <p:commandButton value="#{msg['cancel']}" process="foodPanel" action="#{foodBean.destroyCreateEditPanel}" update="@form"/>
+                </f:facet>
             </p:panel>
         </p:panel>
         </h:form>
