@@ -10,14 +10,34 @@
     </ui:define>
 
     <ui:define name="content">
-        <p:panelGrid columns="1" layout="grid">
-            <h:form id="form">
+        <h:form id="userForm">
+            <p:panel id="userMainPanel">
                 <p:growl id="msgs" showDetail="true"/>
 
-                <p:dataTable id="userTable" var="user" value="#{adminBean.users}">
-                    <f:facet name="userFacet">
-                        Users
+                <p:dataTable id="userTable" var="user" value="#{adminBean.users}"
+                             selection="#{adminBean.selectedUser}" rowKey="#{user.id}"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             emptyMessage="#{msg['emptyDataTable']}"
+                             currentPageReportTemplate="({currentPage} / {totalPages})"
+                             rowsPerPageTemplate="10,15,20,25,50" paginatorPosition="bottom"
+                             paginatorAlwaysVisible="true"
+                             resizableColumns="true" scrollable="true">
+
+                    <f:facet name="header">
+                        <p:toolbar>
+                            <f:facet name="left">
+                                <p:commandButton icon="ui-icon-plus" action="#{adminBean.setRenderCreateEditPanel()}"
+                                                 value="#{msg['create']}" process="@this" update="@form"/>
+                                <p:commandButton icon="ui-icon-pencil" action="#{adminBean.setRenderCreateEditPanel()}"
+                                                 value="#{msg['edit']}" process="@this" update="@form"/>
+                                <p:commandButton icon="ui-icon-trash" value="#{msg['delete']}" type="button"
+                                                 onclick="PF('comfirmDialog').show();"/>
+                            </f:facet>
+                        </p:toolbar>
                     </f:facet>
+
+                    <p:column selectionMode="single" style="text-align:center"/>
+
                     <p:column headerText="Id">
                         <h:outputText value="#{user.id}"/>
                     </p:column>
@@ -28,30 +48,30 @@
                         <h:outputText value="#{user.role}"/>
                     </p:column>
 
-                    <p:column style="width:32px;text-align: center">
-                        <p:commandButton update=":form:userDetail" oncomplete="PF('userDialog').show()" icon="pi pi-edit" title="View">
-                            <f:setPropertyActionListener value="#{user}" target="#{adminBean.selectedUser}" />
-                        </p:commandButton>
-                    </p:column>
                 </p:dataTable>
 
-                <p:dialog header="User Info" widgetVar="userDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-                    <p:outputPanel id="userDetail" style="text-align:center;">
-                        <p:panelGrid  columns="2" rendered="#{not empty adminBean.selectedUser}" columnClasses="label,value">
-
-                            <h:outputText value="Username:" />
-                            <h:outputText value="#{adminBean.selectedUser.username}" />
-
-                            <h:outputText value="Current tole:" />
-                            <h:outputText value="#{adminBean.selectedUser.role}" />
-
+                <p:dialog header="#{msg['are.you.sure.title']}" widgetVar="comfirmDialog" minHeight="40">
+                    <p:panelGrid columns="1" layout="grid" styleClass="noborder fullSize" columnClasses="noborder">
+                        <p:outputLabel value="#{msg['are.you.sure.content']}"/>
+                        <p:panelGrid styleClass="noborder" columns="2" layout="grid">
+                            <p:commandButton value="#{msg['yes']}" type="buttom" onclick="PF('comfirmDialog').hide();"/>
+                            <p:commandButton value="#{msg['no']}" type="button" onclick="PF('comfirmDialog').hide();"/>
                         </p:panelGrid>
-                    </p:outputPanel>
+                    </p:panelGrid>
                 </p:dialog>
 
-            </h:form>
+                <p:panel id="userDetailsPanel" rendered="#{adminBean.isRenderCreateEditPanel()}">
+                    <p:panelGrid styleClass="noborder fullSize" columns="2" columnClasses="noborder">
+                        <p:outputLabel value="#{msg['role']}"/>
+                        <p:selectOneMenu value="#{adminBean.selectedUser.role}">
+                            <f:selectItem itemLabel="#{msg['select.one']}" itemValue=""/>
+                            <f:selectItems itemLabel="#{adminBean.roles}" itemValue="#{adminBean.roles}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                </p:panel>
+            </p:panel>
+        </h:form>
 
-        </p:panelGrid>
     </ui:define>
 
 </ui:composition>

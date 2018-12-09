@@ -10,7 +10,9 @@ import hu.food.service.vo.FoodVo;
 import hu.food.service.vo.OrderVo;
 import hu.food.service.vo.UserVo;
 import hu.food.util.ContextUtil;
+import org.primefaces.event.FlowEvent;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -19,6 +21,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Cookie;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named("userBean")
@@ -38,6 +41,8 @@ public class UserMBean extends AbstractUserBean {
     private OrderVo order;
 
     private UserVo userVo;
+
+    private String selectedPaymnetType;
 
     @Override
     public String getTheme() {
@@ -71,6 +76,11 @@ public class UserMBean extends AbstractUserBean {
     @Override
     public void setSelectedLang(String selectedLang) {
         super.setSelectedLang(selectedLang);
+    }
+
+    @PostConstruct
+    public void init() {
+        basket = new ArrayList<>();
     }
 
     public void createUser() {
@@ -123,13 +133,22 @@ public class UserMBean extends AbstractUserBean {
         return userVo != null;
     }
 
-    public void addFoodToBasket(FoodVo orderedFood){
+    public void addFoodToBasket(FoodVo orderedFood) {
         basket.add(orderedFood);
         //TODO Czibere adhatsz faces messaget hogy sikerült a kosárművelet
     }
 
-    public void makeOrder(){
+    public void makeOrder() {
+        FacesMessage msg = new FacesMessage("Successful", "Succes");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 
+    public Long getTotalPrice() {
+        return basket.stream().mapToLong(m -> m.getPrice()).sum();
+    }
+
+    public String onFlowProcess(FlowEvent event) {
+        return event.getNewStep();
     }
 
     //Getter Setter section
@@ -163,5 +182,13 @@ public class UserMBean extends AbstractUserBean {
 
     public void setOrder(OrderVo order) {
         this.order = order;
+    }
+
+    public String getSelectedPaymnetType() {
+        return selectedPaymnetType;
+    }
+
+    public void setSelectedPaymnetType(String selectedPaymnetType) {
+        this.selectedPaymnetType = selectedPaymnetType;
     }
 }

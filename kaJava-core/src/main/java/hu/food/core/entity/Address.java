@@ -17,7 +17,7 @@ public class Address extends BaseEntity {
     private Long id;
 
     @Column(name = "POSTCODE")
-    private Long postCode;
+    private String postCode;
 
     @Column(name = "CITY")
     private String city;
@@ -38,7 +38,7 @@ public class Address extends BaseEntity {
     public Address() {
     }
 
-    public Address(Long id, Long postCode, String city, String street, String houseNumber, String floor, String door) {
+    public Address(Long id, String postCode, String city, String street, String houseNumber, String floor, String door) {
         this.id = id;
         this.postCode = postCode;
         this.city = city;
@@ -60,11 +60,11 @@ public class Address extends BaseEntity {
         this.id = id;
     }
 
-    public Long getPostCode() {
+    public String getPostCode() {
         return postCode;
     }
 
-    public void setPostCode(Long postCode) {
+    public void setPostCode(String postCode) {
         this.postCode = postCode;
     }
 

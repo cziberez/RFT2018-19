@@ -2,7 +2,7 @@ package hu.food.service.vo;
 
 public class AddressVo extends BaseVo{
 	
-	private Long postCode;
+	private String postCode;
 
 	private String city;
 
@@ -14,11 +14,11 @@ public class AddressVo extends BaseVo{
 
 	private String door;
 
-	public Long getPostCode() {
+	public String getPostCode() {
 		return postCode;
 	}
 
-	public void setPostCode(Long postCode) {
+	public void setPostCode(String postCode) {
 		this.postCode = postCode;
 	}
 
