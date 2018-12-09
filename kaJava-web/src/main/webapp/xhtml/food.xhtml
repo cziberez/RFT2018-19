@@ -1,0 +1,116 @@
+<ui:composition template="/WEB-INF/templates/base_template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="windowTitle">
+        <h:outputText value="#{msg['index.windowTitle']}"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form id="adminFormFood">
+            <p:panel id="adminFoodMainPanel">
+                <p:dataTable id="adminTableDataTable" var="food" value="#{foodBean.foods}" selectionMode="single"
+                             selection="#{foodBean.selectedFood}" rowKey="#{food.id}" paginator="true"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             emptyMessage="#{msg['emptyDataTable']}"
+                             currentPageReportTemplate="({currentPage} / {totalPages})"
+                             rowsPerPageTemplate="10,15,20,25,50" paginatorPosition="bottom"
+                             paginatorAlwaysVisible="true"
+                             resizableColumns="true" scrollable="true">
+
+                    <f:facet name="header">
+                        <p:toolbar>
+                            <f:facet name="left">
+                                <p:commandButton action="#{foodBean.setRenderCreateEditPanel()}"
+                                                 value="#{msg['create']}" update=":adminFormFood:adminFoodMainPanel:foodPanel"/>
+                                <p:commandButton action="#{foodBean.setRenderCreateEditPanel()}"
+                                                 value="#{msg['edit']}" update=":adminFormFood:adminFoodMainPanel:foodPanel"/>
+                                <p:commandButton value="#{msg['delete']}" type="button"
+                                                 onclick="PF('comfirmDialog').show();"/>
+                            </f:facet>
+                        </p:toolbar>
+                    </f:facet>
+
+                    <p:column headerText="#{msg['food.name']}">
+                        <h:outputText value="#{food.name}"/>
+                    </p:column>
+                    <p:column headerText="#{msg['food.category']}">
+                        <h:outputText value="#{food.category}"/>
+                    </p:column>
+                    <p:column headerText="#{msg['food.price']}">
+                        <h:outputText value="#{food.price} Huf"/>
+                    </p:column>
+                    <p:column headerText="#{msg['food.description']}">
+                        <h:outputText value="#{food.description}"/>
+                    </p:column>
+                </p:dataTable>
+
+                <p:dialog header="#{msg['are.you.sure.title']}" widgetVar="comfirmDialog" minHeight="40">
+                    <p:panelGrid columns="1" layout="grid" styleClass="noborder fullSize" columnClasses="noborder">
+                        <p:outputLabel value="#{msg['are.you.sure.content']}"/>
+                        <p:panelGrid styleClass="noborder" columns="2" layout="grid">
+                            <p:commandButton value="#{msg['yes']}" type="buttom" onclick="PF('comfirmDialog').hide();"/>
+                            <p:commandButton value="#{msg['no']}" type="button" onclick="PF('comfirmDialog').hide();"/>
+                        </p:panelGrid>
+                    </p:panelGrid>
+                </p:dialog>
+
+            <p:panel id="foodPanel" rendered="#{foodBean.isRenderCreateEditPanel()}">
+                <p:panelGrid id="foodPanelGrid" styleClass="noborder fullSize" columns="2" layout="grid">
+                    <p:outputLabel value="#{msg['food.name']}"/>
+                    <p:inputText value="#{foodBean.selectedFood.name}"/>
+
+                    <h:outputText value="#{msg['food.price']}"/>
+                    <p:inputNumber value="#{foodBean.selectedFood.price.longValue}" decimalPlaces="0"/>
+
+                    <h:outputText value="#{msg['food.category']}"/>
+                    <p:selectOneMenu value="#{foodBean.selectedFood.category}">
+                        <f:selectItem itemLabel="#{msg['select.one']}" itemValue=""/>
+                        <f:selectItem itemLabel="#{msg['food.category.soups']}" itemValue="Levesek"/>
+                        <f:selectItem itemLabel="#{msg['food.category.maindishes']}" itemValue="Főételek"/>
+                        <f:selectItem itemLabel="#{msg['food.category.pizzas']}" itemValue="Pizzák"/>
+                        <f:selectItem itemLabel="#{msg['food.category.desserts']}" itemValue="Desszertek"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="#{msg['food.description']}"/>
+                    <p:inputTextarea rows="6" cols="33" value="#{foodBean.selectedFood.description}" maxlength="255"/>
+
+                </p:panelGrid>
+            </p:panel>
+        </p:panel>
+        </h:form>
+
+        <h:form id="foodForm">
+            <p:panelGrid columns="1" layout="grid">
+                <p:dataGrid var="food" value="#{foodBean.foods}" columns="3" layout="grid"
+                            rows="12" paginator="true" id="foods"
+                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            rowsPerPageTemplate="6,12,16">
+
+                    <f:facet name="header">
+                        #{msg['menu.food']}
+                    </f:facet>
+
+                    <p:panel header="#{food.name}" style="text-align:center">
+                        <h:panelGrid columns="1" style="width:100%">
+                            <!-- TODO ha van normális kép a DBben akkor azok jelenjenek meg-->
+                            <p:graphicImage style="width:100%"
+                                            url="https://www.nosalty.hu/files/imagecache/recept/recept_kepek/246177_249445_cover_post_32.jpg"/>
+
+                            <h:panelGrid columns="2" style="width:100%">
+                                <h:outputText value="#{msg['food.price']}"/>
+                                <h:outputText value="#{food.price} Huf"/>
+                                <p:commandButton process="@this" update="@form" action="#{foodBean.addToCard(food)}"/>
+                            </h:panelGrid>
+                        </h:panelGrid>
+                    </p:panel>
+
+                </p:dataGrid>
+            </p:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

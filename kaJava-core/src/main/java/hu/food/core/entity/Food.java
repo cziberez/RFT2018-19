@@ -26,6 +26,9 @@ public class Food extends BaseEntity {
     @Column(name = "DESCRIPTION")
     private String description;
 
+    @Column(name = "CATEGORY")
+    private String category;
+
     @OneToOne
     private FoodImage foodImage;
 
@@ -35,11 +38,12 @@ public class Food extends BaseEntity {
     public Food() {
     }
 
-    public Food(Long id, String name, Long price, String description, FoodImage foodImage, List<Ingridence> ingridence) {
+    public Food(Long id, String name, Long price, String description, String category, FoodImage foodImage, List<Ingridence> ingridence) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.description = description;
+        this.category = category;
         this.foodImage = foodImage;
         this.ingridence = ingridence;
     }
@@ -90,5 +94,13 @@ public class Food extends BaseEntity {
 
     public void setIngridence(List<Ingridence> ingridence) {
         this.ingridence = ingridence;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

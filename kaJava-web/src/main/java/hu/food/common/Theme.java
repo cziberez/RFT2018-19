@@ -1,4 +1,4 @@
-package hu.food.view;
+package hu.food.common;
 
 //TODO kirillab: át kell helyezni a kaJava-core-ba
 public class Theme {

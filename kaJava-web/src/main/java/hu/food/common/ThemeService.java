@@ -1,4 +1,4 @@
-package hu.food.view;
+package hu.food.common;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;

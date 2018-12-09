@@ -2,14 +2,24 @@ package hu.food.bean.user;
 
 import hu.food.bean.abstractbean.AbstractUserBean;
 import hu.food.bean.theme.ThemeBean;
-import hu.food.service.UserService;
+import hu.food.common.SessionEnum;
+import hu.food.common.Theme;
+import hu.food.service.services.UserService;
+import hu.food.service.enums.Role;
+import hu.food.service.vo.FoodVo;
+import hu.food.service.vo.OrderVo;
 import hu.food.service.vo.UserVo;
-import hu.food.view.Theme;
+import hu.food.util.ContextUtil;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Cookie;
+import java.io.IOException;
+import java.util.List;
 
 @Named("userBean")
 @SessionScoped
@@ -20,8 +30,12 @@ public class UserMBean extends AbstractUserBean {
     @Inject
     private ThemeBean themeBean;
 
-    @Inject
+    @EJB
     private UserService userService;
+
+    private List<FoodVo> basket;
+
+    private OrderVo order;
 
     private UserVo userVo;
 
@@ -64,15 +78,61 @@ public class UserMBean extends AbstractUserBean {
         userVo = new UserVo();
     }
 
+    public void modifyAddress() {
+        userService.modifyAddress(userVo);
+    }
+
     private void destroyUser() {
         userVo = null;
     }
 
     public void registerUser() {
+        userVo.setRole(Role.CUSTOMER);
         userService.addUser(userVo);
         destroyUser();
+        ContextUtil.addMessage(null, FacesMessage.SEVERITY_INFO, "Regisztrálva", "Regisztálva");
     }
 
+    public void login() {
+        doLogin();
+    }
+
+    public void logout() {
+        doLogout();
+    }
+
+    private void doLogin() {
+        userVo = userService.authenticateUser(userVo.getUsername());
+        if (userVo == null) {
+            //TODO Czibere growl Message nincs ilyen user :/
+        } else {
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(SessionEnum.LOGINSTATE.getName(), "true");
+        }
+    }
+
+    private void doLogout() {
+        try {
+            destroyUser();
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/xhtml/index.xhtml");
+        } catch (IOException e) {
+
+        }
+    }
+
+    public boolean isLoggedIn() {
+        return userVo != null;
+    }
+
+    public void addFoodToBasket(FoodVo orderedFood){
+        basket.add(orderedFood);
+        //TODO Czibere adhatsz faces messaget hogy sikerült a kosárművelet
+    }
+
+    public void makeOrder(){
+
+    }
+
+    //Getter Setter section
     public ThemeBean getThemeBean() {
         return themeBean;
     }
@@ -89,11 +149,19 @@ public class UserMBean extends AbstractUserBean {
         this.userVo = userVo;
     }
 
-    public void login() {
-        doLogin();
+    public List<FoodVo> getBasket() {
+        return basket;
     }
 
-    private void doLogin() {
-        //TODO autentikáló service hívása
+    public void setBasket(List<FoodVo> basket) {
+        this.basket = basket;
+    }
+
+    public OrderVo getOrder() {
+        return order;
+    }
+
+    public void setOrder(OrderVo order) {
+        this.order = order;
     }
 }

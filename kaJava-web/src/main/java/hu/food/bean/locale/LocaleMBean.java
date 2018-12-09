@@ -4,11 +4,12 @@ import hu.food.bean.abstractbean.AbstractUserBean;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.http.Cookie;
 import java.util.Locale;
 
-@SessionScoped
+@ViewScoped
 @Named("localeMBean")
 public class LocaleMBean extends AbstractUserBean {
 

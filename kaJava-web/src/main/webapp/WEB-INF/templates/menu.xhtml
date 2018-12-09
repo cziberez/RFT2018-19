@@ -16,6 +16,7 @@
             <p:menuitem value="#{msg['menu.home']}" icon="ui-icon-home" url="/xhtml/index.xhtml"/>
             <p:menuitem value="#{msg['menu.food']}" url="/xhtml/food.xhtml"/>
             <p:menuitem value="#{msg['menu.users']}" url="/xhtml/users.xhtml"/>
+            <p:menuitem value="#{msg['menu.profile']}" url="/xhtml/profile.xhtml"/>
 
             <f:facet name="options">
                 <p:panelGrid styleClass="noborder" columns="4">
@@ -25,12 +26,14 @@
                                        itemValue="#{theme.name}"/>
                         <p:ajax event="change" process="@this" listener="#{userBean.saveTheme}"/>
                     </p:themeSwitcher>
-                    <p:commandButton value="#{msg['menu.login']}" oncomplete="PF('loginDlg').show()"
+                    <p:commandButton value="#{msg['menu.login']}" oncomplete="PF('loginDlg').show()" rendered="#{!userBean.isLoggedIn()}"
                                      action="#{userBean.createUser}" partialSubmit="true" process="@this"/>
-                    <p:commandButton value="#{msg['menu.register']}" oncomplete="PF('registerDlg').show()"
+                    <p:commandButton value="#{msg['menu.register']}" oncomplete="PF('registerDlg').show()" rendered="#{!userBean.isLoggedIn()}"
                                      action="#{userBean.createUser}" partialSubmit="true" process="@this"/>
                     <p:commandButton icon="fa fa-globe" title="#{msg['langauge']}" onclick="PF('langDlg').show()"
                                      partialSubmit="true" process="@this"/>
+                    <p:commandButton icon="fa fa-opencart" action="/xhtml/basket.xhtml" process="@this"/>
+                    <p:commandButton value="#{msg['menu.logout']}" partialSubmit="true" process="@this" action="#{userBean.logout}" rendered="#{userBean.isLoggedIn()}"/>
                 </p:panelGrid>
             </f:facet>
 

@@ -1,7 +1,7 @@
 package hu.food.bean.theme;
 
-import hu.food.view.Theme;
-import hu.food.view.ThemeService;
+import hu.food.common.Theme;
+import hu.food.common.ThemeService;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
