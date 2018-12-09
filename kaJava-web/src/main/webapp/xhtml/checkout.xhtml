@@ -59,34 +59,42 @@
                     </p:panel>
                 </p:tab>
 
-                <p:tab id="contact" title="Contact">
-                    <p:panel header="Contact Information">
+                <p:tab id="payment" title="#{msg['payment']}">
+                    <p:panel header="#{msg['payment']}">
                         <p:messages/>
                         <h:panelGrid columns="2" columnClasses="label, value">
-                            <h:outputText value="Email: *"/>
-                            <p:inputText value="#{userWizard.user.email}" required="true" label="Email"/>
 
-                            <h:outputText value="Phone: "/>
-                            <p:inputText value="#{userWizard.user.phone}"/>
+                            <h:outputText value="#{msg['total.price']}"/>
+                            <h:outputText value="#{userBean.getTotalPrice()}}"/>
 
-                            <h:outputText value="Additional Info: "/>
-                            <p:inputText value="#{userWizard.user.info}"/>
+                            <h:outputText value="#{msg['payment.type']}: *"/>
+                            <p:selectOneMenu value="#{userBean.selectdPaymentType}">
+                                <f:selectItem itemLabel="#{msg['select.one']}" itemValue=""/>
+                                <f:selectItem itemLabel="#{msg['paymnet.cash']}" itemValue="Cash"/>
+                                <f:selectItem itemLabel="#{msg['payment.card']}" itemValue="Card"/>
+                            </p:selectOneMenu>
+
+                            <h:outputText value="#{msg['deliver.note']}"/>
+                            <p:inputTextarea rows="6" cols="33" value="#{userBean.order.description}" maxlength="255"/>
                         </h:panelGrid>
                     </p:panel>
                 </p:tab>
 
-                <p:tab id="confirm" title="Confirmation">
-                    <p:panel header="Confirmation">
-                        <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
+                <p:tab id="confirm" title="#{msg['confirmation']}">
+                    <p:panel header="#{msg['confirmation']}">
+                        <h:panelGrid id="confirmation" columns="1">
                             <h:panelGrid columns="2" columnClasses="label, value">
-                                <h:outputText value="Firstname: "/>
-                                <h:outputText value="#{userWizard.user.firstname}" styleClass="outputLabel"/>
+                                <h:outputText value="#{msg['menu.firstname']}"/>
+                                <h:outputText value="#{userBean.userVo.firstname}"/>
 
-                                <h:outputText value="Lastname: "/>
-                                <h:outputText value="#{userWizard.user.lastname}" styleClass="outputLabel"/>
+                                <h:outputText value="#{msg['menu.lastname']}"/>
+                                <h:outputText value="#{userBean.userVo.firstname}"/>
 
-                                <h:outputText value="Age: "/>
-                                <h:outputText value="#{userWizard.user.age}" styleClass="outputLabel"/>
+                                <h:outputText value="#{msg['menu.email']}"/>
+                                <h:outputText value="#{userBean.userVo.firstname}"/>
+
+                                <h:outputText value="#{msg['menu.phonenumber']}"/>
+                                <h:outputText value="#{userBean.userVo.phonenumber}"/>
                             </h:panelGrid>
 
                             <h:panelGrid columns="2" columnClasses="label, value">
@@ -115,7 +123,7 @@
                             </h:panelGrid>
                         </h:panelGrid>
 
-                        <p:commandButton value="Submit" action="#{userWizard.save}" update="growl" process="@this"/>
+                        <p:commandButton value="#{msg['submit']}" action="#{userWizard.save}" update="growl" process="@this"/>
                     </p:panel>
                 </p:tab>
             </p:wizard>
