@@ -54,7 +54,6 @@ public class UserServiceBean implements UserService {
 	@Override
 	public void removeUser(Long id) {
 		userDao.remove(id);
-
 	}
 
 	@Override

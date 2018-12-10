@@ -14,12 +14,12 @@
 
         <p:menubar id="menuBar">
             <p:menuitem value="#{msg['menu.home']}" icon="ui-icon-home" url="/xhtml/index.xhtml"/>
-            <p:menuitem value="#{msg['menu.food']}" url="/xhtml/food.xhtml"/>
-            <p:menuitem value="#{msg['menu.users']}" url="/xhtml/users.xhtml"/>
-            <p:menuitem value="#{msg['menu.profile']}" url="/xhtml/profile.xhtml"/>
+            <p:menuitem value="#{msg['menu.food']}" url="/xhtml/food.xhtml" rendered="#{userBean.isLoggedIn()}"/>
+            <p:menuitem value="#{msg['menu.users']}" url="/xhtml/users.xhtml" rendered="#{userBean.isLoggedInAsAdmin()}"/>
+            <p:menuitem value="#{msg['menu.profile']}" url="/xhtml/profile.xhtml" rendered="#{userBean.isLoggedIn()}"/>
 
             <f:facet name="options">
-                <p:panelGrid styleClass="noborder" columns="4">
+                <p:panelGrid id="optionsPanelGrid" styleClass="noborder" columns="5">
                     <p:themeSwitcher id="themeSwitcher" style="width:165px">
                         <f:selectItem itemLabel="#{msg['menu.theme.choose']}" itemValue=""/>
                         <f:selectItems value="#{themeBean.themes}" var="theme" itemLabel="#{theme.displayName}"

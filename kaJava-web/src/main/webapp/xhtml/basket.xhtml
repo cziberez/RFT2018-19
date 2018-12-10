@@ -11,9 +11,7 @@
 
     <ui:define name="content">
         <form id="basketForm">
-            <p:panelGrid columns="1" layout="grid">
-                <!--TODO legyen középen f@szán nagyba-->
-                <p:outputLabel value="#{msg['basket']}"></p:outputLabel>
+            <p:panel id="basketPanel" header="#{msg['basket']}">
                 <p:repeat value="#{userBean.basket}" var="food">
                     <h:panelGrid columns="2" style="width:400px" columnClasses="logo,detail">
 
@@ -26,7 +24,7 @@
                                 <h:outputText value="#{food.name}" style="font-weight: bold"/>
 
                                 <h:outputText value="#{msg['food.price']}:"/>
-                                <h:outputText value="#{food.price} Huf" style="font-weight: bold"/>
+                                <h:outputText value="#{food.price} Ft" style="font-weight: bold"/>
 
                                 <h:outputText value="#{msg['food.category']}:"/>
                                 <h:outputText value="#{food.category}" style="font-weight: bold"/>
@@ -37,14 +35,14 @@
                 </p:repeat>
                 <h:panelGrid columns="2">
                     <h:outputText value="#{msg['food.total.price']}:"/>
-                    <h:outputText value="#{userBean.getTotalPrice()} Huf" style="font-weight: bold"/>
+                    <h:outputText value="#{userBean.getTotalPrice()} Ft" style="font-weight: bold"/>
                 </h:panelGrid>
 
                 <h:panelGrid columns="2">
                     <p:commandButton value="#{msg['buy']}" action="/xhtml/checkout.xhtml" process="@this"/>
                     <p:commandButton value="#{msg['back.to.shop']}" type="button" partialSubmit="true" process="@this"/>
                 </h:panelGrid>
-            </p:panelGrid>
+            </p:panel>
         </form>
     </ui:define>
 
