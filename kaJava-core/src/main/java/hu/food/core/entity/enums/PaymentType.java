@@ -1,9 +1,7 @@
 package hu.food.core.entity.enums;
 
-public enum PaymentTypeEnum {
-
+public enum PaymentType {
     CARD,
     CASH,
     OTHER;
-
 }

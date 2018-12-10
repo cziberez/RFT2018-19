@@ -39,7 +39,7 @@
                 </h:panelGrid>
 
                 <h:panelGrid columns="2">
-                    <p:commandButton value="#{msg['buy']}" action="/xhtml/checkout.xhtml?faces-redirect=true" process="@this"/>
+                    <p:commandButton value="#{msg['buy']}" actionListener="#{userBean.getReadyForCheckout}" action="/xhtml/checkout.xhtml?faces-redirect=true" process="@this"/>
                     <p:commandButton value="#{msg['back.to.shop']}" action="/xhtml/food.xhtml?faces-redirect=true" process="@this"/>
                 </h:panelGrid>
             </p:panel>
