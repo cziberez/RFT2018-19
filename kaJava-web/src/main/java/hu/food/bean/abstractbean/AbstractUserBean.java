@@ -129,7 +129,8 @@ public abstract class AbstractUserBean implements Serializable {
         this.selectedLang = selectedLang;
     }
 
-    public String getMessageByKey(String key) {
+    protected
+    String getMessageByKey(String key) {
         ResourceBundle bundle = ResourceBundle.getBundle("messages.Messages");
         return bundle.getString(key);
     }
