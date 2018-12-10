@@ -50,20 +50,10 @@
 
                 </p:dataTable>
 
-                <p:dialog header="#{msg['are.you.sure.title']}" widgetVar="comfirmDialog" minHeight="40">
-                    <p:panelGrid columns="1" layout="grid" styleClass="noborder fullSize" columnClasses="noborder">
-                        <p:outputLabel value="#{msg['are.you.sure.content']}"/>
-                        <p:panelGrid styleClass="noborder" columns="2" layout="grid">
-                            <p:commandButton value="#{msg['yes']}" type="buttom" onclick="PF('comfirmDialog').hide();"/>
-                            <p:commandButton value="#{msg['no']}" type="button" onclick="PF('comfirmDialog').hide();"/>
-                        </p:panelGrid>
-                    </p:panelGrid>
-                </p:dialog>
-
-                <p:panel id="userDetailsPanel" rendered="#{adminBean.isRenderCreateEditPanel()}">
+                <p:panel id="userCreateOrRenderPanel" rendered="#{adminBean.isRenderCreateEditPanel()}">
                     <p:panelGrid styleClass="noborder fullSize" columns="2" columnClasses="noborder">
-                        <p:outputLabel value="#{msg['role']}"/>
-                        <p:selectOneMenu value="#{adminBean.selectedUser.role}">
+                        <p:outputLabel value="#{msg['role']}*"/>
+                        <p:selectOneMenu id="userRoleSelect" value="#{adminBean.selectedUser.role}" var="role" filterMatchMode="contains" required="true" converter="">
                             <f:selectItem itemLabel="#{msg['select.one']}" itemValue=""/>
                             <f:selectItems itemLabel="#{adminBean.roles}" itemValue="#{adminBean.roles}"/>
                         </p:selectOneMenu>
