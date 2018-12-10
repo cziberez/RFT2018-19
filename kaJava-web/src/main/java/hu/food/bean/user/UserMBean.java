@@ -122,7 +122,14 @@ public class UserMBean extends AbstractUserBean {
     private void doLogin() {
         userVo = userService.authenticateUser(userVo.getUsername());
         if (userVo == null) {
-            //TODO Czibere growl Message nincs ilyen user :/
+            String noUserFoundMessage = getMessageByKey("user.noUserFound");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, noUserFoundMessage, null));
+        } else {
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/xhtml/food.xhtml");
+            } catch (IOException e) {
+
+            }
         }
     }
 

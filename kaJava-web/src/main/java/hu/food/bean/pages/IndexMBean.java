@@ -21,6 +21,6 @@ public class IndexMBean extends AbstractViewBean {
 
     @Override
     public List<Role> getRoles() {
-        return Collections.singletonList(Role.GUEST);
+        return null;
     }
 }
