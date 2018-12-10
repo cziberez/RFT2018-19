@@ -13,7 +13,9 @@ public interface UserService {
 
 	List<UserVo> getAllUsers();
 
-	UserVo authenticateUser(String username);
+	UserVo authenticateUser(String username,String password);
 
 	void modifyAddress(UserVo userVo);
+
+	boolean isUniqueUser(UserVo userVo);
 }

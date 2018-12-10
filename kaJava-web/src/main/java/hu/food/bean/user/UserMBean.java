@@ -105,10 +105,14 @@ public class UserMBean extends AbstractUserBean {
     }
 
     public void registerUser() {
-        userVo.setRole(Role.CUSTOMER);
-        userService.addUser(userVo);
-        destroyUser();
-        ContextUtil.addMessage(null, FacesMessage.SEVERITY_INFO, "Regisztrálva", "Regisztálva");
+        if (userService.isUniqueUser(userVo)) {
+            userVo.setRole(Role.CUSTOMER);
+            userService.addUser(userVo);
+            destroyUser();
+            ContextUtil.addMessage(null, FacesMessage.SEVERITY_INFO, "Regisztrálva", "Regisztálva");
+        } else {
+            ContextUtil.addMessage(null, FacesMessage.SEVERITY_INFO, "Foglalt", "Foglalt");
+        }
     }
 
     public void login() {
@@ -120,7 +124,7 @@ public class UserMBean extends AbstractUserBean {
     }
 
     private void doLogin() {
-        userVo = userService.authenticateUser(userVo.getUsername());
+        userVo = userService.authenticateUser(userVo.getUsername(), userVo.getPassword());
         if (userVo == null) {
             String noUserFoundMessage = getMessageByKey("user.noUserFound");
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, noUserFoundMessage, null));
@@ -160,7 +164,8 @@ public class UserMBean extends AbstractUserBean {
 
     public void addFoodToBasket(FoodVo orderedFood) {
         basket.add(orderedFood);
-        //TODO Czibere adhatsz faces messaget hogy sikerült a kosárművelet
+        FacesMessage msg = new FacesMessage("Successful", "Siker");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     public void getReadyForCheckout() {
@@ -173,12 +178,10 @@ public class UserMBean extends AbstractUserBean {
     }
 
     public void makeOrder() {
-        FacesMessage msg = new FacesMessage("Successful", "Success");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-        if ("Cash".equals(selectedPaymentType)){
+        if ("Cash".equals(selectedPaymentType)) {
             order.setPaymentType(PaymentType.CASH);
         } else {
-            if ("Card".equals(selectedPaymentType)){
+            if ("Card".equals(selectedPaymentType)) {
                 order.setPaymentType(PaymentType.CARD);
             } else {
                 order.setPaymentType(PaymentType.OTHER);
