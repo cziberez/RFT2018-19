@@ -5,6 +5,7 @@ import hu.food.bean.theme.ThemeBean;
 import hu.food.common.Theme;
 import hu.food.service.services.UserService;
 import hu.food.service.enums.Role;
+import hu.food.service.vo.AddressVo;
 import hu.food.service.vo.FoodVo;
 import hu.food.service.vo.OrderVo;
 import hu.food.service.vo.UserVo;
@@ -41,7 +42,9 @@ public class UserMBean extends AbstractUserBean {
 
     private UserVo userVo;
 
-    private String selectedPaymnetType;
+    private AddressVo addressVo;
+
+    private String selectedPaymentType;
 
     @Override
     public String getTheme() {
@@ -80,10 +83,11 @@ public class UserMBean extends AbstractUserBean {
     @PostConstruct
     public void init() {
         basket = new ArrayList<>();
+        selectedPaymentType = "";
+        order = new OrderVo();
     }
 
     public void createUser() {
-        destroyUser();
         userVo = new UserVo();
     }
 
@@ -147,8 +151,21 @@ public class UserMBean extends AbstractUserBean {
         //TODO Czibere adhatsz faces messaget hogy sikerült a kosárművelet
     }
 
+    public void getReadyForCheckout() {
+        if (userVo == null) {
+            userVo = new UserVo();
+        }
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/xhtml/checkout.xhtml");
+        } catch (IOException e){
+            FacesMessage msg = new FacesMessage("Error", "Hiba");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+
+    }
+
     public void makeOrder() {
-        FacesMessage msg = new FacesMessage("Successful", "Succes");
+        FacesMessage msg = new FacesMessage("Successful", "Success");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
@@ -193,11 +210,21 @@ public class UserMBean extends AbstractUserBean {
         this.order = order;
     }
 
-    public String getSelectedPaymnetType() {
-        return selectedPaymnetType;
+
+
+    public AddressVo getAddressVo() {
+        return addressVo;
     }
 
-    public void setSelectedPaymnetType(String selectedPaymnetType) {
-        this.selectedPaymnetType = selectedPaymnetType;
+    public void setAddressVo(AddressVo addressVo) {
+        this.addressVo = addressVo;
+    }
+
+    public String getSelectedPaymentType() {
+        return selectedPaymentType;
+    }
+
+    public void setSelectedPaymentType(String selectedPaymentType) {
+        this.selectedPaymentType = selectedPaymentType;
     }
 }

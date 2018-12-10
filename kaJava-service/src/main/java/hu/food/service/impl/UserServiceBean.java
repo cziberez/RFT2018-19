@@ -7,6 +7,7 @@ import hu.food.core.entity.User;
 import hu.food.service.mapper.AddressMapper;
 import hu.food.service.mapper.UserMapper;
 import hu.food.service.services.UserService;
+import hu.food.service.vo.AddressVo;
 import hu.food.service.vo.UserVo;
 
 import javax.annotation.PostConstruct;
@@ -62,7 +63,11 @@ public class UserServiceBean implements UserService {
 
 	@Override
 	public UserVo authenticateUser(String username) {
-		return userMapper.toVo(userDao.findUserByName(username));
+		User userE = userDao.findUserByName(username);
+		AddressVo addressVo = addressMapper.toVo(addressDao.find(userE.getUserAddress().getId()));
+		UserVo userVo = userMapper.toVo(userE);
+		userVo.setAddressVo(addressVo);
+		return userVo;
 	}
 
 	@Override
