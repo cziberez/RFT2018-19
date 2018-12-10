@@ -10,7 +10,7 @@
     </ui:define>
 
     <ui:define name="content">
-        <h:form id="adminFormFood">
+        <h:form id="adminFormFood" rendered="#{userBean.isLoggedInAsShopRenter()}">
             <p:panel id="adminFoodMainPanel">
                 <p:dataTable id="adminTableDataTable" var="food" value="#{foodBean.foods}" selectionMode="single"
                              selection="#{foodBean.selectedFood}" rowKey="#{food.id}" paginator="true"
@@ -47,16 +47,6 @@
                         <h:outputText value="#{food.description}"/>
                     </p:column>
                 </p:dataTable>
-
-                <p:dialog header="#{msg['are.you.sure.title']}" widgetVar="comfirmDialog" minHeight="40">
-                    <p:panelGrid columns="1" layout="grid" styleClass="noborder fullSize" columnClasses="noborder">
-                        <p:outputLabel value="#{msg['are.you.sure.content']}"/>
-                        <p:panelGrid styleClass="noborder" columns="2" layout="grid">
-                            <p:commandButton value="#{msg['yes']}" type="buttom" onclick="PF('comfirmDialog').hide();"/>
-                            <p:commandButton value="#{msg['no']}" type="button" onclick="PF('comfirmDialog').hide();"/>
-                        </p:panelGrid>
-                    </p:panelGrid>
-                </p:dialog>
 
             <p:panel id="foodPanel" rendered="#{foodBean.isRenderCreateEditPanel()}">
                 <p:panelGrid id="foodPanelGrid" styleClass="noborder fullSize" columns="3" layout="grid">

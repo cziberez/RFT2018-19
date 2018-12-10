@@ -1,4 +1,4 @@
-package hu.food.bean.food;
+package hu.food.bean.pages;
 
 import hu.food.bean.abstractbean.AbstractViewBean;
 import hu.food.service.enums.Role;

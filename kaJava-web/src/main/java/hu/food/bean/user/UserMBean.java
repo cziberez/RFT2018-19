@@ -2,7 +2,6 @@ package hu.food.bean.user;
 
 import hu.food.bean.abstractbean.AbstractUserBean;
 import hu.food.bean.theme.ThemeBean;
-import hu.food.common.SessionEnum;
 import hu.food.common.Theme;
 import hu.food.service.services.UserService;
 import hu.food.service.enums.Role;
@@ -119,8 +118,6 @@ public class UserMBean extends AbstractUserBean {
         userVo = userService.authenticateUser(userVo.getUsername());
         if (userVo == null) {
             //TODO Czibere growl Message nincs ilyen user :/
-        } else {
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(SessionEnum.LOGINSTATE.getName(), "true");
         }
     }
 
@@ -135,6 +132,18 @@ public class UserMBean extends AbstractUserBean {
 
     public boolean isLoggedIn() {
         return userVo != null;
+    }
+
+    public boolean isLoggedInAsAdmin() {
+        return isLoggedIn() && Role.ADMINISTRATOR.equals(userVo.getRole());
+    }
+
+    public boolean isLoggedInAsDeliver() {
+        return isLoggedIn() && Role.DELIVER.equals(userVo.getRole());
+    }
+
+    public boolean isLoggedInAsShopRenter() {
+        return isLoggedIn() && (Role.SHOPRENTER.equals(userVo.getRole()) || Role.ADMINISTRATOR.equals(userVo.getRole()));
     }
 
     public void addFoodToBasket(FoodVo orderedFood) {
