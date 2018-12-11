@@ -6,11 +6,11 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="windowTitle">
-        <h:outputText value="#{msg['index.windowTitle']}"/>
+        <h:outputText value="#{msg['basket.windowTitle']}"/>
     </ui:define>
 
     <ui:define name="content">
-        <form id="basketForm">
+        <h:form id="basketForm">
             <p:panel id="basketPanel" header="#{msg['basket']}">
                 <p:repeat value="#{userBean.basket}" var="food">
                     <h:panelGrid columns="2" style="width:400px" columnClasses="logo,detail">
@@ -39,11 +39,11 @@
                 </h:panelGrid>
 
                 <h:panelGrid columns="2">
-                    <p:commandButton value="#{msg['buy']}" action="/xhtml/checkout.xhtml" process="@this"/>
-                    <p:commandButton value="#{msg['back.to.shop']}" type="button" partialSubmit="true" process="@this"/>
+                    <p:commandButton value="#{msg['buy']}" actionListener="#{userBean.getReadyForCheckout}" action="/xhtml/checkout.xhtml?faces-redirect=true" process="@this"/>
+                    <p:commandButton value="#{msg['back.to.shop']}" action="/xhtml/food.xhtml?faces-redirect=true" process="@this"/>
                 </h:panelGrid>
             </p:panel>
-        </form>
+        </h:form>
     </ui:define>
 
 </ui:composition>

@@ -29,11 +29,11 @@
                                          label="#{msg['menu.lastname']}" placeholder="#{msg['menu.lastname']}"/>
 
                             <h:outputText value="#{msg['menu.email']}: *"/>
-                            <p:inputText value="#{userBean.userVo.firstname}" required="true"
+                            <p:inputText value="#{userBean.userVo.email}" required="true"
                                          label="#{msg['menu.email']}" placeholder="#{msg['menu.email']}"/>
 
                             <h:outputText value="#{msg['menu.phonenumber']}: *"/>
-                            <p:inputText value="#{userBean.userVo.phonenumber}" required="true"
+                            <p:inputText value="#{userBean.userVo.phoneNumber}" required="true"
                                          label="#{msg['menu.phonenumber']}" placeholder="#{msg['menu.phonenumber']}"/>
                         </h:panelGrid>
                     </p:panel>
@@ -49,19 +49,19 @@
                                          label="#{msg['menu.city']}" placeholder="#{msg['menu.city']}"/>
 
                             <h:outputText value="#{msg['menu.postcode']}: *"/>
-                            <p:inputText value="#{userBean.userVo.addressVo.postcode}" required="true"
+                            <p:inputText value="#{userBean.userVo.addressVo.postCode}" required="true"
                                          label="#{msg['menu.postcode']}" placeholder="#{msg['menu.postcode']}"/>
 
                             <h:outputText value="#{msg['menu.street']}: *"/>
-                            <p:inputText value="#{userBean.userVo.addressVo.city}" required="true"
+                            <p:inputText value="#{userBean.userVo.addressVo.street}" required="true"
                                          label="#{msg['menu.street']}" placeholder="#{msg['menu.street']}"/>
 
                             <h:outputText value="#{msg['menu.floor']}:"/>
-                            <p:inputText value="#{userBean.userVo.addressVo.city}" label="#{msg['menu.floor']}"
+                            <p:inputText value="#{userBean.userVo.addressVo.floor}" label="#{msg['menu.floor']}"
                                          placeholder="#{msg['menu.floor']}"/>
 
                             <h:outputText value="#{msg['menu.door']}:"/>
-                            <p:inputText value="#{userBean.userVo.addressVo.city}" label="#{msg['menu.door']}"
+                            <p:inputText value="#{userBean.userVo.addressVo.door}" label="#{msg['menu.door']}"
                                          placeholder="#{msg['menu.door']}"/>
 
                         </h:panelGrid>
@@ -74,10 +74,10 @@
                         <h:panelGrid columns="2" columnClasses="label, value">
 
                             <h:outputText value="#{msg['total.price']}"/>
-                            <h:outputText value="#{userBean.getTotalPrice()}}"/>
+                            <h:outputText value="#{userBean.getTotalPrice()} Huf"/>
 
                             <h:outputText value="#{msg['payment.type']}: *"/>
-                            <p:selectOneMenu value="#{userBean.selectdPaymentType}" required="true">
+                            <p:selectOneMenu value="#{userBean.selectedPaymentType}" required="true">
                                 <f:selectItem itemLabel="#{msg['select.one']}" itemValue=""/>
                                 <f:selectItem itemLabel="#{msg['paymnet.cash']}" itemValue="Cash"/>
                                 <f:selectItem itemLabel="#{msg['payment.card']}" itemValue="Card"/>
@@ -91,19 +91,18 @@
 
                 <p:tab id="confirm" title="#{msg['confirmation']}">
                     <p:panel header="#{msg['confirmation']}">
-                        <p:panelGrid id="confirmation" columns="1">
                         <p:panelGrid columns="2" columnClasses="label, value">
                             <p:outputLabel value="#{msg['menu.firstname']}"/>
                             <h:outputText value="#{userBean.userVo.firstname}"/>
 
                             <p:outputLabel value="#{msg['menu.lastname']}"/>
-                            <h:outputText value="#{userBean.userVo.firstname}"/>
+                            <h:outputText value="#{userBean.userVo.lastname}"/>
 
                             <p:outputLabel value="#{msg['menu.email']}"/>
-                            <h:outputText value="#{userBean.userVo.firstname}"/>
+                            <h:outputText value="#{userBean.userVo.email}"/>
 
                             <p:outputLabel value="#{msg['menu.phonenumber']}"/>
-                            <h:outputText value="#{userBean.userVo.phonenumber}"/>
+                            <h:outputText value="#{userBean.userVo.phoneNumber}"/>
                         </p:panelGrid>
 
                         <p:panelGrid columns="2" columnClasses="label, value">
@@ -111,40 +110,36 @@
                             <h:outputText value="#{userBean.userVo.addressVo.city}"/>
 
                             <p:outputLabel value="#{msg['menu.postcode']}"/>
-                            <h:outputText value="#{userBean.userVo.addressVo.postcode}"/>
+                            <h:outputText value="#{userBean.userVo.addressVo.postCode}"/>
 
                             <p:outputLabel value="#{msg['menu.street']}"/>
                             <h:outputText value="#{userBean.userVo.addressVo.street}"/>
 
-                            <p:outputLabel rendered="#{!userBean.userVo.addressVo.floor}" value="#{msg['menu.floor']}"/>
-                            <h:outputText rendered="#{!userBean.userVo.addressVo.floor}"
-                                          value="#{userBean.userVo.addressVo.floor}"/>
+                            <p:outputLabel rendered="#{not empty userBean.userVo.addressVo.floor}" value="#{msg['menu.floor']}"/>
+                            <h:outputText rendered="#{not empty userBean.userVo.addressVo.floor}" value="#{userBean.userVo.addressVo.floor}"/>
 
-                            <p:outputLabel rendered="#{!userBean.userVo.addressVo.door}" value="#{msg['menu.door']}"/>
-                            <h:outputText rendered="#{!userBean.userVo.addressVo.door}"
-                                          value="#{userBean.userVo.addressVo.door}"/>
+                            <p:outputLabel rendered="#{not empty userBean.userVo.addressVo.door}" value="#{msg['menu.door']}"/>
+                            <h:outputText rendered="#{not empty userBean.userVo.addressVo.door}" value="#{userBean.userVo.addressVo.door}"/>
                         </p:panelGrid>
 
                         <p:panelGrid columns="2" columnClasses="label, value">
-                        <h:outputText value="#{msg['total.price']}"/>
-                        <h:outputText value="#{userBean.getTotalPrice()} Huf"/>
-                        <p:panelGrid columns="2" columnClasses="label, value">
-                            <p:outputLabel value="#{msg['total.price']}"/>
-                            <h:outputText value="#{userBean.getTotalPrice()} Ft"/>
+                            <h:outputText value="#{msg['total.price']}"/>
+                            <h:outputText value="#{userBean.getTotalPrice()} Huf"/>
+                            <p:panelGrid columns="2" columnClasses="label, value">
+                                <p:outputLabel value="#{msg['total.price']}"/>
+                                <h:outputText value="#{userBean.getTotalPrice()} Huf"/>
 
 
-                            <h:outputText value="#{msg['payment.type']}"/>
-                            <p:outputLabel value="#{msg['payment.type']}"/>
-                            <h:outputText value="#{msg[userBean.selectedPaymentType]}: *"/>
+                                <h:outputText value="#{msg['payment.type']}"/>
+                                <h:outputText value="#{msg[userBean.selectedPaymentType]}: *"/>
 
-                            <h:outputText rendered="#{!userBean.order.description}" value="#{msg['deliver.note']}"/>
-                            <p:outputLabel rendered="#{!userBean.order.description}" value="#{msg['deliver.note']}"/>
-                            <h:outputText rendered="#{!userBean.order.description}"
-                                          value="#{userBean.order.description}"/>
+                                <h:outputText rendered="#{not empty userBean.order.description}" value="#{msg['deliver.note']}"/>
+                                <h:outputText rendered="#{not empty userBean.order.description}" value="#{userBean.order.description}"/>
+                            </p:panelGrid>
+
+                            <p:commandButton value="#{msg['submit']}" action="#{userBean.makeOrder}" update="growl"
+                                             process="@this"/>
                         </p:panelGrid>
-
-                        <p:commandButton value="#{msg['submit']}" action="#{userBean.makeOrder}" update="growl"
-                                         process="@this"/>
                     </p:panel>
                 </p:tab>
             </p:wizard>
