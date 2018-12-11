@@ -1,7 +1,7 @@
 package hu.food.core.entity;
 
 import hu.food.core.entity.base.BaseEntity;
-import hu.food.core.entity.enums.PaymentTypeEnum;
+import hu.food.core.entity.enums.PaymentType;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,8 +22,7 @@ public class Order extends BaseEntity {
     private Long price;
 
     @Column(name = "PAYMENTTYPE")
-    @Enumerated(EnumType.STRING)
-    private PaymentTypeEnum paymentTypeEnum;
+    private PaymentType paymentType;
 
     @Column(name = "DESCRIPTION")
     private String description;
@@ -40,9 +39,9 @@ public class Order extends BaseEntity {
     public Order() {
     }
 
-    public Order(Long price, PaymentTypeEnum paymentTypeEnum, String description, List<Food> orderedFood, User customer, Deliver deliver) {
+    public Order(Long price, PaymentType paymentType, String description, List<Food> orderedFood, User customer, Deliver deliver) {
         this.price = price;
-        this.paymentTypeEnum = paymentTypeEnum;
+        this.paymentType = paymentType;
         this.description = description;
         this.orderedFood = orderedFood;
         this.customer = customer;
@@ -65,12 +64,12 @@ public class Order extends BaseEntity {
         this.price = price;
     }
 
-    public PaymentTypeEnum getPaymentTypeEnum() {
-        return paymentTypeEnum;
+    public PaymentType getPaymentType() {
+        return paymentType;
     }
 
-    public void setPaymentTypeEnum(PaymentTypeEnum paymentTypeEnum) {
-        this.paymentTypeEnum = paymentTypeEnum;
+    public void setPaymentType(PaymentType paymentType) {
+        this.paymentType = paymentType;
     }
 
     public String getDescription() {

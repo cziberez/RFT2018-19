@@ -49,11 +49,11 @@ public class UserDao implements BaseDao<User> {
 		return typedQuery.getResultList();
 	}
 
-	public User findUserByName(String name){
-		TypedQuery<User> typedQuery = entityManager.createQuery("select u from User u where  u.username = :name", User.class);
+	public User findUserByNameAndPassword(String name,String password){
+		TypedQuery<User> typedQuery = entityManager.createQuery("select u from User u where  u.username = :name and u.password = :password", User.class);
 
 		try {
-			return typedQuery.setParameter("name", name).getSingleResult();
+			return typedQuery.setParameter("name", name).setParameter("password",password).getSingleResult();
 		} catch (NoResultException e){
 			return null;
 		}

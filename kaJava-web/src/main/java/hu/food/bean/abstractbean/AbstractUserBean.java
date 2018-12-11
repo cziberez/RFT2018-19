@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 public abstract class AbstractUserBean implements Serializable {
 
@@ -126,5 +127,11 @@ public abstract class AbstractUserBean implements Serializable {
 
     public void setSelectedLang(String selectedLang) {
         this.selectedLang = selectedLang;
+    }
+
+    protected
+    String getMessageByKey(String key) {
+        ResourceBundle bundle = ResourceBundle.getBundle("messages.Messages");
+        return bundle.getString(key);
     }
 }

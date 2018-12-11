@@ -2,8 +2,9 @@ package hu.food.bean.user;
 
 import hu.food.bean.abstractbean.AbstractUserBean;
 import hu.food.bean.theme.ThemeBean;
-import hu.food.common.SessionEnum;
 import hu.food.common.Theme;
+import hu.food.service.enums.PaymentType;
+import hu.food.service.services.OrderService;
 import hu.food.service.services.UserService;
 import hu.food.service.enums.Role;
 import hu.food.service.vo.AddressVo;
@@ -36,6 +37,9 @@ public class UserMBean extends AbstractUserBean {
 
     @EJB
     private UserService userService;
+
+    @EJB
+    private OrderService orderService;
 
     private List<FoodVo> basket;
 
@@ -101,10 +105,14 @@ public class UserMBean extends AbstractUserBean {
     }
 
     public void registerUser() {
-        userVo.setRole(Role.CUSTOMER);
-        userService.addUser(userVo);
-        destroyUser();
-        ContextUtil.addMessage(null, FacesMessage.SEVERITY_INFO, "Regisztrálva", "Regisztálva");
+        if (userService.isUniqueUser(userVo)) {
+            userVo.setRole(Role.CUSTOMER);
+            userService.addUser(userVo);
+            destroyUser();
+            ContextUtil.addMessage(null, FacesMessage.SEVERITY_INFO, "Regisztrálva", "Regisztálva");
+        } else {
+            ContextUtil.addMessage(null, FacesMessage.SEVERITY_INFO, "Foglalt", "Foglalt");
+        }
     }
 
     public void login() {
@@ -116,11 +124,16 @@ public class UserMBean extends AbstractUserBean {
     }
 
     private void doLogin() {
-        userVo = userService.authenticateUser(userVo.getUsername());
+        userVo = userService.authenticateUser(userVo.getUsername(), userVo.getPassword());
         if (userVo == null) {
-            //TODO Czibere growl Message nincs ilyen user :/
+            String noUserFoundMessage = getMessageByKey("user.noUserFound");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, noUserFoundMessage, null));
         } else {
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(SessionEnum.LOGINSTATE.getName(), "true");
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/xhtml/food.xhtml");
+            } catch (IOException e) {
+
+            }
         }
     }
 
@@ -137,27 +150,46 @@ public class UserMBean extends AbstractUserBean {
         return userVo != null;
     }
 
+    public boolean isLoggedInAsAdmin() {
+        return isLoggedIn() && Role.ADMINISTRATOR.equals(userVo.getRole());
+    }
+
+    public boolean isLoggedInAsDeliver() {
+        return isLoggedIn() && Role.DELIVER.equals(userVo.getRole());
+    }
+
+    public boolean isLoggedInAsShopRenter() {
+        return isLoggedIn() && (Role.SHOPRENTER.equals(userVo.getRole()) || Role.ADMINISTRATOR.equals(userVo.getRole()));
+    }
+
     public void addFoodToBasket(FoodVo orderedFood) {
         basket.add(orderedFood);
-        //TODO Czibere adhatsz faces messaget hogy sikerült a kosárművelet
+        FacesMessage msg = new FacesMessage("Successful", "Siker");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     public void getReadyForCheckout() {
         if (userVo == null) {
             userVo = new UserVo();
+            userVo.setAddressVo(new AddressVo());
         }
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/xhtml/checkout.xhtml");
-        } catch (IOException e){
-            FacesMessage msg = new FacesMessage("Error", "Hiba");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-        }
-
+        selectedPaymentType = "";
+        order = new OrderVo();
     }
 
     public void makeOrder() {
-        FacesMessage msg = new FacesMessage("Successful", "Success");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        if ("Cash".equals(selectedPaymentType)) {
+            order.setPaymentType(PaymentType.CASH);
+        } else {
+            if ("Card".equals(selectedPaymentType)) {
+                order.setPaymentType(PaymentType.CARD);
+            } else {
+                order.setPaymentType(PaymentType.OTHER);
+            }
+        }
+        order.setPrice(getTotalPrice());
+        orderService.makeAnOrder(userVo, order, basket);
+        basket = new ArrayList<>();
     }
 
     public Long getTotalPrice() {
@@ -200,8 +232,6 @@ public class UserMBean extends AbstractUserBean {
     public void setOrder(OrderVo order) {
         this.order = order;
     }
-
-
 
     public AddressVo getAddressVo() {
         return addressVo;

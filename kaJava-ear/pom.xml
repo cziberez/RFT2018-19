@@ -66,7 +66,7 @@
 						<webModule>
 							<groupId>hu.food.kaJava</groupId>
 							<artifactId>kaJava-web</artifactId>
-							<contextRoot>kaJava-web</contextRoot>
+							<contextRoot>/</contextRoot>
 							<bundleFileName>kaJava-web.war</bundleFileName>
 						</webModule>
 					</modules>
