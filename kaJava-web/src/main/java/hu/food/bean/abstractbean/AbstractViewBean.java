@@ -1,9 +1,12 @@
 package hu.food.bean.abstractbean;
 
+import hu.food.bean.user.UserMBean;
 import hu.food.service.enums.Role;
+import hu.food.service.vo.UserVo;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import java.io.IOException;
 import java.io.Serializable;
@@ -15,22 +18,38 @@ public abstract class AbstractViewBean implements Serializable {
 
     private boolean renderCreateEditPanel;
 
+    private boolean renderDetailsPanel;
+
+    @Inject
+    private UserMBean userMBean;
+
     @PostConstruct
     private void init() {
         List<Role> requiredRole = getRoles();
         checkRole(requiredRole);
         renderCreateEditPanel = false;
+        renderDetailsPanel = false;
     }
 
     public abstract List<Role> getRoles();
 
     private boolean hasRole(List<Role> roles) {
-        return false;
+        boolean ret = false;
+        final UserVo userVo = userMBean.getUserVo();
+        for (Role role : roles) {
+            if (role.equals(userVo.getRole())) {
+                ret = true;
+                break;
+            }
+        }
+        return ret;
     }
 
     private void checkRole(List<Role> roles) {
-        if (hasRole(roles)) {
-            redirectToDeniedPage();
+        if(roles != null) {
+            if (!hasRole(roles)) {
+                redirectToDeniedPage();
+            }
         }
     }
 
@@ -54,6 +73,10 @@ public abstract class AbstractViewBean implements Serializable {
         return renderCreateEditPanel;
     }
 
+    public boolean isRenderDetailsPanel() {
+        return renderDetailsPanel;
+    }
+
     public void setRenderCreateEditPanel(boolean renderCreateEditPanel) {
         this.renderCreateEditPanel = renderCreateEditPanel;
     }
@@ -61,14 +84,24 @@ public abstract class AbstractViewBean implements Serializable {
 
     public void setRenderCreateEditPanel() {
         renderCreateEditPanel = true;
+        renderDetailsPanel = false;
     }
 
     public void destroyCreateEditPanel() {
         renderCreateEditPanel = false;
     }
 
-    public void hideCreateEditPanel() {
+    public void setDetailsPanelRendered() {
+        renderDetailsPanel = true;
         renderCreateEditPanel = false;
     }
 
+    public void destroyDetailsPanelRendered() {
+        renderDetailsPanel = false;
+    }
+
+    public void falseAllPanel() {
+        renderCreateEditPanel = false;
+        renderDetailsPanel = false;
+    }
 }

@@ -105,14 +105,26 @@ public class UserMBean extends AbstractUserBean {
     }
 
     public void registerUser() {
-        if (userService.isUniqueUser(userVo)) {
-            userVo.setRole(Role.CUSTOMER);
-            userService.addUser(userVo);
-            destroyUser();
-            ContextUtil.addMessage(null, FacesMessage.SEVERITY_INFO, "Regisztrálva", "Regisztálva");
-        } else {
-            ContextUtil.addMessage(null, FacesMessage.SEVERITY_INFO, "Foglalt", "Foglalt");
+        if (validateRegistration()) {
+            if (userService.isUniqueUser(userVo)) {
+                userVo.setRole(Role.CUSTOMER);
+                userService.addUser(userVo);
+                destroyUser();
+                ContextUtil.addMessage(null, FacesMessage.SEVERITY_INFO, getMessageByKey("user.registered"), null);
+            } else {
+                ContextUtil.addMessage(null, FacesMessage.SEVERITY_ERROR, getMessageByKey("user.taken"), null);
+            }
         }
+    }
+
+    //TODO optimalizálhatóság?
+    private boolean validateRegistration() {
+        boolean ret = false;
+        if (userVo.getUsername() != null && userVo.getPassword() != null
+                && userVo.getPasswordAgain() != null && userVo.getPhoneNumber() != null && userVo.getEmail() != null && (userVo.getPassword().equals(userVo.getPasswordAgain()))) {
+                ret = true;
+        }
+        return ret;
     }
 
     public void login() {

@@ -84,6 +84,6 @@ public class FoodBean extends AbstractViewBean {
 
     @Override
     public List<Role> getRoles() {
-        return Arrays.asList(Role.CUSTOMER, Role.ADMINISTRATOR, Role.DELIVER);
+        return null;
     }
 }
