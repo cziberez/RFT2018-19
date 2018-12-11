@@ -117,11 +117,12 @@
 
                 <p:dialog id="loginDialog" widgetVar="loginDlg" resizable="false" modal="true"
                           header="#{msg['menu.login']}">
+                    <p:growl id="loginGrowl" sticky="false" showDetail="false" life="3000"/>
                     <p:panelGrid id="loginPanelGrid" styleClass="noborder fullSize" columns="2">
-                        <p:outputLabel id="loginUsernameLabel" value="#{msg['menu.username']}"/>
-                        <p:inputText id="loginUsernameInput" value="#{userBean.userVo.username}"/>
-                        <p:outputLabel id="loginUsernamePasswordLabel" value="#{msg['menu.password']}"/>
-                        <p:password id="loginUsernamePasswordInput" value="#{userBean.userVo.password}"/>
+                        <p:outputLabel id="loginUsernameLabel" value="#{msg['menu.username']}*"/>
+                        <p:inputText id="loginUsernameInput" value="#{userBean.userVo.username}" required="true" requiredMessage="#{msg['validator.username']}"/>
+                        <p:outputLabel id="loginUsernamePasswordLabel" value="#{msg['menu.password']}*"/>
+                        <p:password id="loginUsernamePasswordInput" value="#{userBean.userVo.password}" required="true" requiredMessage="#{msq['validator.password']}"/>
                     </p:panelGrid>
                     <f:facet id="loginDialogFooter" name="footer"/>
                     <p:panelGrid id="loginDialogFooterPanelGrid" styleClass="noborder fullSize"
@@ -135,34 +136,38 @@
                 </p:dialog>
                 <p:dialog id="registerDialog" widgetVar="registerDlg" resizable="false" modal="true"
                           header="#{msg['menu.register']}">
+                    <p:growl id="registerGrowl" sticky="false" showDetail="false" life="3000"/>
                     <p:panelGrid id="registerPanelGrid" styleClass="noborder fullSize" columns="2">
-                        <p:outputLabel id="registerUsernameLabel" value="#{msg['menu.username']}"/>
-                        <p:inputText id="registerUsernameInput" value="#{userBean.userVo.username}"/>
+                        <p:outputLabel id="registerUsernameLabel" value="#{msg['menu.username']}*"/>
+                        <p:inputText id="registerUsernameInput" value="#{userBean.userVo.username}" required="true" requiredMessage="#{msg['validator.username']}"/>
 
-                        <p:outputLabel id="registerPasswordLabel" value="#{msg['menu.password']}"/>
-                        <p:password id="registerPasswordInput" value="#{userBean.userVo.password}"/>
+                        <p:outputLabel id="registerPasswordLabel" value="#{msg['menu.password']}*"/>
+                        <p:password id="registerPasswordInput" value="#{userBean.userVo.password}" required="true" requiredMessage="#{msg['validator.password']}"/>
 
-                        <p:outputLabel id="registerPasswordLabel2" value="#{msg['menu.password.again']}"/>
-                        <p:password id="registerPasswordInput2" value="#{userBean.userVo.passwordAgain}"/>
+                        <p:outputLabel id="registerPasswordLabel2" value="#{msg['menu.password.again']}*"/>
+                        <p:password id="registerPasswordInput2" value="#{userBean.userVo.passwordAgain}" required="true" requiredMessage="#{msg['validator.passwordAgain']}"/>
 
-                        <p:outputLabel id="registerFirstnameLabel" value="#{msg['menu.firstname']}"/>
-                        <p:inputText id="registerFirstnameInput" value="#{userBean.userVo.firstname}"/>
+                        <p:outputLabel id="registerFirstnameLabel" value="#{msg['menu.firstname']}*"/>
+                        <p:inputText id="registerFirstnameInput" value="#{userBean.userVo.firstname}" required="true" requiredMessage="#{msg['validator.firstname']}"/>
 
-                        <p:outputLabel id="registerLastnameLabel" value="#{msg['menu.lastname']}"/>
-                        <p:inputText id="registerLastnameInput" value="#{userBean.userVo.lastname}"/>
+                        <p:outputLabel id="registerLastnameLabel" value="#{msg['menu.lastname']}*"/>
+                        <p:inputText id="registerLastnameInput" value="#{userBean.userVo.lastname}" required="true" requiredMessage="#{msg['validator.lastname']}"/>
 
-                        <p:outputLabel id="registerEmailLabel" value="#{msg['menu.email']}"/>
-                        <p:inputText id="registerEmailInput" value="#{userBean.userVo.email}"/>
+                        <p:outputLabel id="registerEmailLabel" value="#{msg['menu.email']}*"/>
+                        <p:inputText id="registerEmailInput" value="#{userBean.userVo.email}" required="true" validatorMessage="#{msg['validator.email']}" requiredMessage="#{msg['validator.email.require']}">
+                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                        </p:inputText>
 
-                        <p:outputLabel id="registerPhoneLabel" value="#{msg['menu.phonenumber']}"/>
-                        <p:inputText id="registerPhoneInput" value="#{userBean.userVo.phoneNumber}"/>
+                        <p:outputLabel id="registerPhoneLabel" value="#{msg['menu.phonenumber']}*"/>
+                        <p:inputMask id="registerPhoneInput" value="#{userBean.userVo.phoneNumber}"
+                                     validatorMessage="#{msg['validator.phone']}" mask="+36 (99) 9-999-999" required="true" requiredMessage="#{msg['validator.phone.required']}"/>
                     </p:panelGrid>
                     <f:facet id="registerDlgFooter" name="footer">
                         <p:panelGrid id="registerDialogFooterPanelGrid" columns="2" styleClass="noborder fullSize"
                                      columnClasses="halfSize center-position">
                             <p:commandButton id="registerUserButton" value="#{msg['menu.register']}"
-                                             actionListener="#{userBean.registerUser}" process="registerDialog"
-                                             onsuccess="PF('registerDlg').hide()" update="registerDialog"/>
+                                             actionListener="#{userBean.registerUser}" process="registerDialog" partialSubmit="true"
+                                             oncomplete="if (#{not facesContext.validationFailed}) PF('registerDlg').hide()" update="registerDialog"/>
                             <p:commandButton id="cancelRegisterButton" value="#{msg['cancel']}"
                                              onclick="PF('registerDlg').hide()"/>
                         </p:panelGrid>

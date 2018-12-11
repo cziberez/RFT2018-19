@@ -16,6 +16,7 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -62,8 +63,8 @@ public class UserServiceBean implements UserService {
     }
 
     @Override
-    public UserVo authenticateUser(String username) {
-        User userE = userDao.findUserByName(username);
+    public UserVo authenticateUser(String username, String password) {
+        User userE = userDao.findUserByNameAndPassword(username,password);
         if (userE != null) {
             AddressVo addressVo = addressMapper.toVo(addressDao.find(userE.getUserAddress().getId()));
             UserVo userVo = userMapper.toVo(userE);
@@ -79,6 +80,14 @@ public class UserServiceBean implements UserService {
         addressDao.update(addressMapper.toEntity(userVo.getAddressVo()));
 
         userDao.update(userMapper.toEntity(userVo));
+    }
+
+    @Override
+    public boolean isUniqueUser(UserVo userVo) {
+
+        return userDao.findAll().stream()
+                .filter(f -> f.getEmail() != userVo.getEmail() || f.getUsername() != userVo.getUsername())
+                .collect(Collectors.toList()).isEmpty();
     }
 
 }

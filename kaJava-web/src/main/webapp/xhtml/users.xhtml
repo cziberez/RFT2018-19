@@ -11,54 +11,97 @@
 
     <ui:define name="content">
         <h:form id="userForm">
-            <p:panel id="userMainPanel">
-                <p:growl id="msgs" showDetail="true"/>
+            <p:growl id="msgs" showDetail="true"/>
 
-                <p:dataTable id="userTable" var="user" value="#{adminBean.users}"
-                             selection="#{adminBean.selectedUser}" rowKey="#{user.id}"
-                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                             emptyMessage="#{msg['emptyDataTable']}"
-                             currentPageReportTemplate="({currentPage} / {totalPages})"
-                             rowsPerPageTemplate="10,15,20,25,50" paginatorPosition="bottom"
-                             paginatorAlwaysVisible="true"
-                             resizableColumns="true" scrollable="true">
+            <p:dataTable id="userTable" var="user" value="#{adminBean.users}"
+                         selection="#{adminBean.selectedUser}" rowKey="#{user.id}"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         emptyMessage="#{msg['emptyDataTable']}"
+                         currentPageReportTemplate="({currentPage} / {totalPages})"
+                         rowsPerPageTemplate="10,15,20,25,50" paginatorPosition="bottom"
+                         paginatorAlwaysVisible="true"
+                         resizableColumns="true" scrollable="true">
 
-                    <f:facet name="header">
-                        <p:toolbar>
-                            <f:facet name="left">
-                                <p:commandButton icon="ui-icon-plus" action="#{adminBean.setRenderCreateEditPanel()}"
-                                                 value="#{msg['create']}" process="@this" update="@form"/>
-                                <p:commandButton icon="ui-icon-pencil" action="#{adminBean.setRenderCreateEditPanel()}"
-                                                 value="#{msg['edit']}" process="@this" update="@form"/>
-                                <p:commandButton icon="ui-icon-trash" value="#{msg['delete']}" type="button"
-                                                 onclick="PF('comfirmDialog').show();"/>
-                            </f:facet>
-                        </p:toolbar>
-                    </f:facet>
+                <f:facet name="header">
+                    <p:toolbar>
+                        <f:facet name="left">
+                            <p:commandButton icon="fa fa-file-o" action="#{adminBean.setRenderCreateEditPanel()}"
+                                             value="#{msg['create']}" process="@this" update="@form"/>
+                            <p:commandButton icon="ui-icon-pencil" action="#{adminBean.setRenderCreateEditPanel()}"
+                                             value="#{msg['edit']}" process="@this" update="@form"/>
+                            <p:commandButton icon="ui-icon-trash" value="#{msg['delete']}" type="button"
+                                             onclick="PF('comfirmDialog').show();"/>
+                        </f:facet>
+                    </p:toolbar>
+                </f:facet>
 
-                    <p:column selectionMode="single" style="text-align:center"/>
+                <p:ajax event="rowSelect" update="userForm:detailsTab"
+                        listener="#{adminBean.setDetailsPanelRendered}"/>
 
-                    <p:column headerText="Id">
-                        <h:outputText value="#{user.id}"/>
-                    </p:column>
-                    <p:column headerText="#{msg['username']}">
-                        <h:outputText value="#{user.username}"/>
-                    </p:column>
-                    <p:column headerText="#{msg['role']}">
-                        <h:outputText value="#{user.role}"/>
-                    </p:column>
+                <p:column selectionMode="single" style="text-align:center"/>
 
-                </p:dataTable>
+                <p:column headerText="Id">
+                    <h:outputText value="#{user.id}"/>
+                </p:column>
+                <p:column headerText="#{msg['username']}">
+                    <h:outputText value="#{user.username}"/>
+                </p:column>
+                <p:column headerText="#{msg['role']}">
+                    <h:outputText value="#{user.role}"/>
+                </p:column>
+                <p:column headerText="#{msg['regDate']}">
+                    <h:outputText value="#{user.recDate}">
+                        <f:convertDateTime pattern="yyyy.MM.dd"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="#{msg['editor']}">
+                    <h:outputText value="#{user.modUser}"/>
+                </p:column>
+                <p:column headerText="#{msg['modDate']}">
+                    <h:outputText value="#{user.modDate}">
+                        <f:convertDateTime pattern="yyyy.MM.dd"/>
+                    </h:outputText>
+                </p:column>
 
-                <p:panel id="userCreateOrRenderPanel" rendered="#{adminBean.isRenderCreateEditPanel()}">
-                    <p:panelGrid styleClass="noborder fullSize" columns="2" columnClasses="noborder">
-                        <p:outputLabel value="#{msg['role']}*"/>
-                        <p:selectOneMenu id="userRoleSelect" value="#{adminBean.selectedUser.role}" var="role" filterMatchMode="contains" required="true" converter="">
-                            <f:selectItem itemLabel="#{msg['select.one']}" itemValue=""/>
-                            <f:selectItems itemLabel="#{adminBean.roles}" itemValue="#{adminBean.roles}"/>
-                        </p:selectOneMenu>
-                    </p:panelGrid>
-                </p:panel>
+            </p:dataTable>
+
+            <p:panel id="detailsTab" rendered="#{adminBean.renderDetailsPanel()}">
+                <p:panelGrid styleClass="noborder fullSize" columns="2" columnClasses="noborder">
+
+                    <p:outputLabel value="#{msg['username']}"/>
+                    <h:outputText value="#{adminBean.selectedUser.username}"/>
+
+                    <p:outputLabel value="#{msg['role']}"/>
+                    <h:outputText value="#{adminBean.selectedUser.role.name}"/>
+
+                    <p:outputLabel value="#{msg['regDate']}"/>
+                    <h:outputText value="#{adminBean.selectedUser.recDate}">
+                        <f:convertDateTime pattern="yyyy.MM.dd"/>
+                    </h:outputText>
+
+                    <p:outputLabel value="#{msg['editor']}"/>
+                    <h:outputText value="#{adminBean.selectedUser.modUser}"/>
+
+                    <p:outputLabel value="#{msg['modDate']}"/>
+                    <h:outputText value="#{adminBean.selectedUser.modDate}">
+                        <f:convertDateTime pattern="yyyy.MM.dd"/>
+                    </h:outputText>
+                </p:panelGrid>
+            </p:panel>
+
+            <p:panel id="userCreateOrRenderPanel" rendered="#{adminBean.isRenderCreateEditPanel()}">
+                <p:panelGrid styleClass="noborder fullSize" columns="2" columnClasses="noborder">
+                    <p:outputLabel value="#{msg['username']}*"/>
+                    <p:i
+
+                    <p:outputLabel value="#{msg[role]}*"/>
+                    <p:selectOneMenu id="userRoleEnum" required="true" requiredMessage="#{msg['roleRequired']}" value="#{adminBean.selectedUser.role}">
+                        <f:selectItem itemLabel="#{msg['select.one']}" itemValue="#{null}"/>
+                        <f:selectItems value="#{adminBean.rolesEnum}" var="role"
+                                       itemLabel="#{role.name}"
+                                       itemValue="#{role}"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
             </p:panel>
         </h:form>
 
