@@ -32,6 +32,7 @@ public class AdministrationBean extends AbstractViewBean {
     @PostConstruct
     public void init() {
         users = userService.getAllUsers();
+        rolesEnum = getRolesEnum();
         getRolesEnum();
     }
 
@@ -71,8 +72,8 @@ public class AdministrationBean extends AbstractViewBean {
         this.selectedUser = selectedUser;
     }
 
-    public void getRolesEnum() {
-        rolesEnum = Arrays.asList(Role.values());
+    public List<Role> getRolesEnum() {
+        return Arrays.asList(Role.values());
     }
 
     public void setRolesEnum(List<Role> rolesEnum) {

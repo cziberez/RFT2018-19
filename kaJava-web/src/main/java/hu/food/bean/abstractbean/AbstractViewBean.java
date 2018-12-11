@@ -100,8 +100,20 @@ public abstract class AbstractViewBean implements Serializable {
         renderDetailsPanel = false;
     }
 
-    public void falseAllPanel() {
+    protected void falseAllPanel() {
         renderCreateEditPanel = false;
         renderDetailsPanel = false;
+    }
+
+    public void setRenderDetailsPanel(boolean renderDetailsPanel) {
+        this.renderDetailsPanel = renderDetailsPanel;
+    }
+
+    public UserMBean getUserMBean() {
+        return userMBean;
+    }
+
+    public void setUserMBean(UserMBean userMBean) {
+        this.userMBean = userMBean;
     }
 }

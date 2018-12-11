@@ -65,7 +65,7 @@
 
             </p:dataTable>
 
-            <p:panel id="detailsTab" rendered="#{adminBean.renderDetailsPanel()}">
+            <p:panel id="detailsTab" rendered="#{adminBean.isRenderDetailsPanel()}">
                 <p:panelGrid styleClass="noborder fullSize" columns="2" columnClasses="noborder">
 
                     <p:outputLabel value="#{msg['username']}"/>

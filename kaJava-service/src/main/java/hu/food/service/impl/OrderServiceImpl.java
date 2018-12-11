@@ -15,6 +15,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.inject.Inject;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -23,16 +24,16 @@ import java.util.stream.Collectors;
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class OrderServiceImpl implements OrderService {
 
-    @EJB
+    @Inject
     private OrderDao orderDao;
 
-    @EJB
+    @Inject
     private AddressDao addressDao;
 
-    @EJB
+    @Inject
     private UserDao userDao;
 
-    @EJB
+    @Inject
     private DeliverDao deliverDao;
 
     private UserMapper userMapper;
