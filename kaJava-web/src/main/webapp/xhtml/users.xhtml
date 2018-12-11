@@ -92,7 +92,6 @@
             <p:panel id="userCreateOrRenderPanel" rendered="#{adminBean.isRenderCreateEditPanel()}">
                 <p:panelGrid styleClass="noborder fullSize" columns="2" columnClasses="noborder">
                     <p:outputLabel value="#{msg['username']}*"/>
-                    <p:i
 
                     <p:outputLabel value="#{msg[role]}*"/>
                     <p:selectOneMenu id="userRoleEnum" required="true" requiredMessage="#{msg['roleRequired']}" value="#{adminBean.selectedUser.role}">
