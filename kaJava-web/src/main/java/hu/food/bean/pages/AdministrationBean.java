@@ -11,7 +11,6 @@ import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @Named("adminBean")
@@ -28,12 +27,13 @@ public class AdministrationBean extends AbstractViewBean {
 
     private UserVo selectedUser;
 
-    private List<Role> roles;
+    private List<Role> rolesEnum;
 
     @PostConstruct
     public void init() {
         users = userService.getAllUsers();
-        roles = Arrays.asList(Role.values());
+        rolesEnum = getRolesEnum();
+        getRolesEnum();
     }
 
     public void changeUserRole(UserVo user, Role role) {
@@ -72,13 +72,32 @@ public class AdministrationBean extends AbstractViewBean {
         this.selectedUser = selectedUser;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public List<Role> getRolesEnum() {
+        return Arrays.asList(Role.values());
+    }
+
+    public void setRolesEnum(List<Role> rolesEnum) {
+        this.rolesEnum = rolesEnum;
     }
 
     @Override
     public List<Role> getRoles() {
-        return Collections.singletonList(Role.ADMINISTRATOR);
+        return Arrays.asList(Role.ADMINISTRATOR, Role.SHOPRENTER);
     }
 
+    @Override
+    public void setDetailsPanelRendered() {
+        if (selectedUser != null) {
+            falseAllPanel();
+            super.setDetailsPanelRendered();
+        }
+    }
+
+    @Override
+    public void setRenderCreateEditPanel(boolean renderCreateEditPanel) {
+        if (selectedUser != null) {
+            falseAllPanel();
+            super.setRenderCreateEditPanel(renderCreateEditPanel);
+        }
+    }
 }
