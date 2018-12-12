@@ -100,7 +100,7 @@ public abstract class AbstractViewBean implements Serializable {
         renderDetailsPanel = false;
     }
 
-    protected void falseAllPanel() {
+    public void falseAllPanel() {
         renderCreateEditPanel = false;
         renderDetailsPanel = false;
     }

@@ -202,6 +202,11 @@ public class UserMBean extends AbstractUserBean {
         order.setPrice(getTotalPrice());
         orderService.makeAnOrder(userVo, order, basket);
         basket = new ArrayList<>();
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/xhtml/success.xhtml");
+        } catch (IOException e) {
+
+        }
     }
 
     public Long getTotalPrice() {
@@ -255,6 +260,19 @@ public class UserMBean extends AbstractUserBean {
 
     public String getSelectedPaymentType() {
         return selectedPaymentType;
+    }
+
+    public String getSelectedPaymentTypeToLang() {
+        String retString = null;
+        switch (selectedPaymentType) {
+        case "Cash":
+            retString = getMessageByKey("payment.cash");
+            break;
+        case "Card":
+            retString = getMessageByKey("payment.card");
+            break;
+        }
+        return retString;
     }
 
     public void setSelectedPaymentType(String selectedPaymentType) {

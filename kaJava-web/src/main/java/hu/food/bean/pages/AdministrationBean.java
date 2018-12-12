@@ -33,6 +33,7 @@ public class AdministrationBean extends AbstractViewBean {
     public void init() {
         users = userService.getAllUsers();
         rolesEnum = getRolesEnum();
+        selectedUser = new UserVo();
         getRolesEnum();
     }
 
@@ -99,5 +100,12 @@ public class AdministrationBean extends AbstractViewBean {
             falseAllPanel();
             super.setRenderCreateEditPanel(renderCreateEditPanel);
         }
+    }
+
+    public void saveUser() {
+        //TODO a ROLEEnum select-jét megcsinálni
+        selectedUser.setRole(Role.GUEST);
+        userService.addUser(selectedUser);
+        selectedUser = new UserVo();
     }
 }

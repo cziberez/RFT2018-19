@@ -79,7 +79,7 @@
                             <h:outputText value="#{msg['payment.type']}: *"/>
                             <p:selectOneMenu value="#{userBean.selectedPaymentType}" required="true">
                                 <f:selectItem itemLabel="#{msg['select.one']}" itemValue=""/>
-                                <f:selectItem itemLabel="#{msg['paymnet.cash']}" itemValue="Cash"/>
+                                <f:selectItem itemLabel="#{msg['payment.cash']}" itemValue="Cash"/>
                                 <f:selectItem itemLabel="#{msg['payment.card']}" itemValue="Card"/>
                             </p:selectOneMenu>
 
@@ -124,14 +124,14 @@
 
                         <p:panelGrid columns="2" columnClasses="label, value">
                             <h:outputText value="#{msg['total.price']}"/>
-                            <h:outputText value="#{userBean.getTotalPrice()} Huf"/>
+                            <h:outputText value="#{userBean.getTotalPrice()} Ft"/>
                             <p:panelGrid columns="2" columnClasses="label, value">
                                 <p:outputLabel value="#{msg['total.price']}"/>
-                                <h:outputText value="#{userBean.getTotalPrice()} Huf"/>
+                                <h:outputText value="#{userBean.getTotalPrice()} Ft"/>
 
 
-                                <h:outputText value="#{msg['payment.type']}"/>
-                                <h:outputText value="#{msg[userBean.selectedPaymentType]}: *"/>
+                                <p:outputLabel value="#{msg['payment.type']}"/>
+                                <h:outputText value="#{userBean.getSelectedPaymentTypeToLang()}: *"/>
 
                                 <h:outputText rendered="#{not empty userBean.order.description}" value="#{msg['deliver.note']}"/>
                                 <h:outputText rendered="#{not empty userBean.order.description}" value="#{userBean.order.description}"/>

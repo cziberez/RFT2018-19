@@ -35,10 +35,10 @@
                     </p:toolbar>
                 </f:facet>
 
+                <p:column selectionMode="single" style="text-align:center"/>
+
                 <p:ajax event="rowSelect" update="userForm:detailsTab"
                         listener="#{adminBean.setDetailsPanelRendered}"/>
-
-                <p:column selectionMode="single" style="text-align:center"/>
 
                 <p:column headerText="Id">
                     <h:outputText value="#{user.id}"/>
@@ -51,7 +51,7 @@
                 </p:column>
                 <p:column headerText="#{msg['regDate']}">
                     <h:outputText value="#{user.recDate}">
-                        <f:convertDateTime pattern="yyyy.MM.dd"/>
+                        <f:convertDateTime pattern="yyyy.MM.dd."/>
                     </h:outputText>
                 </p:column>
                 <p:column headerText="#{msg['editor']}">
@@ -59,14 +59,14 @@
                 </p:column>
                 <p:column headerText="#{msg['modDate']}">
                     <h:outputText value="#{user.modDate}">
-                        <f:convertDateTime pattern="yyyy.MM.dd"/>
+                        <f:convertDateTime pattern="yyyy.MM.dd."/>
                     </h:outputText>
                 </p:column>
 
             </p:dataTable>
 
-            <p:panel id="detailsTab" rendered="#{adminBean.isRenderDetailsPanel()}">
-                <p:panelGrid styleClass="noborder fullSize" columns="2" columnClasses="noborder">
+            <p:panel id="detailsTab">
+                <p:panelGrid id="detailsPanelGrid" styleClass="noborder fullSize" columns="2" columnClasses="noborder" rendered="#{adminBean.isRenderDetailsPanel()}">
 
                     <p:outputLabel value="#{msg['username']}"/>
                     <h:outputText value="#{adminBean.selectedUser.username}"/>
@@ -87,19 +87,33 @@
                         <f:convertDateTime pattern="yyyy.MM.dd"/>
                     </h:outputText>
                 </p:panelGrid>
-            </p:panel>
 
-            <p:panel id="userCreateOrRenderPanel" rendered="#{adminBean.isRenderCreateEditPanel()}">
-                <p:panelGrid styleClass="noborder fullSize" columns="2" columnClasses="noborder">
+                <p:panelGrid styleClass="noborder fullSize" columns="2" columnClasses="noborder" rendered="#{adminBean.isRenderCreateEditPanel()}">
+
                     <p:outputLabel value="#{msg['username']}*"/>
+                    <p:inputText value="#{adminBean.selectedUser.username}"/>
 
-                    <p:outputLabel value="#{msg[role]}*"/>
-                    <p:selectOneMenu id="userRoleEnum" required="true" requiredMessage="#{msg['roleRequired']}" value="#{adminBean.selectedUser.role}">
-                        <f:selectItem itemLabel="#{msg['select.one']}" itemValue="#{null}"/>
-                        <f:selectItems value="#{adminBean.rolesEnum}" var="role"
-                                       itemLabel="#{role.name}"
-                                       itemValue="#{role}"/>
-                    </p:selectOneMenu>
+                    <p:outputLabel value="#{msg['password']}*"/>
+                    <p:password value="#{adminBean.selectedUser.password}"/>
+
+                    <!--TODO enumConverter rendberakása -->
+                    <!--<p:outputLabel value="#{msg[role]}*"/>-->
+                    <!--<p:selectOneMenu id="userRoleEnum" required="true" requiredMessage="#{msg['roleRequired']}" value="#{adminBean.selectedUser.role}">-->
+                    <!--<f:selectItem itemLabel="#{msg['select.one']}" itemValue="#{null}"/>-->
+                    <!--<f:selectItems value="#{adminBean.rolesEnum}" var="role"-->
+                    <!--itemLabel="#{role.name}"-->
+                    <!--itemValue="#{role}"/>-->
+                    <!--</p:selectOneMenu>-->
+
+                    <f:facet name="footer">
+                        <p:commandButton icon="ui-icon-disk" value="#{msg['save']}" id="buttonSave" ajax="true"
+                                         update="userForm:userTable userForm:detailsTab"
+                                         action="#{adminBean.saveUser}"/>
+
+                        <p:commandButton icon="ui-icon-close" value="#{msg['cancel']}" id="buttonCancel"
+                                         update="userForm:detailsTab"
+                                         action="#{adminBean.falseAllPanel}"/>
+                    </f:facet>
                 </p:panelGrid>
             </p:panel>
         </h:form>
