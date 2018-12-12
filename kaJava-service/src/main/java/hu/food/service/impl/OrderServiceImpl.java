@@ -71,10 +71,9 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderVo> findOrdersByUser(Long userId) {
 
-        return orderMapper.toVo(orderDao.findAll()
-                .stream()
-                .filter(f -> f.getCustomer().getId().equals(userId))
-                .collect(Collectors.toList()));
+        List<OrderVo> ret = orderMapper.toVo(orderDao.findByUserId(userId));
+
+        return ret;
     }
 
     @Override
@@ -83,7 +82,7 @@ public class OrderServiceImpl implements OrderService {
             return deliverMapper.toVo(
                     deliverDao.findAll()
                             .stream().sorted((s1, s2) -> s1.getModDate().compareTo(s2.getModDate())).findFirst().get());
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return null;
         }
     }

@@ -27,6 +27,7 @@
                     </p:panelGrid>
                 </p:tab>
                 <p:tab title="#{msg['profile.shipping.datas']}">
+
                     <p:panelGrid columns="2" cellpadding="10" style="justify-content: center;align-content: center;">
                         <p:outputLabel id="profileCityLabel" value="#{msg['menu.city']}"/>
                         <p:inputText id="profileCityInput" value="#{userBean.userVo.addressVo.city}"/>
@@ -40,19 +41,46 @@
                         <p:inputText id="profileFloorInput" value="#{userBean.userVo.addressVo.floor}"/>
                         <p:outputLabel id="profileDoorLabel" value="#{msg['menu.door']}"/>
                         <p:inputText id="profileDoorInput" value="#{userBean.userVo.addressVo.door}"/>
-                    </p:panelGrid>
-                    <p:panelGrid id="buttonPanel">
-                        <p:commandButton id="modifyButton" value="#{msg['save']}"
-                                         actionListener="#{userBean.modifyAddress}" process="@this"
-                                         update="@this"/>
 
+                        <p:commandButton id="modifyButton" value="#{msg['save']}"
+                                         actionListener="#{userBean.modifyAddress}" process="@form"
+                                         update="@this"/>
                     </p:panelGrid>
                 </p:tab>
 
                 <p:tab title="#{msg['profile.order.history']}">
-                    <p:panelGrid columns="2" cellpadding="10">
+                    <p:repeat value="#{orderBean.myOrders}" var="order">
+                        <h:panelGrid columns="2" style="width:400px" columnClasses="logo,detail">
 
-                    </p:panelGrid>
+                            <h:outputText value="#{msg['order.date']}:"/>
+                            <h:outputText value="#{order.recDate}" style="font-weight: bold"/>
+
+                            <h:outputText value="#{msg['order.price']}:"/>
+                            <h:outputText value="#{order.price} Huf" style="font-weight: bold"/>
+
+                            <h:outputText value="#{msg['order.basket']}:"/>
+
+                        </h:panelGrid>
+                        <h:panelGrid columns="2" style="width:400px" columnClasses="logo,detail">
+                            <p:repeat value="#{order.orderedFood}" var="food">
+                                <p:graphicImage style="width:150px;"
+                                                url="https://www.nosalty.hu/files/imagecache/recept/recept_kepek/246177_249445_cover_post_32.jpg"/>
+                                <p:outputPanel>
+                                    <h:panelGrid columns="2" cellpadding="5">
+                                        <h:outputText value="#{msg['food.name']}:"/>
+                                        <h:outputText value="#{food.name}" style="font-weight: bold"/>
+
+                                        <h:outputText value="#{msg['food.price']}:"/>
+                                        <h:outputText value="#{food.price} Huf" style="font-weight: bold"/>
+
+                                        <h:outputText value="#{msg['food.category']}:"/>
+                                        <h:outputText value="#{food.category}" style="font-weight: bold"/>
+                                    </h:panelGrid>
+                                </p:outputPanel>
+                            </p:repeat>
+                        </h:panelGrid>
+                        <hr/>
+                    </p:repeat>
                 </p:tab>
 
             </p:tabView>

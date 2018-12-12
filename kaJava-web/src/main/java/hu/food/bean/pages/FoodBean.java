@@ -1,6 +1,7 @@
 package hu.food.bean.pages;
 
 import hu.food.bean.abstractbean.AbstractViewBean;
+import hu.food.bean.user.UserMBean;
 import hu.food.service.enums.Role;
 import hu.food.service.services.FoodService;
 import hu.food.service.vo.FoodVo;
@@ -68,6 +69,7 @@ public class FoodBean extends AbstractViewBean {
         if(selectedFood != null) {
             foodService.saveFood(selectedFood);
         }
+        foods = foodService.findAll();
     }
 
     public UploadedFile getFile() {

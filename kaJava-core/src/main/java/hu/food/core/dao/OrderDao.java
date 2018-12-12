@@ -46,4 +46,9 @@ public class OrderDao implements BaseDao<Order> {
         TypedQuery<Order> typedQuery = entityManager.createQuery("select o from Order o", Order.class);
         return typedQuery.getResultList();
     }
+
+    public List<Order> findByUserId(Long userId) {
+        TypedQuery<Order> typedQuery = entityManager.createQuery("select o from Order o where o.customer.id = :userId", Order.class);
+        return typedQuery.setParameter("userId", userId).getResultList();
+    }
 }

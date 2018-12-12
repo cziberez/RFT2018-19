@@ -14,6 +14,8 @@ public class FoodVo extends BaseVo {
 
 	private FoodImageVo foodImage;
 
+	private String pictureUrl;
+
 	private List<IngridenceVo> ingridence;
 
 	public String getName() {
@@ -56,12 +58,13 @@ public class FoodVo extends BaseVo {
 		this.ingridence = ingridence;
 	}
 
-	public FoodVo(String name, Long price, String description, FoodImageVo foodImage, List<IngridenceVo> ingridence) {
+	public FoodVo(String name, Long price, String description, FoodImageVo foodImage, String pictureUrl, List<IngridenceVo> ingridence) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.description = description;
 		this.foodImage = foodImage;
+		this.pictureUrl = pictureUrl;
 		this.ingridence = ingridence;
 	}
 
@@ -75,5 +78,13 @@ public class FoodVo extends BaseVo {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public String getPictureUrl() {
+		return pictureUrl;
+	}
+
+	public void setPictureUrl(String pictureUrl) {
+		this.pictureUrl = pictureUrl;
 	}
 }

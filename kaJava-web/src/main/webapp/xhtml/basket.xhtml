@@ -14,9 +14,8 @@
             <p:panel id="basketPanel" header="#{msg['basket']}">
                 <p:repeat value="#{userBean.basket}" var="food">
                     <h:panelGrid columns="2" style="width:400px" columnClasses="logo,detail">
-
                         <p:graphicImage style="width:150px;"
-                                        url="https://www.nosalty.hu/files/imagecache/recept/recept_kepek/246177_249445_cover_post_32.jpg"/>
+                        url="#{food.pictureUrl}"/>
 
                         <p:outputPanel>
                             <h:panelGrid columns="2" cellpadding="5">
@@ -30,6 +29,7 @@
                                 <h:outputText value="#{food.category}" style="font-weight: bold"/>
                             </h:panelGrid>
                         </p:outputPanel>
+
                     </h:panelGrid>
                     <hr/>
                 </p:repeat>

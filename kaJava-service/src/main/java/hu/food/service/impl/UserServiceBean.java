@@ -78,15 +78,13 @@ public class UserServiceBean implements UserService {
     @Override
     public void modifyAddress(UserVo userVo) {
         addressDao.update(addressMapper.toEntity(userVo.getAddressVo()));
-
-        userDao.update(userMapper.toEntity(userVo));
     }
 
     @Override
     public boolean isUniqueUser(UserVo userVo) {
 
         return userDao.findAll().stream()
-                .filter(f -> f.getEmail() != userVo.getEmail() || f.getUsername() != userVo.getUsername())
+                .filter(f -> f.getEmail() == userVo.getEmail() && f.getUsername() == userVo.getUsername())
                 .collect(Collectors.toList()).isEmpty();
     }
 

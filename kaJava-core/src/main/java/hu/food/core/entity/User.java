@@ -37,7 +37,7 @@ public class User extends BaseEntity {
 
     private RoleEnum role;
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne
     private Address userAddress;
 
     public User() {
