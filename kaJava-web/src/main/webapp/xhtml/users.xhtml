@@ -11,7 +11,7 @@
 
     <ui:define name="content">
         <h:form id="userForm">
-            <p:growl id="msgs" showDetail="true"/>
+            <p:growl globalOnly="true" autoUpdate="true" id="msgs" showDetail="true"/>
 
             <p:dataTable id="userTable" var="user" value="#{adminBean.users}"
                          selection="#{adminBean.selectedUser}" rowKey="#{user.id}"

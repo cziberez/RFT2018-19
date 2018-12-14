@@ -11,7 +11,6 @@
 
     <ui:define name="content">
         <h:form id="adminFormFood" rendered="#{userBean.isLoggedInAsShopRenter()}">
-            <p:panel id="adminFoodMainPanel">
                 <p:dataTable id="adminTableDataTable" var="food" value="#{foodBean.foods}" selectionMode="single"
                              selection="#{foodBean.selectedFood}" rowKey="#{food.id}" paginator="true"
                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -83,7 +82,6 @@
                         <p:commandButton value="#{msg['cancel']}" process="foodPanel" action="#{foodBean.destroyCreateEditPanel}" update="@form"/>
                     </f:facet>
                 </p:panel>
-            </p:panel>
         </h:form>
 
         <h:form id="foodForm">

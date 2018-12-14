@@ -29,7 +29,7 @@ public class FoodBean extends AbstractViewBean {
 
     @PostConstruct
     public void init() {
-        foods = foodService.findAllActive();
+        foods = getAllActiveFood();
         selectedFood = new FoodVo();
     }
 
@@ -62,11 +62,16 @@ public class FoodBean extends AbstractViewBean {
             selectedFood.setStatus(StatusEnum.ACTIVE);
             foodService.saveFood(selectedFood);
         }
-        foods = foodService.findAllActive();
+        foods = getAllActiveFood();
+    }
+
+    private List<FoodVo> getAllActiveFood() {
+        return foodService.findAllActive();
     }
 
     public void deleteFood(FoodVo food) {
         foodService.deleteLogical(food);
+        foods = getAllActiveFood();
     }
 
     @Override
