@@ -34,8 +34,26 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
+    public List<FoodVo> findAllActive() {
+
+        return foodMapper.toVo(foodDao.findAllActive());
+    }
+
+    @Override
     public void saveFood(FoodVo food) {
 
         foodDao.save(foodMapper.toEntity(food));
+    }
+
+    @Override
+    public void deleteFood(FoodVo food) {
+
+        foodDao.remove(food.getId());
+    }
+
+    @Override
+    public void deleteLogical(FoodVo food) {
+
+        foodDao.removeLogical(food.getId());
     }
 }

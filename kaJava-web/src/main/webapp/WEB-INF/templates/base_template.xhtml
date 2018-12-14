@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="#{userBean.localeAsString}"
-      xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
@@ -108,12 +107,12 @@
                     </f:facet>
                 </p:dialog>
 
-                <p:confirmDialog id="confirmDialog" global="true" showEffect="show" hideEffect="fade" widgetVar="confirmDialog">
-                    <p:commandButton id="confirmDialogTrue" value="#{msg['true']}" type="button"
-                                     styleClass="ui-confirmdialog-yes" icon="ui-icon-check" process="@this"/>
-                    <p:commandButton id="confirmDialogFalse" value="#{msg['false']}" type="button"
-                                     styleClass="ui-confirmdialog-no" icon="ui-icon-close" process="@this"/>
-                </p:confirmDialog>
+                <!--<p:confirmDialog id="confirmDialog" global="true" showEffect="show" hideEffect="fade" widgetVar="confirmDialog">-->
+                    <!--<p:commandButton id="confirmDialogTrue" value="#{msg['true']}" type="button"-->
+                                     <!--styleClass="ui-confirmdialog-yes" icon="ui-icon-check" process="@this"/>-->
+                    <!--<p:commandButton id="confirmDialogFalse" value="#{msg['false']}" type="button"-->
+                                     <!--styleClass="ui-confirmdialog-no" icon="ui-icon-close" process="@this"/>-->
+                <!--</p:confirmDialog>-->
 
                 <p:dialog id="loginDialog" widgetVar="loginDlg" resizable="false" modal="true"
                           header="#{msg['menu.login']}">

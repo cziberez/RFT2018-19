@@ -1,7 +1,7 @@
 package hu.food.core.dao;
 
-
 import hu.food.core.entity.Order;
+import hu.food.core.entity.enums.StatusEnum;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -45,6 +45,20 @@ public class OrderDao implements BaseDao<Order> {
     public List<Order> findAll() {
         TypedQuery<Order> typedQuery = entityManager.createQuery("select o from Order o", Order.class);
         return typedQuery.getResultList();
+    }
+
+    @Override
+    public List<Order> findAllActive() {
+        TypedQuery<Order> typedQuery = entityManager.createQuery("select o from Order o where o.status=hu.food.core.entity.enums.StatusEnum.ACTIVE", Order.class);
+        return typedQuery.getResultList();
+    }
+
+    @Override
+    public void removeLogical(Long id) {
+        Order order = (Order) entityManager.find(Order.class, id);
+        if (order != null) {
+            order.setStatus(StatusEnum.DELETED);
+        }
     }
 
     public List<Order> findByUserId(Long userId) {

@@ -87,34 +87,57 @@
         </h:form>
 
         <h:form id="foodForm">
-            <p:panelGrid columns="1" layout="grid">
+
                 <p:dataGrid var="food" value="#{foodBean.foods}" columns="3" layout="grid"
-                            rows="10" paginator="true" id="foods"
+                            rows="10" paginator="true" id="foods" widgetVar="foodTable"
                             emptyMessage="#{msg['emptyDataTable']}"
                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                             rowsPerPageTemplate="10,15,20,25,50" paginatorPosition="bottom" paginatorAlwaysVisible="true"
                             resizableColumns="true" scrollable="true">
 
                     <f:facet name="header">
-                        #{msg['menu.food']}
+                        <h:outputText value="#{msg['menu.food']}" title="#{msg['menu.food']}"/>
                     </f:facet>
 
-                    <p:panel header="#{food.name}" style="text-align:center">
-                        <h:panelGrid columns="1" style="width:100%">
+                    <p:panel header="#{food.name}" styleClass="center-position">
 
-                            <p:graphicImage style="width:100%"
+                        <f:facet name="header">
+                            <h:outputText value="#{food.name}"/>
+                        </f:facet>
+
+                        <h:panelGrid columns="1" styleClass="fullSize">
+
+                            <p:graphicImage styleClass="fullSize"
                                             url="#{food.pictureUrl}"/>
 
-                            <h:panelGrid columns="2" style="width:100%">
+                            <h:panelGrid columns="2" styleClass="fullSize">
                                 <h:outputText value="#{msg['food.price']}"/>
                                 <h:outputText value="#{food.price} Ft"/>
                                 <p:commandButton value="#{msg['addToBasket']}" process="@this" update="@form" action="#{userBean.addFoodToBasket(food)}"/>
                             </h:panelGrid>
+                            <p:panel header="#{msg['role.administrator.panel']}" rendered="#{userBean.isLoggedInAsAdmin()}">
+                                <p:commandButton icon="ui-icon-trash"
+                                                 value="#{msg['delete']}"
+                                                 rendered="#{userBean.isLoggedInAsAdmin()}"
+                                                 style="font-size: 0.7em;">
+                                    <p:confirm header="#{msg['dialog.confirm.header']}" message="#{msg['are.you.sure.content']}" icon="fa fa-question-circle"/>
+                                </p:commandButton>
+                                <p:confirmDialog global="true"
+                                                 id="deleteFoodConfirm" widgetVar="deleteFoodConfirm" message="#{msg['are.you.sure.content']}" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="#{msg['yes']}"
+                                                     icon="ui-icon-check"
+                                                     process="@this"
+                                                     onclick="PF('deleteFoodConfirm').hide()"
+                                                     action="#{foodBean.deleteFood(food)}"
+                                                    update="@widgetVar(foodTable)"/>
+                                    <p:commandButton value="#{msg['no']}" icon="ui-icon-close"
+                                                     onclick="PF('deleteFoodConfirm').hide()"/>
+                                </p:confirmDialog>
+                            </p:panel>
                         </h:panelGrid>
                     </p:panel>
 
                 </p:dataGrid>
-            </p:panelGrid>
         </h:form>
     </ui:define>
 

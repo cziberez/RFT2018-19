@@ -8,5 +8,11 @@ public interface FoodService {
 
     List<FoodVo> findAll();
 
+    List<FoodVo> findAllActive();
+
     void saveFood(FoodVo food);
+
+    void deleteFood(FoodVo food);
+
+    void deleteLogical(FoodVo food);
 }

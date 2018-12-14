@@ -10,7 +10,6 @@ import java.util.Date;
 public class BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	//TODO rájönni miért mindig null
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "RECDATE")
 	private Date recDate;

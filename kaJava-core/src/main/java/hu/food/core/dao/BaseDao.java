@@ -16,4 +16,8 @@ public interface BaseDao<E extends BaseEntity> {
 
 	List<E> findAll();
 
+	List<E> findAllActive();
+
+	void removeLogical(Long id);
+
 }

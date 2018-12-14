@@ -152,6 +152,7 @@ public class UserMBean extends AbstractUserBean {
     private void doLogout() {
         try {
             destroyUser();
+            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
             FacesContext.getCurrentInstance().getExternalContext().redirect("/xhtml/index.xhtml");
         } catch (IOException e) {
 

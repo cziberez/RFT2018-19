@@ -16,6 +16,7 @@
             <p:menuitem value="#{msg['menu.home']}" icon="ui-icon-home" url="/xhtml/index.xhtml"/>
             <p:menuitem value="#{msg['menu.food']}" url="/xhtml/food.xhtml"/>
             <p:menuitem value="#{msg['menu.users']}" url="/xhtml/users.xhtml" rendered="#{userBean.isLoggedInAsAdmin()}"/>
+            <p:menuitem value="#{msg['menu.orders']}" url="/xhtml/orders.xhtml" rendered="#{userBean.isLoggedInAsAdmin()}"/>
             <p:menuitem value="#{msg['menu.profile']}" url="/xhtml/profile.xhtml" rendered="#{userBean.isLoggedIn()}"/>
 
             <f:facet name="options">

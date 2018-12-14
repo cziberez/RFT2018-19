@@ -35,6 +35,8 @@ public class User extends BaseEntity {
     @Column(name = "PHONENUMBER")
     private String phoneNumber;
 
+    @Column(name = "ROLE")
+    @Enumerated(EnumType.STRING)
     private RoleEnum role;
 
     @OneToOne

@@ -1,5 +1,7 @@
 package hu.food.service.vo;
 
+import hu.food.service.enums.StatusEnum;
+
 import java.util.Date;
 
 public class BaseVo {
@@ -15,6 +17,8 @@ public class BaseVo {
 	private Date modDate;
 
 	private Long version;
+
+	private StatusEnum status;
 
 	public Long getId() {
 		return id;
@@ -64,4 +68,11 @@ public class BaseVo {
 		this.version = version;
 	}
 
+	public StatusEnum getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusEnum status) {
+		this.status = status;
+	}
 }
