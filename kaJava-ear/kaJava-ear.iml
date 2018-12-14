@@ -28,6 +28,7 @@
     <orderEntry type="library" name="Maven: org.codehaus.janino:janino:2.7.5" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.janino:commons-compiler:2.7.5" level="project" />
     <orderEntry type="module" module-name="kaJava-core" />
+    <orderEntry type="library" name="Maven: org.datanucleus:datanucleus-jpa-query:5.0.5" level="project" />
     <orderEntry type="module" module-name="kaJava-web" />
     <orderEntry type="library" name="Maven: org.primefaces:primefaces:6.2" level="project" />
     <orderEntry type="library" name="Maven: org.primefaces.themes:all-themes:1.0.10" level="project" />
