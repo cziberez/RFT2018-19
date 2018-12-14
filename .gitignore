@@ -5,3 +5,12 @@
 /kaJava-core/target
 /kaJava-ear/target
 /kaJava-service/target
+/kaJava-service/kaJava-service.iml
+/kaJava.iml
+/kaJava-core/kaJava-core.iml
+/kaJava-ear/kaJava-ear.iml
+kaJava-core/kaJava-core.iml
+kaJava-ear/kaJava-ear.iml
+kaJava-service-api/kaJava-service-api.iml
+kaJava-web/.idea/
+kaJava.iml
