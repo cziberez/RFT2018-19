@@ -44,7 +44,8 @@
 		<module>kaJava-service-api</module>
 		<module>kaJava-web</module>
 		<module>kaJava-ear</module>
-	</modules>
+        <module>kaJava-persistence</module>
+    </modules>
 
 	<dependencyManagement>
 		<dependencies>

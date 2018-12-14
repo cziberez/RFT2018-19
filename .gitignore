@@ -14,3 +14,4 @@ kaJava-ear/kaJava-ear.iml
 kaJava-service-api/kaJava-service-api.iml
 kaJava-web/.idea/
 kaJava.iml
+/kaJava-persistence/kaJava-persistence.iml
