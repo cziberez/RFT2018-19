@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,11 +28,40 @@ public class FoodBean extends AbstractViewBean {
 
     private FoodVo selectedFood;
 
+    private Boolean isSoup;
+
+    private Boolean isMainDishes;
+
+    private Boolean isPizza;
+
+    private Boolean isDessert;
+
     @PostConstruct
     public void init() {
         foods = getAllActiveFood();
         selectedFood = new FoodVo();
+        isSoup = true;
+        isMainDishes = true;
+        isPizza = true;
+        isDessert = true;
     }
+
+    public void searchForFood(){
+        foods = new ArrayList<>();
+        if(isSoup){
+            foods.addAll(foodService.findByCategory("Levesek"));
+        }
+        if(isMainDishes){
+            foods.addAll(foodService.findByCategory("Főételek"));
+        }
+        if(isPizza){
+            foods.addAll(foodService.findByCategory("Pizzák"));
+        }
+        if(isDessert){
+            foods.addAll(foodService.findByCategory("Desszertek"));
+        }
+    }
+
 
     public FoodService getFoodService() {
         return foodService;
@@ -77,5 +107,37 @@ public class FoodBean extends AbstractViewBean {
     @Override
     public List<Role> getRoles() {
         return null;
+    }
+
+    public Boolean getSoup() {
+        return isSoup;
+    }
+
+    public void setSoup(Boolean soup) {
+        isSoup = soup;
+    }
+
+    public Boolean getMainDishes() {
+        return isMainDishes;
+    }
+
+    public void setMainDishes(Boolean mainDishes) {
+        isMainDishes = mainDishes;
+    }
+
+    public Boolean getPizza() {
+        return isPizza;
+    }
+
+    public void setPizza(Boolean pizza) {
+        isPizza = pizza;
+    }
+
+    public Boolean getDessert() {
+        return isDessert;
+    }
+
+    public void setDessert(Boolean dessert) {
+        isDessert = dessert;
     }
 }

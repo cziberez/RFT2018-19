@@ -1,9 +1,14 @@
 package hu.food.service.impl;
 
+import hu.food.core.dao.DailyMenuDao;
 import hu.food.core.dao.FoodDao;
+import hu.food.core.entity.DailyMenu;
+import hu.food.service.mapper.DailyMenuMapper;
 import hu.food.service.mapper.FoodMapper;
 import hu.food.service.services.FoodService;
+import hu.food.service.vo.DailyMenuVo;
 import hu.food.service.vo.FoodVo;
+import hu.food.service.vo.UserVo;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -21,6 +26,11 @@ public class FoodServiceImpl implements FoodService {
     private FoodDao foodDao;
 
     private FoodMapper foodMapper;
+
+    @EJB
+    private DailyMenuDao dailyMenuDao;
+
+    private DailyMenuMapper dailyMenuMapper;
 
     @PostConstruct
     public void init() {
@@ -56,4 +66,26 @@ public class FoodServiceImpl implements FoodService {
 
         foodDao.removeLogical(food.getId());
     }
+
+    @Override
+    public List<FoodVo> findByCategory(String category) {
+
+        return foodMapper.toVo(foodDao.findByCategory(category));
+    }
+
+    @Override
+    public void saveDailyMenu(DailyMenuVo menu) {
+        dailyMenuDao.save(dailyMenuMapper.toEntity(menu));
+    }
+
+    @Override
+    public DailyMenuVo getDailyMenu(String day) {
+        return dailyMenuMapper.toVo(dailyMenuDao.getDailyMenu(day));
+    }
+
+    @Override
+    public List<DailyMenuVo> findAllMenu() {
+        return dailyMenuMapper.toVo(dailyMenuDao.findAll());
+    }
+
 }

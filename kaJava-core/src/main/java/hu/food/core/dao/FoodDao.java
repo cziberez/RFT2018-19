@@ -60,4 +60,9 @@ public class FoodDao implements BaseDao<Food> {
             food.setStatus(StatusEnum.DELETED);
         }
     }
+
+    public List<Food> findByCategory(String category){
+        TypedQuery<Food> typedQuery = entityManager.createQuery("select f from Food f where f.category = :category and f.status = hu.food.core.entity.enums.StatusEnum.ACTIVE", Food.class);
+        return typedQuery.setParameter("category",category).getResultList();
+    }
 }
