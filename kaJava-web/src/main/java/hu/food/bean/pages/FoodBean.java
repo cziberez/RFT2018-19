@@ -91,8 +91,9 @@ public class FoodBean extends AbstractViewBean {
         if(selectedFood != null) {
             selectedFood.setStatus(StatusEnum.ACTIVE);
             foodService.saveFood(selectedFood);
+            selectedFood = new FoodVo();
+            foods = getAllActiveFood();
         }
-        foods = getAllActiveFood();
     }
 
     private List<FoodVo> getAllActiveFood() {
@@ -102,6 +103,10 @@ public class FoodBean extends AbstractViewBean {
     public void deleteFood(FoodVo food) {
         foodService.deleteLogical(food);
         foods = getAllActiveFood();
+    }
+
+    public void setActualFoodModify(FoodVo foodVo) {
+        selectedFood = foodVo;
     }
 
     @Override

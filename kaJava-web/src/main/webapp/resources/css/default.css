@@ -42,3 +42,165 @@
 #page-footer-resizer {
     display: none !important;
 }
+
+.ui-button {
+    font-size: 0.8em;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    padding: 0;
+    color: #616161;
+}
+
+h1, h2, h3 {
+    margin-top: 0;
+}
+
+h1 {
+    font-size: 1.6em;
+    font-weight: normal;
+}
+
+h2 {
+    font-size: 1.2em;
+}
+
+h3 {
+    font-size: 1em;
+    margin-top: 20px;
+}
+
+ul {
+
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a img {
+    border: none;
+}
+
+img.left {
+    float: left;
+    margin: 0 20px 0 0;
+}
+
+img.right {
+    float: right;
+    margin: 0 0 0 20px;
+}
+
+body, .ui-widget {
+    font-family: Arial !important;
+}
+
+.ui-selectonemenu {
+    min-width: 27px;
+    max-width: 500px;
+}
+
+.ui-selectonemenu-panel .ui-selectonemenu-list-item {
+    white-space: pre;
+}
+
+.ui-themeswitcher a.ui-selectonemenu-label-container {
+    text-decoration: none !important;
+}
+
+.ui-widget {
+    font-size: 13px !important;
+}
+
+.ui-menu .ui-menu-parent .ui-menu-child {
+    width: auto;
+    white-space: nowrap;
+}
+
+#page-wrapper {
+    min-height: 100%;
+}
+
+#page-header {
+    z-index: 20 !important;
+    overflow: visible !important;
+    border: 0 none;
+    padding: 0;
+    margin: 0;
+    background: none;
+}
+
+#page-header .ui-layout-unit-content {
+    overflow: visible !important;
+}
+
+#page-header .ui-panel-content {
+    padding: 0;
+}
+
+#page-content {
+    padding: 0.5em 1em;
+}
+
+#function-header, #function-content, #page-footer, #page-content {
+    border: 0 none;
+}
+
+.panelgrid {
+    vertical-align: top;
+    width: 50%;
+}
+
+.panelgridlabel {
+    padding: 3px;
+    text-align: left;
+}
+
+.panelgriddata {
+    padding: 3px;
+    padding-left: 8px;
+}
+
+#errorNotification {
+    background: #f2dede;
+}
+
+::-webkit-input-placeholder {
+    color: #a7c7e0;
+}
+
+:-moz-placeholder {
+    color: #a7c7e0;
+}
+
+::-moz-placeholder {
+    color: #a7c7e0;
+}
+
+:-ms-input-placeholder {
+    color: #a7c7e0;
+}
+
+.cell-align-top td {
+    vertical-align: top;
+}
+
+.map-content-padding {
+    padding-bottom: 20px;
+    max-width: 250px;
+}
+
+div[id*="statusDlg_modal"] {
+    opacity: 0;
+    filter: Alpha(opacity = 0);
+}

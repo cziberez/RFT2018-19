@@ -38,6 +38,10 @@
         <param-name>com.sun.faces.enableRestoreView11Compatibility</param-name>
         <param-value>true</param-value>
     </context-param>
+    <context-param>
+        <param-name>org.jepsar.primefaces.theme.APPEND_CSS_RESOURCE</param-name>
+        <param-value>custom.css</param-value>
+    </context-param>
 
 
     <error-page>
