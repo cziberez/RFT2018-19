@@ -25,6 +25,7 @@ public class BaseEntity implements Serializable {
 	@PrePersist
 	public void prePersist() {
 		recDate = new Date();
+		status = StatusEnum.ACTIVE;
 	}
 
 	@PreUpdate
