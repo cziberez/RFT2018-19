@@ -25,10 +25,6 @@
                             <f:facet name="left">
                                 <p:commandButton icon="fa fa-file-o" action="#{foodBean.setRenderCreateEditPanel()}"
                                                  value="#{msg['create']}" process="@this" update="@form"/>
-                                <p:commandButton icon="ui-icon-pencil" action="#{foodBean.setRenderCreateEditPanel()}"
-                                                 value="#{msg['edit']}" process="@this" update="@form"/>
-                                <p:commandButton icon="ui-icon-trash" value="#{msg['delete']}" type="button"
-                                                 onclick="PF('comfirmDialog').show();"/>
                             </f:facet>
                         </p:toolbar>
                     </f:facet>
@@ -48,14 +44,12 @@
                 </p:dataTable>
 
                 <p:panel id="foodPanel" rendered="#{foodBean.isRenderCreateEditPanel()}">
-                    <p:panelGrid id="foodPanelGrid" styleClass="noborder fullSize" columns="3" layout="grid">
+                    <p:panelGrid id="foodPanelGrid" styleClass="noborder fullSize" columns="2" layout="grid">
                         <p:outputLabel value="#{msg['food.name']}"/>
                         <p:inputText value="#{foodBean.selectedFood.name}"/>
-                        <p:spacer/>
 
                         <h:outputText value="#{msg['food.price']}"/>
                         <p:inputNumber value="#{foodBean.selectedFood.price}" decimalPlaces="0"/>
-                        <p:spacer/>
 
                         <h:outputText value="#{msg['food.category']}"/>
                         <p:selectOneMenu value="#{foodBean.selectedFood.category}">
@@ -65,16 +59,12 @@
                             <f:selectItem itemLabel="#{msg['food.category.pizzas']}" itemValue="Pizzák"/>
                             <f:selectItem itemLabel="#{msg['food.category.desserts']}" itemValue="Desszertek"/>
                         </p:selectOneMenu>
-                        <p:spacer/>
 
                         <p:outputLabel value="#{msg['food.description']}"/>
                         <p:inputTextarea rows="6" cols="33" value="#{foodBean.selectedFood.description}" maxlength="255"/>
-                        <p:spacer/>
 
                         <p:outputLabel value="#{msg['food.pictureUrl']}"/>
                         <p:inputText value="#{foodBean.selectedFood.pictureUrl}"/>
-
-                        <p:growl id="uploadMessages" showDetail="true"/>
 
                     </p:panelGrid>
                     <f:facet name="footer">
@@ -124,13 +114,47 @@
                                                  id="deleteFoodConfirm" widgetVar="deleteFoodConfirm" message="#{msg['are.you.sure.content']}" showEffect="fade" hideEffect="fade">
                                     <p:commandButton value="#{msg['yes']}"
                                                      icon="ui-icon-check"
-                                                     process="@this"
+                                                     process="deleteFoodConfirm"
                                                      onclick="PF('deleteFoodConfirm').hide()"
                                                      action="#{foodBean.deleteFood(food)}"
-                                                    update="@widgetVar(foodTable)"/>
+                                                     update="@form adminFormFood"/>
                                     <p:commandButton value="#{msg['no']}" icon="ui-icon-close"
                                                      onclick="PF('deleteFoodConfirm').hide()"/>
                                 </p:confirmDialog>
+
+                                <p:commandButton icon="ui-icon-pencil" action="#{foodBean.setActualFoodModify(food)}"
+                                                 value="#{msg['edit']}" process="@this" onclick="PF('editDlg').show()" style="font-size: 0.7em;"/>
+
+                                <p:dialog id="editDlg" widgetVar="editDlg" showEffect="fade" hideEffect="fade" header="#{msg['edit']}">
+                                    <p:panelGrid id="editDlgPanelGrid" styleClass="noborder fullSize" columns="2" layout="grid">
+                                        <p:outputLabel value="#{msg['food.name']}"/>
+                                        <p:inputText value="#{foodBean.selectedFood.name}"/>
+
+                                        <h:outputText value="#{msg['food.price']}"/>
+                                        <p:inputNumber value="#{foodBean.selectedFood.price}" decimalPlaces="0"/>
+
+                                        <h:outputText value="#{msg['food.category']}"/>
+                                        <p:selectOneMenu value="#{foodBean.selectedFood.category}">
+                                            <f:selectItem itemLabel="#{msg['select.one']}" itemValue=""/>
+                                            <f:selectItem itemLabel="#{msg['food.category.soups']}" itemValue="Levesek"/>
+                                            <f:selectItem itemLabel="#{msg['food.category.maindishes']}" itemValue="Főételek"/>
+                                            <f:selectItem itemLabel="#{msg['food.category.pizzas']}" itemValue="Pizzák"/>
+                                            <f:selectItem itemLabel="#{msg['food.category.desserts']}" itemValue="Desszertek"/>
+                                        </p:selectOneMenu>
+
+                                        <p:outputLabel value="#{msg['food.description']}"/>
+                                        <p:inputTextarea rows="6" cols="20" value="#{foodBean.selectedFood.description}" maxlength="255"/>
+
+                                        <p:outputLabel value="#{msg['food.pictureUrl']}"/>
+                                        <p:inputText value="#{foodBean.selectedFood.pictureUrl}"/>
+
+                                    </p:panelGrid>
+
+                                    <f:facet name="footer">
+                                        <p:commandButton value="#{msg['save']}" process="editDlg" action="#{foodBean.saveFood}" update="@widgetVar(editDlg)"/>
+                                        <p:commandButton value="#{msg['cancel']}" process="editDlg" action="#{foodBean.destroyCreateEditPanel}" update="@widgetVar(editDlg)"/>
+                                    </f:facet>
+                                </p:dialog>
                             </p:panel>
                         </h:panelGrid>
                     </p:panel>
