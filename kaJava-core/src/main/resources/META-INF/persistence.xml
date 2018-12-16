@@ -15,13 +15,14 @@
         <class>hu.food.core.entity.Deliver</class>
         <class>hu.food.core.entity.Ingridence</class>
         <class>hu.food.core.entity.User</class>
+		<class>hu.food.core.entity.DailyMenu</class>
 		<properties>
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.default_schema" value="public" />
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.PostgreSQL82Dialect" />
-			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="hibernate.hbm2ddl.auto" value="create"/>
 
 		</properties>
 	</persistence-unit>

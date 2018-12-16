@@ -6,7 +6,7 @@ import hu.food.core.entity.base.BaseEntity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "DELIVER")
+@Table(name = "DAILYMENU")
 @SequenceGenerator(name = "DAILYMENU_IDGEN", sequenceName = "S_DAILYMENU")
 public class DailyMenu extends BaseEntity {
 
