@@ -14,4 +14,6 @@ public interface OrderService {
     List<OrderVo> findOrdersByUser(Long userId);
 
     DeliverVo getLaziestDeliver();
+
+    List<OrderVo> getAllOrder();
 }

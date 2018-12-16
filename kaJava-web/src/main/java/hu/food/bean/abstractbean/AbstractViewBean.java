@@ -24,7 +24,7 @@ public abstract class AbstractViewBean implements Serializable {
     private UserMBean userMBean;
 
     @PostConstruct
-    private void init() {
+    public void init() {
         List<Role> requiredRole = getRoles();
         checkRole(requiredRole);
         renderCreateEditPanel = false;

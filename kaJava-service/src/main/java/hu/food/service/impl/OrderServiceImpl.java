@@ -86,4 +86,9 @@ public class OrderServiceImpl implements OrderService {
             return null;
         }
     }
+
+    @Override
+    public List<OrderVo> getAllOrder() {
+        return orderMapper.toVo(orderDao.findAll());
+    }
 }

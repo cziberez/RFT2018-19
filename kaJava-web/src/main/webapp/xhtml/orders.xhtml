@@ -1,0 +1,51 @@
+<ui:composition template="/WEB-INF/templates/base_template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="windowTitle">
+        <h:outputText value="#{msg['menu.orders']}"/>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <p:dataTable id="adminTableDataTable" var="order" value="#{orderMBean.orders}" selectionMode="single"
+                     selection="#{orderBean.selectedOrder}" rowKey="#{order.id}" paginator="true"
+                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     emptyMessage="#{msg['emptyDataTable']}"
+                     currentPageReportTemplate="({currentPage} / {totalPages})"
+                     rowsPerPageTemplate="10,15,20,25,50" paginatorPosition="bottom"
+                     paginatorAlwaysVisible="true"
+                     resizableColumns="true" scrollable="true">
+
+            <f:facet name="header">
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:commandButton icon="fa fa-file-o" action="#{foodBean.setRenderCreateEditPanel()}"
+                                         value="#{msg['create']}" process="@this" update="@form"/>
+                    </f:facet>
+                </p:toolbar>
+            </f:facet>
+
+            <p:column headerText="#{msg['profile.user.datas']}">
+                <h:outputText value="#{order.customer.firstname} #{order.customer.lastname}"/>
+            </p:column>
+            <p:column headerText="#{msg['profile.shipping.datas']}">
+                <h:outputText value="#{order.customer.addressVo.postCode} #{order.customer.addressVo.city}, #{order.customer.addressVo.street} #{order.customer.addressVo.houseNumber} #{order.customer.addressVo.floor} #{order.customer.addressVo.door}"/>
+            </p:column>
+            <p:column headerText="#{msg['food.total.price']}">
+                <h:outputText value="#{order.price} Ft"/>
+            </p:column>
+            <p:column headerText="#{msg['deliver.note']}">
+                <h:outputText value="#{order.description}"/>
+            </p:column>
+            <p:column headerText="#{msg['order.deliver.user']}">
+                <h:outputText value="#{order.deliver.name}"/>
+            </p:column>
+        </p:dataTable>
+
+    </ui:define>
+
+</ui:composition>
