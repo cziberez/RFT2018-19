@@ -9,7 +9,6 @@
     </lifecycle>
 
     <application>
-        <resource-handler>org.jepsar.primefaces.theme.jepsar.FontAwesomeResourceHandler</resource-handler>
         <locale-config>
             <default-locale>hu</default-locale>
             <supported-locale>en</supported-locale>

@@ -77,6 +77,22 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<profiles>
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<wildfly-hostname>localhost</wildfly-hostname>
+				<enviroment.name>local</enviroment.name>
+				<liquibase.dbUrl>jdbc:postgresql://localhost:5432/postgres?currentSchema=public</liquibase.dbUrl>
+				<liquibase.user>postgres</liquibase.user>
+				<liquibase.password>postgres</liquibase.password>
+			</properties>
+		</profile>
+	</profiles>
+
 	<repositories>
 		<repository>
 			<id>prime-repo</id>

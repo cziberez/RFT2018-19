@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   logicalFilePath="liquibase/2018_12/testdata.xml"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="insertTestdata" author="cziberez">
+        <sqlFile path="sql/insert_testdata.sql" relativeToChangelogFile="true"/>
+        <comment>Testdata</comment>
+    </changeSet>
+</databaseChangeLog>
