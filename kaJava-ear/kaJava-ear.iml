@@ -17,6 +17,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="kaJava-core" />
+    <orderEntry type="library" name="Maven: com.github.jepsar:primefaces-theme-jepsar:0.9.1" level="project" />
     <orderEntry type="module" module-name="kaJava-service" />
     <orderEntry type="module" module-name="kaJava-service-api" />
     <orderEntry type="library" name="Maven: ma.glasnost.orika:orika-core:1.5.2" level="project" />
