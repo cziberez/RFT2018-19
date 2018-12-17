@@ -17,3 +17,4 @@ kaJava.iml
 /kaJava-persistence/kaJava-persistence.iml
 kaJava-persistence/target/
 /kaJava-service-api/kaJava-service-api.iml
+*.iml
