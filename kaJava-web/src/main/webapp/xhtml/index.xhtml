@@ -11,7 +11,37 @@
 
     <ui:define name="content">
         <p:panel header="#{msg['index.dailymenu']}">
-
+            <h2>#{msg['index.dailymenu.description']}</h2>
+            <table style="border: 1px solid black; margin: 0 auto; text-align: center; font-size: 16px;" class="fullSize">
+                <thead>
+                    <tr>
+                        <td/>
+                        <td style="font-weight: bold;">#{msg['day.monday']}</td>
+                        <td style="font-weight: bold;">#{msg['day.tuesday']}</td>
+                        <td style="font-weight: bold;">#{msg['day.wednesday']}</td>
+                        <td style="font-weight: bold;">#{msg['day.thursday']}</td>
+                        <td style="font-weight: bold;">#{msg['day.friday']}</td>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td style="border: 1px solid black; font-weight: bold;">#{msg['food.category.soups']}</td>
+                    <td style="border: 1px solid black;">Marhahúsleves gazdagon</td>
+                    <td style="border: 1px solid black;">Palóczleves</td>
+                    <td style="border: 1px solid black;">Gulyásleves</td>
+                    <td style="border: 1px solid black;">Jókai bableves</td>
+                    <td style="border: 1px solid black;">Finom leves</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; font-weight: bold;">#{msg['food.category.maindishes']}</td>
+                    <td style="border: 1px solid black;">Cigánypecsenye</td>
+                    <td style="border: 1px solid black;">Rántott szelet</td>
+                    <td style="border: 1px solid black;">Milánói makaróni</td>
+                    <td style="border: 1px solid black;">Rántott sajt</td>
+                    <td style="border: 1px solid black;">Rakott karfiol</td>
+                </tr>
+                </tbody>
+            </table>
         </p:panel>
     </ui:define>
 

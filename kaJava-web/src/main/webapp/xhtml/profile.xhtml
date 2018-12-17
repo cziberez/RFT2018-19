@@ -24,6 +24,7 @@
                         <p:inputText id="profileEmailInput" value="#{userBean.userVo.email}"/>
                         <p:outputLabel id="profilePhoneLabel" value="#{msg['menu.phonenumber']}"/>
                         <p:inputText id="profilePhoneInput" value="#{userBean.userVo.phoneNumber}"/>
+                        <p:commandButton value="#{msg['save']}"/>
                     </p:panelGrid>
                 </p:tab>
                 <p:tab title="#{msg['profile.shipping.datas']}">
@@ -55,10 +56,10 @@
                             <h:outputText value="#{msg['order.date']}:"/>
                             <h:outputText value="#{order.recDate}" style="font-weight: bold"/>
 
-                            <h:outputText value="#{msg['order.price']}:"/>
+                            <h:outputText value="#{msg['food.price']}:"/>
                             <h:outputText value="#{order.price} Huf" style="font-weight: bold"/>
 
-                            <h:outputText value="#{msg['order.basket']}:"/>
+                            <h:outputText value="#{msg['basket']}:"/>
 
                         </h:panelGrid>
                         <h:panelGrid columns="2" style="width:400px" columnClasses="logo,detail">

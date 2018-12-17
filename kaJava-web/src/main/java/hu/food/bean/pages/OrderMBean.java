@@ -24,9 +24,7 @@ public class OrderMBean extends AbstractViewBean {
     private OrderVo selectedOrder;
 
     @PostConstruct
-    @Override
-    public void init() {
-        super.init();
+    private void init() {
         orders = orderService.getAllOrder();
 
     }

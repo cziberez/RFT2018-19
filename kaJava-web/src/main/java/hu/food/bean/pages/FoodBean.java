@@ -37,9 +37,7 @@ public class FoodBean extends AbstractViewBean {
     private Boolean isDessert;
 
     @PostConstruct
-    @Override
-    public void init() {
-        super.init();
+    private void init() {
         foods = getAllActiveFood();
         selectedFood = new FoodVo();
         isSoup = true;

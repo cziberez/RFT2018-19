@@ -177,8 +177,7 @@ public class UserMBean extends AbstractUserBean {
 
     public void addFoodToBasket(FoodVo orderedFood) {
         basket.add(orderedFood);
-        FacesMessage msg = new FacesMessage("Successful", "Siker");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        ContextUtil.addMessage(null, FacesMessage.SEVERITY_ERROR, getMessageByKey("added.to.basket"), null);
     }
 
     public void getReadyForCheckout() {

@@ -30,9 +30,7 @@ public class AdministrationBean extends AbstractViewBean {
     private List<Role> rolesEnum;
 
     @PostConstruct
-    @Override
-    public void init() {
-        super.init();
+    private void init() {
         users = userService.getAllUsers();
         rolesEnum = getRolesEnum();
         selectedUser = new UserVo();
