@@ -42,6 +42,7 @@ public abstract class AbstractViewBean implements Serializable {
                 break;
             }
         }
+        ret = true;
         return ret;
     }
 

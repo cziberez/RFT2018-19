@@ -13,7 +13,7 @@
         <h:form id="orderForm">
 
             <p:dataTable id="adminTableDataTable" var="order" value="#{orderMBean.orders}" selectionMode="single"
-                         selection="#{orderBean.selectedOrder}" rowKey="#{order.id}" paginator="true"
+                         selection="#{orderMBean.selectedOrder}" rowKey="#{order.id}" paginator="true"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          emptyMessage="#{msg['emptyDataTable']}"
                          currentPageReportTemplate="({currentPage} / {totalPages})"
