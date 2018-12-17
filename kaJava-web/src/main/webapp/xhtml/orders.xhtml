@@ -21,15 +21,6 @@
                          paginatorAlwaysVisible="true"
                          resizableColumns="true" scrollable="true">
 
-                <f:facet name="header">
-                    <p:toolbar>
-                        <f:facet name="left">
-                            <p:commandButton icon="fa fa-file-o" action="#{foodBean.setRenderCreateEditPanel()}"
-                                             value="#{msg['create']}" process="@this" update="@form"/>
-                        </f:facet>
-                    </p:toolbar>
-                </f:facet>
-
                 <p:column headerText="#{msg['profile.user.datas']}">
                     <h:outputText value="#{order.customer.firstname} #{order.customer.lastname}"/>
                 </p:column>
